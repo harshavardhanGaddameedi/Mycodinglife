@@ -7,6 +7,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.IOException;
@@ -32,7 +33,9 @@ public class DriverProvider {
 
     private void loadChromeDriver(String driverPath) {
         System.setProperty("webdriver.chrome.driver", driverPath);
-        driver = new ChromeDriver();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.setExperimentalOption("useAutomationExtension", false);
+        driver = new ChromeDriver(chromeOptions);
         driver.manage().window().maximize();
     }
 
