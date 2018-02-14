@@ -1,6 +1,6 @@
 Feature: Login into iDempiere Application
 
-@wip
+
   Scenario Outline: Login to iDempiere Application
     Given I am in login Page
     And enter the user details "<user>" "<password>"
@@ -10,7 +10,7 @@ Feature: Login into iDempiere Application
     Examples:
       | user                      | password              |
       | OperationsProcessor1      | OperationsProcessor1  |
-      | FinanceBP1                | FinanceBP1            |
+#      | FinanceBP1                | FinanceBP1            |
 #      | FinanceProcessor1         | FinanceProcessor1     |
 #      | FinanceController1        | FinanceController1    |
 #      | FinanceDirector1          | FinanceDirector1      |
