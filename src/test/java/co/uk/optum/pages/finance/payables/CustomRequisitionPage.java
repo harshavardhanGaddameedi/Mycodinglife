@@ -1,6 +1,7 @@
 package co.uk.optum.pages.finance.payables;
 
 import co.uk.optum.utility.DriverProvider;
+import co.uk.optum.utility.FeatureContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,9 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import javax.inject.Inject;
 
-import static co.uk.optum.utility.CommonUtility.getFutureDate;
-import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
-import static co.uk.optum.utility.CommonUtility.waitTime;
+import static co.uk.optum.utility.CommonUtility.*;
+import static co.uk.optum.utility.FeatureContext.*;
 
 /**
  * Created by bganesa5 on 2/14/2018.
@@ -59,13 +59,53 @@ public class CustomRequisitionPage {
     @FindBy(xpath = "//tbody/tr[7]/td[2]/div[@title='Total of all document lines']/input")
     WebElement totalLines;
 
+    @FindBy(xpath = "//div/a[@title[contains(.,'Lookup')]]/span[@class='z-toolbarbutton-content']/img[@src[contains(.,'Find24')]]")
+    WebElement lookupRecordIcon;
+
+    @FindBy(xpath = "//table/tbody/tr/td/div/div/input[@title='Document sequence number of the document']")
+    WebElement requisitionNumberlookupBox;
+
+    @FindBy(xpath = "//table/tbody/tr/td[3]/div/button[@title='OK']")
+    WebElement lookupRecordOkbutton;
+
+    @FindBy(xpath = "//td/span[@title='Indicates if this document requires approval']/input[@type='checkbox']")
+    WebElement approvedCheckbox;
+
+    public boolean isCustomRequisitionApproved(){
+        clickLookupRecordIcon();
+        enterRequisitionNumForLookup();
+        clickLookupRecordOkbutton();
+        return isApprovedCheckboxChecked();
+    }
+
+    public boolean isApprovedCheckboxChecked(){
+        return Boolean.parseBoolean(approvedCheckbox.getAttribute("checked"));
+    }
+
+    public void enterRequisitionNumForLookup(){
+        requisitionNumberlookupBox.sendKeys(getStoredRequisitionNumber());
+        waitTime(3000);
+    }
+
+    public void clickLookupRecordOkbutton(){
+        lookupRecordOkbutton.click();
+        waitForElementToBeDisplayed(approvedCheckbox);
+    }
+
+    public void clickLookupRecordIcon(){
+        lookupRecordIcon.click();
+        waitForElementToBeDisplayed(requisitionNumberlookupBox);
+    }
+
     public String getRequisitionNumber(){
         System.out.println(requisitionNumber.getAttribute("value"));
+        setRequisitionNumber(requisitionNumber.getAttribute("value"));
         return requisitionNumber.getAttribute("value");
     }
 
     public String getTotalLines(){
         System.out.println(totalLines.getAttribute("value"));
+        setTotalLineAmount(totalLines.getAttribute("value"));
         return totalLines.getAttribute("value");
     }
 

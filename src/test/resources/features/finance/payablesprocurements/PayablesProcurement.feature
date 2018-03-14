@@ -1,5 +1,6 @@
+@wip
 Feature: Payables / Procurement Functionality Scenarios
-  @wip
+
   Scenario Outline: Create Custom Requisition
     Given I am in login Page
     And I login to IDempiere with "<user>" "<password>"
@@ -12,3 +13,9 @@ Feature: Payables / Procurement Functionality Scenarios
     Examples:
       | user                  | password              |
       | OperationsProcessor1  | OperationsProcessor1  |
+
+    Scenario: Approve Custom Requisition
+      Given I am in login Page
+      And I login to IDempiere with Approval user
+      When I Select and Approve Custom Requisition
+      Then I Should see the Custom Requisition Approved

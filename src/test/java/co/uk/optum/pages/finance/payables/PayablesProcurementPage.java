@@ -1,6 +1,7 @@
 package co.uk.optum.pages.finance.payables;
 
 import co.uk.optum.utility.DriverProvider;
+import co.uk.optum.utility.FeatureContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import javax.inject.Inject;
 
 import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
+import static co.uk.optum.utility.FeatureContext.*;
 
 /**
  * Created by bganesa5 on 2/12/2018.

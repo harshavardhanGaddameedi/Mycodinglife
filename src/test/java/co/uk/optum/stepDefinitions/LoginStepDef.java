@@ -75,4 +75,9 @@ public class LoginStepDef {
         iShouldBeInTheHomePage();
         waitTime(2000);
     }
+
+    @And("^I login to IDempiere with Approval user$")
+    public void iLoginToIDempiereWithApprovalUser() throws Throwable {
+        iLoginToIDempiereWith(loginPage.getApprovalUser()[0],loginPage.getApprovalUser()[1]);
+    }
 }

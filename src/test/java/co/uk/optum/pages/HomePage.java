@@ -38,7 +38,8 @@ public class HomePage {
     @FindBy(xpath = "//div/div[@class='z-popup-content']/div/div[@class='z-panel-body']/div[1]/div/div[3]/table/tbody/tr[2]/td/div/a")
     WebElement receivablesMenu;
 
-    @FindBy(xpath = "//div/div[@class='z-popup-content']/div/div[@class='z-panel-body']/div[1]/div/div[3]/table/tbody/tr[3]/td/div/a")
+//    @FindBy(xpath = "//div/div[@class='z-popup-content']/div/div[@class='z-panel-body']/div[1]/div/div[3]/table/tbody/tr[3]/td/div/a")
+    @FindBy(xpath = "//div/a[contains(.,'Payables/Procurement')]")
     WebElement payablesProcurementMenu;
 
     @FindBy(xpath = "//div/div[@class='z-popup-content']/div/div[@class='z-panel-body']/div[1]/div/div[3]/table/tbody/tr[4]/td/div/a")
@@ -50,6 +51,12 @@ public class HomePage {
     @FindBy(xpath = "//div/div[@class='z-popup-content']/div/div[@class='z-panel-body']/div[1]/div/div[3]/table/tbody/tr[6]/td/div/a")
     WebElement receivablesCashDeskMenu;
 
+    @FindBy(xpath = "//table/tbody/tr[3]/td/div/div/div/span[contains(.,'Workflow Activities')]")
+    WebElement workflowActivitiesLabel;
+
+    public void clickWorkflowActivities(){
+        workflowActivitiesLabel.click();
+    }
 
     public void waitForHomePageLoad() {
         waitForElementToBeDisplayed(logoutLink);
