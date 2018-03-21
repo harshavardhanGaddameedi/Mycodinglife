@@ -1,5 +1,6 @@
 package co.uk.optum.utility;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -65,6 +66,11 @@ public class CommonUtility {
 
     public static void moveElementToVisibility(WebElement webElement){
         new Actions(driver).moveToElement(webElement).perform();
+    }
+
+    public static void waitForElementToDisappear(By locator) {
+        Boolean b = (new WebDriverWait(driver, 30))
+                .until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
 }

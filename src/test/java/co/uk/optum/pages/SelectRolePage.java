@@ -15,11 +15,13 @@ import static co.uk.optum.utility.CommonUtility.*;
 
 public class SelectRolePage {
     private final WebDriver driver;
+    private final HomePage homePage;
 
     @Inject
     public SelectRolePage(){
         this.driver = DriverProvider.driver;
         PageFactory.initElements(driver, this);
+        this.homePage = new HomePage();
     }
 
      @FindBy(xpath = "//button/img[contains(@src,'Ok')]")
@@ -34,12 +36,23 @@ public class SelectRolePage {
     @FindBy(xpath = "//tbody/tr[contains(@id,'rowRole')]/td[2]/span/a")
     WebElement roleDropdownIcon;
 
+    public void clickRoleDropDownIcon(){
+        roleDropdownIcon.click();
+        waitTime(2000);
+    }
     public void selectOrganisation(String orgName){
-        driver.findElement(By.xpath("//body/div[2]/ul/li/span[contains(.,'"+ orgName +"')])")).click();
+        clickOrganisationDropDownIcon();
+        driver.findElement(By.xpath("//li/span["+ stringToContainsTag(orgName)+"]")).click();
+    }
+
+    public void clickOrganisationDropDownIcon(){
+        organisationDropdownIcon.click();
+        waitTime(2000);
     }
 
     public void clickSelectRolePageOkBtn(){
         okBtnSelectRolePage.click();
+        homePage.waitForHomePageLoad();
     }
 
     public void waitForSelectRolePageOkBtnToBeDisplayed(){
@@ -49,4 +62,10 @@ public class SelectRolePage {
     public boolean isOkBtnSelectRolePageDisplayed(){
         return okBtnSelectRolePage.isDisplayed();
     }
+
+    public void selectRole(String role){
+        clickRoleDropDownIcon();
+        driver.findElement(By.xpath("//li/span["+ stringToContainsTag(role)+"]")).click();
+    }
+
 }

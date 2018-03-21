@@ -30,6 +30,17 @@ public class PayablesProcurementPage {
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Custom Requisition')]")
     WebElement customRequisitionTab;
 
+    @FindBy(xpath = "//tr/td/img[@title[contains(.,'Create Purchase orders from Purchase Requisitions')]]")
+    WebElement createPOfromRequisitionWorkFlowIcon;
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Create PO from Requisition')]")
+    WebElement createPOfromRequisitionTab;
+
+    public void clickCreatePOfromRequisition(){
+        createPOfromRequisitionWorkFlowIcon.click();
+        waitForElementToBeDisplayed(createPOfromRequisitionTab);
+    }
+
     public void waitForCustomRequisitionIconToDisplay(){
         waitForElementToBeDisplayed(customRequisitionWrokFlowIcon);
     }

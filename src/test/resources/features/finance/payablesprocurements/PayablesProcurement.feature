@@ -1,4 +1,4 @@
-@wip
+
 Feature: Payables / Procurement Functionality Scenarios
 
   Scenario Outline: Create Custom Requisition
@@ -19,3 +19,16 @@ Feature: Payables / Procurement Functionality Scenarios
       And I login to IDempiere with Approval user
       When I Select and Approve Custom Requisition
       Then I Should see the Custom Requisition Approved
+
+    Scenario Outline: Create Purchase Order from Requisition
+      Given I am in login Page
+      And I login to IDempiere with "<user>" "<password>"
+      And I click PayablesProcurement menu
+      And I click Create PO from Requisition
+      And I Select Custom Requisition and generate PO
+      When I Submit the Generated PO
+      Then I should see the PO Successfully Submitted
+
+      Examples:
+         | user                  | password              |
+         | FinanceProcessor1     | FinanceProcessor1     |

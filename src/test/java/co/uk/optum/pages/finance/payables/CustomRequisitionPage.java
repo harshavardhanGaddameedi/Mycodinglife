@@ -72,6 +72,7 @@ public class CustomRequisitionPage {
     WebElement approvedCheckbox;
 
     public boolean isCustomRequisitionApproved(){
+        waitTime(3000);
         clickLookupRecordIcon();
         enterRequisitionNumForLookup();
         clickLookupRecordOkbutton();

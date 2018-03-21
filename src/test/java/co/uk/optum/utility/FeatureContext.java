@@ -6,8 +6,11 @@ package co.uk.optum.utility;
 public class FeatureContext {
 
     private static final FeatureContext instance = new FeatureContext();
-    public static String requisitionNumber; // = "900193";
-    public static String totalLineAmount; // = "550";
+    public static String requisitionNumber;
+    public static String totalLineAmount;
+    public static String purchaseOrderNumber;
+    public static String businessPartner;
+
 
     private FeatureContext(){}
 
@@ -29,6 +32,22 @@ public class FeatureContext {
 
     public static String getTotalLineAmount(){
         return totalLineAmount;
+    }
+
+    public static void setPurchaseOrderNumber(String purchaseOrderNumber){
+        FeatureContext.purchaseOrderNumber = purchaseOrderNumber;
+    }
+
+    public static String getPurchaseOrderNumber(){
+        return purchaseOrderNumber;
+    }
+
+    public static void setBusinessPartner(String businessPartner){
+        FeatureContext.businessPartner = businessPartner;
+    }
+
+    public static String getBusinessPartner(){
+        return businessPartner;
     }
 
 }
