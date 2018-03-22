@@ -75,4 +75,28 @@ public class LoginStepDef {
         iShouldBeInTheHomePage();
         waitTime(2000);
     }
+
+    @And("^I login to IDempiere with Approval user$")
+    public void iLoginToIDempiereWithApprovalUser() throws Throwable {
+        iLoginToIDempiereWith(loginPage.getApprovalUser()[0],loginPage.getApprovalUser()[1]);
+    }
+
+    @And("^Select Role and click Login$")
+    public void selectRoleAndClickLogin() throws Throwable {
+        loginPage.clickSelectRoleCheckbox();
+        loginPage.clickLogin();
+        waitTime(3000);
+    }
+
+    @And("^I Select Role and Org \"([^\"]*)\" \"([^\"]*)\"$")
+    public void iSelectRoleAndOrg(String role, String org) throws Throwable {
+        selectRolePage.selectRole(role);
+        selectRolePage.selectOrganisation(org);
+    }
+
+    @When("^I click login in Role page$")
+    public void iClickLoginInRolePage() throws Throwable {
+        selectRolePage.clickSelectRolePageOkBtn();
+    }
+
 }

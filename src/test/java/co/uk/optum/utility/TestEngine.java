@@ -24,6 +24,8 @@ import static java.time.LocalDate.*;
         plugin = {"com.cucumber.listener.ExtentCucumberFormatter"})
 
 public class TestEngine {
+    public static FeatureContext context;
+    static {context = FeatureContext.getInstance();}
 
     @BeforeClass
     public static void setup() {

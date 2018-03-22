@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import javax.inject.Inject;
 
 import static co.uk.optum.utility.CommonUtility.*;
+import static co.uk.optum.utility.FeatureContext.getTotalLineAmount;
 
 
 public class LoginPage{
@@ -69,5 +70,24 @@ public class LoginPage{
 
     public void clickSelectRoleCheckbox(){
         selectRoleCheckbox.click();
+    }
+
+    public String[] getApprovalUser(){
+        String[] user = new String[2];
+        float totalLineAmount = Float.parseFloat(getTotalLineAmount());
+        if (totalLineAmount < 1000.00){
+            user[0] = "PracticeManager";
+            user[1] = "PracticeManager";
+        }else if(totalLineAmount >= 1000.00 && totalLineAmount < 10000.00){
+            user[0] = "FinanceBP1";
+            user[1] = "FinanceBP1";
+        }else if(totalLineAmount >= 10000.00 && totalLineAmount < 20000.00 ){
+            user[0] = "FinanceController1";
+            user[1] = "FinanceController1";
+        }else if(totalLineAmount >= 20000.00){
+            user[0] = "FinanceDirector1";
+            user[1] = "FinanceDirector1";
+        }
+        return user;
     }
 }
