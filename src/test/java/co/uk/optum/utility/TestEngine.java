@@ -15,14 +15,21 @@ import java.util.Date;
 import static java.time.LocalDate.*;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(
+//@CucumberOptions(
+//
+//        glue = {"co.uk.optum"},
+//        features = {"src/test/resources/features/"},
+//        tags = {"@wip"},
+//        format = {"pretty","json:report/report.json"},
+//        plugin = {"com.cucumber.listener.ExtentCucumberFormatter"})
 
+@CucumberOptions(
         glue = {"co.uk.optum"},
         features = {"src/test/resources/features/"},
         tags = {"@wip"},
         format = {"pretty","json:report/report.json"},
-        plugin = {"com.cucumber.listener.ExtentCucumberFormatter"})
-
+        plugin = {"com.cucumber.listener.ExtentCucumberFormatter"}
+        )
 public class TestEngine {
     public static FeatureContext context;
     static {context = FeatureContext.getInstance();}

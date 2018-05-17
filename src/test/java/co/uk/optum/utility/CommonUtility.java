@@ -48,6 +48,7 @@ public class CommonUtility {
     public static String stringToContainsTag(String inputString){
         String containstag = "";
         String[] s = inputString.split(" ");
+
         System.out.println(s.length);
         for(int i=0; i < s.length; i++){
             if(i != s.length -1) {

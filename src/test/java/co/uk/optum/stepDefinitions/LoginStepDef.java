@@ -63,8 +63,8 @@ public class LoginStepDef {
     public void enterTheUserDetails(String username, String password) throws Throwable {
         loginPage.enterUserName(username);
         waitTime(2000);
-        loginPage.enterPassword(password);
-        waitTime(2000);
+        loginPage.enterPassword(password);        waitTime(2000);
+
     }
 
 
@@ -88,15 +88,20 @@ public class LoginStepDef {
         waitTime(3000);
     }
 
-    @And("^I Select Role and Org \"([^\"]*)\" \"([^\"]*)\"$")
-    public void iSelectRoleAndOrg(String role, String org) throws Throwable {
-        selectRolePage.selectRole(role);
-        selectRolePage.selectOrganisation(org);
-    }
+//    @And("^I Select Role and Org \"([^\"]*)\" \"([^\"]*)\"$")
+//    public void iSelectRoleAndOrg(String role, String org) throws Throwable {
+//        selectRolePage.selectRole(role);
+//        selectRolePage.selectOrganisation(org);
+//    }
 
     @When("^I click login in Role page$")
     public void iClickLoginInRolePage() throws Throwable {
         selectRolePage.clickSelectRolePageOkBtn();
     }
 
+    @And("^I Select Role and Org \"([^\"]*)\",\"([^\"]*)\"$")
+    public void iSelectRoleAndOrg(String role, String org) throws Throwable {
+        selectRolePage.selectRole(role);
+        selectRolePage.selectOrganisation(org);
+    }
 }

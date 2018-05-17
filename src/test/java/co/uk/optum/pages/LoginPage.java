@@ -40,6 +40,8 @@ public class LoginPage{
 
     @Inject
     public LoginPage(){
+
+
         this.driver = DriverProvider.driver;
         PageFactory.initElements(driver, this);
         this.homePage = new HomePage();
