@@ -53,6 +53,7 @@ public class CreatePOFromRequisition {
     }
 
     public void clickRequisitionComboboxButton(){
+        waitForElementToBeDisplayed(requisitionComboboxButton);
         requisitionComboboxButton.click();
         waitForElementToBeDisplayed(requisitionComboboxListItems);
     }
