@@ -5,7 +5,7 @@
 Feature: Generate and place advert
 Scenario: Login as Line Manager and generate Advert
 Given user launches the Idempiere application
-When user logs in using the <Username> and <Password>
+When user logs in using the "<Username>" and "<Password>"
  |Username|Password| 
  |LeadGP1 |LeadGP1 |
 And selects the role as Recruitment Administrator
