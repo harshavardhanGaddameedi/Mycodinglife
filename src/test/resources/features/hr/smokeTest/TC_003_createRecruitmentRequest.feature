@@ -3,8 +3,10 @@
 #Last Updated date:06-06-2018
 Feature: Create RR from Team View of LeadGP
 Scenario: Login as Line Manager and create RR from Team View
-Given user launches the Idempiere application
-When user logs in using the <Username> and <Password>
+ Given I am in login Page
+ And I login to IDempiere with "<user>" "<password>"
+#Given user launches the Idempiere application
+#When user logs in using the <Username> and <Password>
 |Username|Password| 
  |LeadGP1 |LeadGP1 |
 And selects the role as LeadGP

@@ -3,8 +3,10 @@
 #Last Updated date:06-06-2018
 Feature: Approve Recruitment Request
 Scenario: Login as Line Manage's Manager (COO)
-Given user launches the Idempiere application
-When user logs in using the <Username> and <Password>
+#  Given user launches the Idempiere application
+#When user logs in using the <Username> and <Password>
+  Given I am in login Page
+  And I login to IDempiere with "<user>" "<password>"
 |Username|Password| 
 |COO1 |COO1|
 And selects the role as 'COO'
