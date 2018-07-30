@@ -54,6 +54,22 @@ public class HomePage {
     @FindBy(xpath = "//table/tbody/tr[3]/td/div/div/div/span[contains(.,'Workflow Activities')]")
     WebElement workflowActivitiesLabel;
 
+    @FindBy(xpath =".//div/table//tr[@class='z-treerow z-treerow-selected']/td/div/a" )
+    WebElement receivables;
+
+
+    @FindBy(xpath ="//div[@class='z-panel-body']//table/tbody/tr[6]/td/div/a" )
+    WebElement receivablesCashDesk;
+
+    @FindBy (xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Receivables_Cash_Desk')]")
+    WebElement receivablesCashDeskTab;
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Revenue Invoice Cash')]")
+    WebElement revenueInvoiceCashTab;
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Receivables Core Revenue')]")
+    WebElement receivablesCoreRevenueTab;
+
     public void clickWorkflowActivities(){
         workflowActivitiesLabel.click();
     }
@@ -86,6 +102,32 @@ public class HomePage {
 
     public void clickFinanceMenu(){
         financeMenu.click();
-        waitForElementToBeDisplayed(payablesProcurementMenu);
+        waitTime ( 5000 );
+//        waitForElementToBeDisplayed(payablesProcurementMenu);
+//        waitForElementToBeDisplayed(receivablesPrivateRevenueMenu);
+//        waitForElementToBeDisplayed(receivablesCashDesk);
+//        waitForElementToBeDisplayed (receivablesCoreRevenueMenu);
+
+
+    }
+
+    public void clickReceivables() {
+
+        receivables.click();
+
+    }
+
+     public void clickReceivablesCashDesk () {
+        receivablesCashDesk.click ();
+        waitForElementToBeDisplayed ( receivablesCashDeskTab );
+        System.out.println ( "Receivables Cash Desk Clicked" );
+
+    }
+
+    public void clickReceivablesCoreRevenue() {
+        receivablesCoreRevenueMenu.click ();
+        waitForElementToBeDisplayed ( receivablesCoreRevenueTab );
+
+
     }
 }

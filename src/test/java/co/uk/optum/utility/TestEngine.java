@@ -22,12 +22,13 @@ import static java.time.LocalDate.*;
 //        tags = {"@wip"},
 //        format = {"pretty","json:report/report.json"},
 //        plugin = {"com.cucumber.listener.ExtentCucumberFormatter"})
+//C:\GP_Empower_Automation1\src\test\resources\features\finance.smokeTest
 
 @CucumberOptions(
         glue = {"co.uk.optum"},
-        features = {"src/test/resources/features/"},
-        tags = {"@wip"},
-        format = {"pretty","json:report/report.json"},
+        features = {"src\\test\\resources\\features\\finance.smokeTest"},
+        tags = {"@smoke"},
+        format = {"pretty","json:report/report.json","html:report/cucumber-reports"},
         plugin = {"com.cucumber.listener.ExtentCucumberFormatter"}
         )
 public class TestEngine {
