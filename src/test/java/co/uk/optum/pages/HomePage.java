@@ -10,16 +10,17 @@ import javax.inject.Inject;
 
 import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
 import static co.uk.optum.utility.CommonUtility.waitTime;
-import static co.uk.optum.utility.FeatureContext.getStoredRequisitionNumber;
 
 
 public class HomePage {
+
     private WebDriver driver;
 
     @Inject
     public HomePage() {
         this.driver = DriverProvider.driver;
         PageFactory.initElements(driver, this);
+
     }
 
     //    @FindBy(linkText = "Log Out")
@@ -166,21 +167,4 @@ public class HomePage {
         waitForElementToBeDisplayed ( newPositionRequestTab );
     }
 
-    public void searchNPRAndApprove() {
-        iClickNewPositonRequest ();
-        searchAndApproveNPR(getStoredRequisitionNumber());
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
 }

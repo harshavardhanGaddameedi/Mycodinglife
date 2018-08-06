@@ -2,6 +2,7 @@ package co.uk.optum.stepDefinitions.hr.smokeTest;
 
 import co.uk.optum.pages.HomePage;
 import co.uk.optum.pages.hr.NewPositionRequestPage;
+import co.uk.optum.pages.hr.NewPositonRequestApprovalPage;
 import co.uk.optum.utility.DriverProvider;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
@@ -19,6 +20,7 @@ public class EmpOnboarding {
     private final WebDriver driver;
     private final HomePage homePage;
     private final NewPositionRequestPage newPositionRequestPage;
+    private final NewPositonRequestApprovalPage newPositionRequestApprovalPage;
 
     @Inject
     public EmpOnboarding() {
@@ -26,6 +28,7 @@ public class EmpOnboarding {
         PageFactory.initElements (driver, this);
         this.homePage = new HomePage ();
         this.newPositionRequestPage = new NewPositionRequestPage ();
+        this.newPositionRequestApprovalPage= new NewPositonRequestApprovalPage();
         
 
 
@@ -135,7 +138,12 @@ public class EmpOnboarding {
     @And("^I click on New Position Request created by HR Business Partner$")
     public void iClickOnNewPositionRequestCreatedByHRBusinessPartner() throws Throwable {
 
-        homePage.searchNPRAndApprove();
+        homePage.iClickNewPositonRequest();
+        newPositionRequestApprovalPage.searchNPR();
+
+
+
+
 
 
         // Write code here that turns the phrase above into concrete actions
