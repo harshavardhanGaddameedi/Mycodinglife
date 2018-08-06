@@ -6,6 +6,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,6 +20,14 @@ public class CommonUtility {
         WebElement element = (new WebDriverWait(driver, 30))
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
+
+    public static void waitForElementEnabled(WebElement webElement) {
+
+        WebElement element1 = (new WebDriverWait(driver, 30))
+        .until(ExpectedConditions.elementToBeClickable(webElement));
+
+
+}
 
     public static String getFutureDate(int numberOfDaysLater){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
@@ -72,6 +82,17 @@ public class CommonUtility {
     public static void waitForElementToDisappear(By locator) {
         Boolean b = (new WebDriverWait(driver, 30))
                 .until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+
+
+    public static String toAbsolutePath(String relativePath) {
+        Path path = Paths.get(relativePath);
+        Path effectivePath = path;
+        if (!path.isAbsolute()) {
+            Path base = Paths.get("");
+            effectivePath = base.resolve(path).toAbsolutePath();
+        }
+        return effectivePath.normalize().toString();
     }
 
 }

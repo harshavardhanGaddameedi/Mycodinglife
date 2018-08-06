@@ -4,6 +4,7 @@ import com.cucumber.listener.ExtentCucumberFormatter;
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import gherkin.lexer.Ca;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
@@ -27,9 +28,11 @@ import static java.time.LocalDate.*;
 @CucumberOptions(
         glue = {"co.uk.optum"},
         features = {"src\\test\\resources\\features\\finance.smokeTest"},
-        tags = {"@smoke"},
-        format = {"pretty","json:report/report.json","html:report/cucumber-reports"},
-        plugin = {"com.cucumber.listener.ExtentCucumberFormatter"}
+        tags = {"@smoke1"},
+//        format = {"pretty","json:report/report.json","html:report/cucumber-reports","html:report/"},
+        plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}
+//        format = {"pretty","html:report/results.html"},
+//        plugin = {"com.cucumber.listener.ExtentCucumberFormatter"}
         )
 public class TestEngine {
     public static FeatureContext context;
@@ -45,7 +48,10 @@ public class TestEngine {
         ExtentCucumberFormatter.initiateExtentCucumberFormatter(new File(reportFilePath));
     }
 
-}
+
+    }
+
+
 
 
 

@@ -1,6 +1,5 @@
 package co.uk.optum.pages;
 
-import co.uk.optum.utility.CommonUtility;
 import co.uk.optum.utility.DriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 
 import javax.inject.Inject;
 
-import static co.uk.optum.utility.CommonUtility.*;
+import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
+import static co.uk.optum.utility.CommonUtility.waitTime;
+import static co.uk.optum.utility.FeatureContext.getStoredRequisitionNumber;
 
 
 public class HomePage {
@@ -70,6 +71,26 @@ public class HomePage {
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Receivables Core Revenue')]")
     WebElement receivablesCoreRevenueTab;
 
+
+    @FindBy(xpath = "//div//tr/td/div/span [contains(.,'Human Resource & Payroll')]")
+    WebElement hrpMenu;
+
+        @FindBy(xpath= "//div//tr/td/div/span[3][contains(.,'Human Resource')]")
+        WebElement hrMenu;
+
+//        //div//tr/td/div/span[4][contains(.,'Requests')]
+
+     @FindBy(xpath= "//div//tr/td/div/span[4][contains(.,'Requests')]")
+     WebElement requestMenu;
+
+
+    //div//div[@class [contains(.,'z-tree-body')]]/table//tr/td/div/a[contains(.,'New Position Request')]
+    @FindBy(xpath = "//div//div[@class [contains(.,'z-tree-body')]]/table//tr/td/div/a[contains(.,'New Position Request')]")
+    WebElement newPositionRequest;
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'New Position Request')]")
+    WebElement newPositionRequestTab;
+
     public void clickWorkflowActivities(){
         workflowActivitiesLabel.click();
     }
@@ -127,6 +148,38 @@ public class HomePage {
     public void clickReceivablesCoreRevenue() {
         receivablesCoreRevenueMenu.click ();
         waitForElementToBeDisplayed ( receivablesCoreRevenueTab );
+
+
+    }
+
+    public void iClickNewPositonRequest() {
+
+        menuIcon.click ();
+        waitForElementToBeDisplayed ( hrpMenu);
+        hrpMenu.click();
+        waitForElementToBeDisplayed ( hrMenu);
+        hrMenu.click();
+        waitForElementToBeDisplayed ( requestMenu);
+        requestMenu.click();
+        waitForElementToBeDisplayed ( newPositionRequest);
+        newPositionRequest.click();
+        waitForElementToBeDisplayed ( newPositionRequestTab );
+    }
+
+    public void searchNPRAndApprove() {
+        iClickNewPositonRequest ();
+        searchAndApproveNPR(getStoredRequisitionNumber());
+
+
+
+
+
+
+
+
+
+
+
 
 
     }

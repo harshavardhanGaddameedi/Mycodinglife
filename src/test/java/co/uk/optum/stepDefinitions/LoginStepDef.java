@@ -71,6 +71,7 @@ public class LoginStepDef {
     @Given("^I login to IDempiere with \"([^\"]*)\" \"([^\"]*)\"$")
     public void iLoginToIDempiereWith(String username, String password) throws Throwable {
         enterTheUserDetails(username, password);
+
         iClickLogin();
         iShouldBeInTheHomePage();
         waitTime(2000);
