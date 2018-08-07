@@ -167,4 +167,7 @@ public class HomePage {
         waitForElementToBeDisplayed ( newPositionRequestTab );
     }
 
+    public void waitForNewPositionTabTobeDisplayed() {
+        waitForElementToBeDisplayed ( newPositionRequestTab );
+    }
 }

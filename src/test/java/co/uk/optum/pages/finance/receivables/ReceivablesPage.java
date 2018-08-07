@@ -10,12 +10,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import javax.inject.Inject;
-
 import java.util.List;
 
 import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
 import static co.uk.optum.utility.CommonUtility.waitTime;
-import static co.uk.optum.utility.FeatureContext.businessPartner;
 import static co.uk.optum.utility.FeatureContext.getStoredRequisitionNumber;
 import static co.uk.optum.utility.FeatureContext.setRequisitionNumber;
 
@@ -234,8 +232,8 @@ public class ReceivablesPage {
     public void enterRequisitionNumForLookup() {
 
         requisitionNumberlookupBox.sendKeys ( getStoredRequisitionNumber () );
-        waitTime ( 3000 );
-    }
+    waitTime ( 3000 );
+}
 
     public void clickLookupRecordIcon() {
         lookupRecordIcon.click ();

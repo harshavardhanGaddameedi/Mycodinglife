@@ -190,7 +190,7 @@ public class NewPositionRequestPage {
     }
 
     public void statusInputClear() {
-
+        waitForElementToBeDisplayed ( statusInput );
         statusInput.clear();
 
     }

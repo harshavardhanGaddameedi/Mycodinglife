@@ -7,12 +7,15 @@ import co.uk.optum.utility.DriverProvider;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
+
+import static co.uk.optum.utility.CommonUtility.waitTime;
 
 public class EmpOnboarding {
 
@@ -114,7 +117,7 @@ public class EmpOnboarding {
 
         List<Map<String,String>> data = t.asMaps(String.class,String.class);
         System.out.println(data.get (0).get("Status"));
-
+            waitTime ( 1000 );
             newPositionRequestPage.statusInputClear();
             newPositionRequestPage.requestForApproveNPR(data.get (0).get("Status"));
 
@@ -139,6 +142,8 @@ public class EmpOnboarding {
     public void iClickOnNewPositionRequestCreatedByHRBusinessPartner() throws Throwable {
 
         homePage.iClickNewPositonRequest();
+        waitTime(1000);
+        homePage.waitForNewPositionTabTobeDisplayed();
         newPositionRequestApprovalPage.searchNPR();
 
 
@@ -149,6 +154,25 @@ public class EmpOnboarding {
         // Write code here that turns the phrase above into concrete actions
 
     }
+
+     @And("^Select NPR and change the status to Accepted$")
+    public void selectNPRAndChangeTheStatusToAccepted(DataTable t) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = t.asMaps(String.class,String.class);
+        System.out.println(data.get (0).get("Status"));
+        newPositionRequestApprovalPage.selectNPRtoApprove();
+        newPositionRequestApprovalPage.statusInputClear();
+        newPositionRequestApprovalPage.requestForApproveNPR(data.get (0).get("Status"));
+    }
+
+    @Then("^the New Position Request is saved$")
+    public void theNewPositionRequestIsSaved() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+
+        Assert.assertTrue("NPR Approval Failed!!!",newPositionRequestApprovalPage.isNPRApproved());
+    }
+
 //
 //    @Then("^the Job Description is attached$")
 //    public void theJobDescriptionIsAttached() throws Throwable {
