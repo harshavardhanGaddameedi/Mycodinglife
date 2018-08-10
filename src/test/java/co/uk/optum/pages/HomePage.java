@@ -84,6 +84,9 @@ public class  HomePage {
      @FindBy(xpath= "//div//tr/td/div/span[4][contains(.,'Requests')]")
      WebElement requestMenu;
 
+     @FindBy(xpath = "//div//tr/td/div/a[contains (.,'Recruitment Request')]")
+     WebElement recruitmentRequestMenu;
+
 
     //div//div[@class [contains(.,'z-tree-body')]]/table//tr/td/div/a[contains(.,'New Position Request')]
     @FindBy(xpath = "//div//div[@class [contains(.,'z-tree-body')]]/table//tr/td/div/a[contains(.,'New Position Request')]")
@@ -99,9 +102,15 @@ public class  HomePage {
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'New Position Request')]")
     WebElement newPositionRequestTab;
 
+
+
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'*Recruitment Request')]")
     WebElement newRecruitmentRequestTab;
 
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Recruitment Request')]")
+    WebElement recruitmentRequestTab;
+
+    //div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Recruitment Request')]
 
     public void clickWorkflowActivities(){
         workflowActivitiesLabel.click();
@@ -201,6 +210,26 @@ public class  HomePage {
     public boolean isDashboradDisplayed() {
 
         return homeTab.isDisplayed();
+
+    }
+
+    public void iClickRecruitmentRequest() {
+
+        menuIcon.click ();
+        waitForElementToBeDisplayed ( hrpMenu);
+        hrpMenu.click();
+        waitForElementToBeDisplayed ( hrMenu);
+        hrMenu.click();
+        waitForElementToBeDisplayed ( teamView);
+        requestMenu.click();
+        waitForElementToBeDisplayed ( recruitmentRequestMenu );
+        recruitmentRequestMenu.click();
+        waitForElementToBeDisplayed ( recruitmentRequestTab );
+        System.out.println ("newRecruitmentRequestTab Opened");
+//        teamView.click ();
+//        waitForElementToBeDisplayed (teamViewTAb);
+//        System.out.println ( "Teamview Opened ");
+        waitTime ( 2000 );
 
     }
 }

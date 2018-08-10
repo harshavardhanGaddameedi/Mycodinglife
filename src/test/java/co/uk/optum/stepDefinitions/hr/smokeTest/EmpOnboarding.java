@@ -1,10 +1,7 @@
 package co.uk.optum.stepDefinitions.hr.smokeTest;
 
 import co.uk.optum.pages.HomePage;
-import co.uk.optum.pages.hr.LineManagerTeamView;
-import co.uk.optum.pages.hr.NewPositionRequestPage;
-import co.uk.optum.pages.hr.NewPositonRequestApprovalPage;
-import co.uk.optum.pages.hr.RecruitmentRequestPage;
+import co.uk.optum.pages.hr.*;
 import co.uk.optum.utility.DriverProvider;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
@@ -30,6 +27,9 @@ public class EmpOnboarding {
     private final NewPositonRequestApprovalPage newPositionRequestApprovalPage;
     private final RecruitmentRequestPage recruitmentRequestPage;
 
+    private final RecruitmentRequestApprovalPage recruitmentRequestApprovalPage;
+
+
     @Inject
     public EmpOnboarding() {
         this.driver = DriverProvider.driver;
@@ -39,6 +39,8 @@ public class EmpOnboarding {
         this.newPositionRequestApprovalPage = new NewPositonRequestApprovalPage();
         this.lineManagerTeamView = new LineManagerTeamView();
         this.recruitmentRequestPage = new RecruitmentRequestPage ();
+        this.recruitmentRequestApprovalPage = new RecruitmentRequestApprovalPage ();
+
 
     }
 
@@ -222,9 +224,7 @@ public class EmpOnboarding {
     @Then("^Recruitment Request window opens up$")
     public void recruitmentRequestWindowOpensUp() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        lineManagerTeamView.closeTeamViewTab();
-
-        Assert.assertTrue("Recruitment Request window not displayed!!!",lineManagerTeamView.isRecruitmentRequestPageDisplayed());
+         Assert.assertTrue("Recruitment Request window not displayed!!!",lineManagerTeamView.isRecruitmentRequestPageDisplayed());
     }
 
     @And("^fills the Type of Recruitment and Business case$")
@@ -257,6 +257,55 @@ public class EmpOnboarding {
         List<Map<String,String>> data = d.asMaps(String.class,String.class);
         recruitmentRequestPage.setRecruitmentDocNumber();
         Assert.assertTrue("Recruitment Request Not Submitted for Approval!!!",recruitmentRequestPage.isRecruitmentRequestSentForApproval(data.get (0).get("Status")));
+
+    }
+
+    @When("^I Click Recruitment Request Option from Menu$")
+    public void iClickRecruitmentRequestOptionFromMenu() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        homePage.iClickRecruitmentRequest();
+
+    }
+
+    @Then("^the recruitment request page opens$")
+    public void theRecruitmentRequestPageOpens() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Recruitment Request Approval not displayed!!!",recruitmentRequestApprovalPage.isRecruitmentRequestApprovalPageDisplayed());
+    }
+
+    @And("^user searches the request to be approved$")
+    public void userSearchesTheRequestToBeApproved() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentRequestApprovalPage.searchRecruitmentRequest();
+        recruitmentRequestApprovalPage.waitForRecordToBeDisplayed();
+    }
+
+    @And("^Select Request and change the status to Accepted by adding comments$")
+    public void selectRequestAndChangeTheStatusToAcceptedByAddingComments(DataTable t) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = t.asMaps(String.class,String.class);
+        recruitmentRequestApprovalPage.selectRequesttoApprove();
+        recruitmentRequestApprovalPage.statusInputClear();
+        recruitmentRequestApprovalPage.requestForApproveRecruitmentRequest(data.get (0).get("Status"),data.get ( 0 ).get ( "Comments" ));
+    }
+
+    @And("^I click on Save Button on Recruitment Request Approval Page$")
+    public void iClickOnSaveButtonOnRecruitmentRequestApprovalPage() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentRequestApprovalPage.clickSaveButton();
+        recruitmentRequestApprovalPage.waitForRequestApproval();
+
+
+    }
+
+    @Then("^the request Should be in Approved State$")
+    public void theRequestShouldBeInApprovedState(DataTable t) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = t.asMaps(String.class,String.class);
+//        recruitmentRequestApprovalPage.setRecruitmentDocNumber();
+
+        Assert.assertTrue("Recruitment Request Approval not done!!!",recruitmentRequestApprovalPage.isRecruitmentRequestApproved(data.get (0).get("Status")));
 
     }
 
