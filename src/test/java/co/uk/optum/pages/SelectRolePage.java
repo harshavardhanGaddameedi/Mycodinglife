@@ -1,6 +1,5 @@
 package co.uk.optum.pages;
 
-import co.uk.optum.utility.CommonUtility;
 import co.uk.optum.utility.DriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -65,7 +64,13 @@ public class SelectRolePage {
 
     public void selectRole(String role){
         clickRoleDropDownIcon();
+        waitForElementToBeDisplayed ( driver.findElement(By.xpath("//li/span["+ stringToContainsTag(role)+"]"))) ;
         driver.findElement(By.xpath("//li/span["+ stringToContainsTag(role)+"]")).click();
     }
 
+    public boolean isRolePageDispalyed() {
+
+        waitForElementToBeDisplayed ( roleDropdownIcon );
+        return roleDropdownIcon.isDisplayed();
+    }
 }

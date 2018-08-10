@@ -34,7 +34,7 @@ public class CommonUtility {
         Date currentDate = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(currentDate);
-        cal.add(Calendar.DATE, 5);
+        cal.add(Calendar.DATE, numberOfDaysLater);
         Date futureDate = cal.getTime();
         String ddString = sdf.format(futureDate);
         return ddString;

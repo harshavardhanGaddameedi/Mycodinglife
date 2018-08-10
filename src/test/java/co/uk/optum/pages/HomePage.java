@@ -12,7 +12,7 @@ import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
 import static co.uk.optum.utility.CommonUtility.waitTime;
 
 
-public class HomePage {
+public class  HomePage {
 
     private WebDriver driver;
 
@@ -89,8 +89,19 @@ public class HomePage {
     @FindBy(xpath = "//div//div[@class [contains(.,'z-tree-body')]]/table//tr/td/div/a[contains(.,'New Position Request')]")
     WebElement newPositionRequest;
 
+    @FindBy(xpath = "//div//div[@class [contains(.,'z-tree-body')]]/table//tr/td/div/a[contains(.,'Team View')]")
+    WebElement teamView;
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Team View')]")
+    WebElement teamViewTAb;
+
+
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'New Position Request')]")
     WebElement newPositionRequestTab;
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'*Recruitment Request')]")
+    WebElement newRecruitmentRequestTab;
+
 
     public void clickWorkflowActivities(){
         workflowActivitiesLabel.click();
@@ -169,5 +180,27 @@ public class HomePage {
 
     public void waitForNewPositionTabTobeDisplayed() {
         waitForElementToBeDisplayed ( newPositionRequestTab );
+    }
+
+    public void iClickTeamView() {
+
+        menuIcon.click ();
+        waitForElementToBeDisplayed ( hrpMenu);
+        hrpMenu.click();
+        waitForElementToBeDisplayed ( hrMenu);
+        hrMenu.click();
+        waitForElementToBeDisplayed ( teamView);
+//        requestMenu.click();
+        teamView.click ();
+        waitForElementToBeDisplayed (teamViewTAb);
+        System.out.println ( "Teamview Opened ");
+        waitTime ( 2000 );
+
+    }
+
+    public boolean isDashboradDisplayed() {
+
+        return homeTab.isDisplayed();
+
     }
 }

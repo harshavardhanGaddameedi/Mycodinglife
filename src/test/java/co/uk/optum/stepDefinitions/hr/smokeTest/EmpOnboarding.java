@@ -1,12 +1,15 @@
 package co.uk.optum.stepDefinitions.hr.smokeTest;
 
 import co.uk.optum.pages.HomePage;
+import co.uk.optum.pages.hr.LineManagerTeamView;
 import co.uk.optum.pages.hr.NewPositionRequestPage;
 import co.uk.optum.pages.hr.NewPositonRequestApprovalPage;
+import co.uk.optum.pages.hr.RecruitmentRequestPage;
 import co.uk.optum.utility.DriverProvider;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -22,8 +25,10 @@ public class EmpOnboarding {
 
     private final WebDriver driver;
     private final HomePage homePage;
+    private final LineManagerTeamView lineManagerTeamView;
     private final NewPositionRequestPage newPositionRequestPage;
     private final NewPositonRequestApprovalPage newPositionRequestApprovalPage;
+    private final RecruitmentRequestPage recruitmentRequestPage;
 
     @Inject
     public EmpOnboarding() {
@@ -31,10 +36,9 @@ public class EmpOnboarding {
         PageFactory.initElements (driver, this);
         this.homePage = new HomePage ();
         this.newPositionRequestPage = new NewPositionRequestPage ();
-        this.newPositionRequestApprovalPage= new NewPositonRequestApprovalPage();
-        
-
-
+        this.newPositionRequestApprovalPage = new NewPositonRequestApprovalPage();
+        this.lineManagerTeamView = new LineManagerTeamView();
+        this.recruitmentRequestPage = new RecruitmentRequestPage ();
 
     }
 
@@ -171,6 +175,89 @@ public class EmpOnboarding {
 
 
         Assert.assertTrue("NPR Approval Failed!!!",newPositionRequestApprovalPage.isNPRApproved());
+    }
+
+    @When("^I Click Team View Option from Menu$")
+    public void iClickTeamViewOptionFromMenu() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        homePage.iClickTeamView();
+
+    }
+
+    @Then("^the dashboard is displayed$")
+    public void theDashboardIsDisplayed() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Dashboard Page not displayed!!!",homePage.isDashboradDisplayed());
+
+
+    }
+
+    @And("^select the position which was created$")
+    public void selectThePositionWhichWasCreated(DataTable t) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        List<Map<String,String>> data = t.asMaps(String.class,String.class);
+        System.out.println(data.get (0).get("Position"));
+
+        lineManagerTeamView.searchPosition();
+
+        lineManagerTeamView.enterPositionToSearch(data.get (0).get("Position"));
+        lineManagerTeamView.clickOKTeamviewSearch();
+        waitTime ( 2000 );
+
+        lineManagerTeamView.selectPostionFromGrid();
+
+
+
+    }
+
+    @And("^clicks on the Export Example Button on the right hand side of the Tool Bar of iDempiere$")
+    public void clicksOnTheExportExampleButtonOnTheRightHandSideOfTheToolBarOfIDempiere() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        lineManagerTeamView.iClickExportExamples();
+
+    }
+
+    @Then("^Recruitment Request window opens up$")
+    public void recruitmentRequestWindowOpensUp() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        lineManagerTeamView.closeTeamViewTab();
+
+        Assert.assertTrue("Recruitment Request window not displayed!!!",lineManagerTeamView.isRecruitmentRequestPageDisplayed());
+    }
+
+    @And("^fills the Type of Recruitment and Business case$")
+    public void fillsTheTypeOfRecruitmentAndBusinessCase(DataTable t) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = t.asMaps(String.class,String.class);
+        System.out.println(data.get (0).get("Position Template"));
+
+        recruitmentRequestPage.setData(data.get (0).get("Type of Recruitment"),data.get (0).get("Business case"),data.get (0).get("Status"));
+    }
+
+    @And("^fills the Proposed Start Date field$")
+    public void fillsTheProposedStartDateField() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentRequestPage.setProposedDate(30);
+        waitTime ( 2000 );
+     }
+
+    @And("^I click on Save Button On Recruitment Request Page$")
+    public void iClickOnSaveButtonOnRecruitmentRequestPage() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentRequestPage.clickSaveButton();
+
+
+    }
+
+    @Then("^the Recruitment Request for the selected position is created awaiting approval$")
+    public void theRecruitmentRequestForTheSelectedPositionIsCreatedAwaitingApproval(DataTable d) throws Throwable {
+
+        List<Map<String,String>> data = d.asMaps(String.class,String.class);
+        recruitmentRequestPage.setRecruitmentDocNumber();
+        Assert.assertTrue("Recruitment Request Not Submitted for Approval!!!",recruitmentRequestPage.isRecruitmentRequestSentForApproval(data.get (0).get("Status")));
+
     }
 
 //

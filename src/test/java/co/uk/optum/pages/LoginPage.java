@@ -1,15 +1,14 @@
 package co.uk.optum.pages;
 
-import co.uk.optum.pages.HomePage;
-import co.uk.optum.utility.CommonUtility;
 import co.uk.optum.utility.DriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import javax.inject.Inject;
 
-import static co.uk.optum.utility.CommonUtility.*;
+import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
 import static co.uk.optum.utility.FeatureContext.getTotalLineAmount;
 
 
@@ -91,5 +90,10 @@ public class LoginPage{
             user[1] = "FinanceDirector1";
         }
         return user;
+    }
+
+    public void selectRole() {
+        selectRoleCheckbox.click ();
+
     }
 }

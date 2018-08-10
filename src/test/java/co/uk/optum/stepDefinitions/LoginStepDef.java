@@ -4,15 +4,13 @@ import co.uk.optum.pages.HomePage;
 import co.uk.optum.pages.LoginPage;
 import co.uk.optum.pages.SelectRolePage;
 import co.uk.optum.pages.StartPage;
-import co.uk.optum.utility.CommonUtility;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
 
-import static co.uk.optum.utility.CommonUtility.*;
+import static co.uk.optum.utility.CommonUtility.waitTime;
 
 
 public class LoginStepDef {
@@ -104,5 +102,39 @@ public class LoginStepDef {
     public void iSelectRoleAndOrg(String role, String org) throws Throwable {
         selectRolePage.selectRole(role);
         selectRolePage.selectOrganisation(org);
+    }
+
+    @And("^I login to IDempiere with \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
+    public void iLoginToIDempiereWith(String username, String password, String role) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        enterTheUserDetails(username, password);
+        selectRole();
+        clickLogin();
+        iShouldBeInSelectRolePage();
+        waitTime(2000);
+        selectRolePage.selectRole(role);
+        selectRolePage.clickSelectRolePageOkBtn ();
+        System.out.println ( "Login with Role Successful" );
+
+
+
+   }
+
+    public void clickLogin() {
+        loginPage.clickLogin();
+
+
+    }
+
+    public  void iShouldBeInSelectRolePage() {
+        Assert.assertTrue("Role page is not loaded!!!", selectRolePage.isRolePageDispalyed());
+
+
+    }
+
+    public void selectRole() {
+
+        loginPage.selectRole();
     }
 }
