@@ -42,7 +42,7 @@ public class RecruitmentRequestPage {
     @FindBy(xpath = "//div//table//tr//td//span[@instancename='R_Request0he_startdate']/input[@class='z-datebox-input']")
     WebElement dateProposedTextBox;
 
-    @FindBy(xpath = "//div//div[@class='adwindow-north z-div']//div/a/span/img[@src='/webui/theme/default/images/Save24.png']")
+    @FindBy(xpath = "//div[@class='adwindow-north z-div']/div/div/div[@class='z-toolbar-content z-toolbar-start']/a[@title[contains(., 'Save changes')]]/span[@class='z-toolbarbutton-content']/img[@src[contains(., 'Save')]]")
     WebElement saveButton;
 
 
@@ -71,7 +71,7 @@ public class RecruitmentRequestPage {
 
 //        waitForElementToBeDisplayed ( saveButton );
 
-        List<WebElement> checkBoxes = driver.findElements ( By.xpath ( "//div//div[@class='adwindow-north z-div']//div/a/span/img[@src='/webui/theme/default/images/Save24.png']" ) );
+        List<WebElement> checkBoxes = driver.findElements ( By.xpath ( "//div//div[@class='adwindow-north z-div']//div/a/span/img[@src='/webui/theme/businessTeamBlue/images/Save24.png']" ) );
         System.out.println ( checkBoxes.size () );
         for (int i = 0; i < checkBoxes.size (); i++) {
         if (checkBoxes.get ( i ).isDisplayed ())

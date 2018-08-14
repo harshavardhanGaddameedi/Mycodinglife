@@ -33,7 +33,7 @@ public class LineManagerTeamView {
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Team View')]")
     WebElement teamViewTab;
 
-    @FindBy(xpath = "//div[@class='z-toolbar']/div/a/span/img[@src[contains(.,'/webui/theme/default/images/Last24.png')]]")
+    @FindBy(xpath = "//div[@class='z-toolbar']/div/a/span/img[@src[contains(.,'Last24.png')]]")
     WebElement selectPostiontoSearch;
 
     @FindBy(xpath = ".//*//div[@class [contains(.,'z-grid-body z-word-nowrap')]]")

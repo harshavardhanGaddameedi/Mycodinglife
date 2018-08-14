@@ -16,10 +16,10 @@ Feature: Create New Position Request, Authorize NPR
   And I click on Attachment icon on the Tool bar
   And I attach the Job Description of Clinical Pharmacist
   And I click on Tick mark of the Attachment Window
-#  Then the Job Description is attached
+ #  Then the Job Description is attached
   And I change the status to Pending Approval
-  |Status|
-  |20_Pending Approval|
+   |Status|
+   |20_Pending Approval|
 
   And I click on Save Button
   Then I Should see the New Position Request is saved and sent for approval
@@ -44,10 +44,10 @@ Feature: Create New Position Request, Authorize NPR
   Given I am in login Page
   And I login to IDempiere with "<user>" "<password>" "<role>"
   Then the dashboard is displayed
-#  And user Clicks on Menu button
-#  And Selects Human resource & Payroll
-#  And selects Human resource
-#  And selects Team View
+ #  And user Clicks on Menu button
+ #  And Selects Human resource & Payroll
+ #  And selects Human resource
+ #  And selects Team View
   When I Click Team View Option from Menu
   And select the position which was created
    |Position|
@@ -62,15 +62,15 @@ Feature: Create New Position Request, Authorize NPR
   Then the Recruitment Request for the selected position is created awaiting approval
    |Status|
    |15_Approval Requested|
- Examples:
- |user|password|role|
- |LeadGP1 |LeadGP1 |Lead GP|
+  Examples:
+   |user|password|role|
+   |LeadGP1 |LeadGP1 |Lead GP|
 
 # C:\GP_Empower_Automation1\src\test\java\co\uk\optum\stepDefinitions\hr\smokeTest
 
  Scenario Outline: Login as Line Manager's Manager (COO)
-#  Given user launches the Idempiere application
-#When user logs in using the <Username> and <Password>
+ #  Given user launches the Idempiere application
+ #When user logs in using the <Username> and <Password>
   Given I am in login Page
   And I login to IDempiere with "<user>" "<password>" "<role>"
   Then the dashboard is displayed
@@ -88,3 +88,43 @@ Feature: Create New Position Request, Authorize NPR
   Examples:
    |user |password |role|
    |COO1 |COO1|COO      |
+
+Scenario Outline: Login as Line Manager and generate Advert
+#Given user launches the Idempiere application
+#When user logs in using the "<Username>" and "<Password>"
+Given I am in login Page
+And I login to IDempiere with "<user>" "<password>" "<role>"
+Then the dashboard of RA is displayed
+When I Click Recruitment Request Option from Menu on RA Page
+Then the recruitment request page opens
+And user searches the request for Advert has to be created
+Then the recruitment request page opens for editing
+
+When the status of request is changed to GenerateAdvert
+ |Status|
+ |30_Generate Advert|
+ And I click on Save Button on Recruitment Administrator Page
+ Then Status Should be GenerateAdvert
+
+ When the status of request is changed to Advert
+  |Status|
+  |40_ Advert Placed|
+
+ And I click on Save Button on Recruitment Administrator Page
+ Then Status Should be Advert
+
+ When the status of request is changed to PlaceAdvert
+  |Status|
+  |50_Vacancy Closed|
+
+ And I click on Attachment icon on the Tool bar on Recruitment Administrator Page
+ And upload the applicant xml
+ And I click on Tick mark of the Attachment Window of Recruitment Admin Page
+
+ And I click on Save Button on Recruitment Administrator Page
+  Then the detail record should have applicants uploaded
+
+
+Examples:
+ |user |password |role|
+ |LeadGP1 |LeadGP1|Recruitment Administrator|

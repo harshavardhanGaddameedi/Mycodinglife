@@ -47,7 +47,7 @@ public class RecruitmentRequestApprovalPage {
     @FindBy(xpath = "//div//tr/td/textarea[@title='Result of the action taken']")
     WebElement commentText;
 
-    @FindBy(xpath = "//div//div[@class='adwindow-north z-div']//div/a/span/img[@src='/webui/theme/default/images/Save24.png']")
+    @FindBy(xpath = "//div[@class='adwindow-north z-div']/div/div/div[@class='z-toolbar-content z-toolbar-start']/a[@title[contains(., 'Save changes')]]/span[@class='z-toolbarbutton-content']/img[@src[contains(., 'Save')]]")
     WebElement saveButton;
 
 
@@ -71,7 +71,7 @@ public class RecruitmentRequestApprovalPage {
         waitForElementToBeDisplayed ( nprDocNumberlookupBox );
         waitTime ( 1000 );
         nprDocNumberlookupBox.sendKeys ( getStoredRequisitionNumber () );
-//        nprDocNumberlookupBox.sendKeys ( "1002823" );
+//        nprDocNumberlookupBox.sendKeys ( "1002896" );
 //        waitTime ( 3000 );
         lookupRecordOkbutton.click ();
     }

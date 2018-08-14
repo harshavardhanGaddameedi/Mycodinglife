@@ -1,30 +1,20 @@
 package co.uk.optum.stepDefinitions.finance.receivables;
 
 import co.uk.optum.pages.HomePage;
-import co.uk.optum.pages.finance.payables.PayablesProcurementPage;
-import co.uk.optum.pages.finance.receivables.*;
 import co.uk.optum.pages.finance.receivables.ReceivablesPage;
+import co.uk.optum.pages.finance.receivables.WorkflowActivitiesPage;
 import co.uk.optum.utility.DriverProvider;
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.api.java.it.Data;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import javax.inject.Inject;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
-import static co.uk.optum.utility.FeatureContext.getStoredRequisitionNumber;
 
 public class ReceivablesStepDefn {
 
@@ -310,4 +300,6 @@ public class ReceivablesStepDefn {
 //         Assert.assertTrue("Revenue Invoice Creation Failed!!!",receivablesPage.isRevenueInvoiceCreated());
         Assert.assertTrue("Revenue Invoice Creation Failed!!!",receivablesPage.isCashRevenueInvoiceCreated());
     }
+
+
 }

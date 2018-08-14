@@ -1,4 +1,3 @@
-@smoke1
 Feature: Payables / Procurement Functionality Scenarios
   Scenario Outline: Create Custom Requisition
     Given I am in login Page

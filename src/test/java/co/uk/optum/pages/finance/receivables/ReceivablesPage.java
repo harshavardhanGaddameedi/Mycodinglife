@@ -46,7 +46,7 @@ public class ReceivablesPage {
     @FindBy(xpath = "//div/div[@class[contains(.,'z-grid-body')]]//table//tr//td/div[@title[contains(.,'Identifies a Business Partner')]]//input")
     WebElement customerTxt;
 
-    @FindBy(xpath = "//div/a/span/img[@src='/webui/theme/default/images/Detail24.png']")
+    @FindBy(xpath = "//div[@class='z-toolbar-content z-toolbar-start']/a/span/img[@src='/webui/theme/businessTeamBlue/images/Detail24.png']")
     WebElement detailRecordAltDown;
 
     @FindBy(xpath = "//div//span[@title[contains(.,'Identifies the (ship to) address for this Business Partner')]]/input[@class[contains(.,'z-combobox-input')]]")
@@ -64,7 +64,7 @@ public class ReceivablesPage {
     @FindBy(xpath = "//div//div/table//tr//td//span[@title='Storage Warehouse and Service Point']/input[@class='z-combobox-input']")
     WebElement warehouseName;
 
-    @FindBy(xpath = "//div/a//span[@class='z-toolbarbutton-content']//img[@src[contains(.,'/webui/theme/default/images/Parent24.png')]]")
+    @FindBy(xpath = "//div/a//span[@class='z-toolbarbutton-content']//img[@src[contains(.,'/webui/theme/businessTeamBlue/images/Parent24.png')]]")
     WebElement parentRecAltUp;
 
     @FindBy(xpath = "//button[@instancename='C_Order0DocAction']")

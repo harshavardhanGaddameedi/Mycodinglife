@@ -26,8 +26,8 @@ public class EmpOnboarding {
     private final NewPositionRequestPage newPositionRequestPage;
     private final NewPositonRequestApprovalPage newPositionRequestApprovalPage;
     private final RecruitmentRequestPage recruitmentRequestPage;
-
     private final RecruitmentRequestApprovalPage recruitmentRequestApprovalPage;
+    private final RecruitmentAdministratorPage recruitmentAdministratorPage;
 
 
     @Inject
@@ -40,6 +40,8 @@ public class EmpOnboarding {
         this.lineManagerTeamView = new LineManagerTeamView();
         this.recruitmentRequestPage = new RecruitmentRequestPage ();
         this.recruitmentRequestApprovalPage = new RecruitmentRequestApprovalPage ();
+        this.recruitmentAdministratorPage = new RecruitmentAdministratorPage ();
+
 
 
     }
@@ -306,6 +308,120 @@ public class EmpOnboarding {
 //        recruitmentRequestApprovalPage.setRecruitmentDocNumber();
 
         Assert.assertTrue("Recruitment Request Approval not done!!!",recruitmentRequestApprovalPage.isRecruitmentRequestApproved(data.get (0).get("Status")));
+
+    }
+
+    @Then("^the dashboard of RA is displayed$")
+    public void theDashboardOfRAIsDisplayed() throws Throwable {
+        // Write code here that turns the phrase above into concrete action
+
+        Assert.assertTrue("Recruitment Admin Home Page Not Loaded !!!",recruitmentAdministratorPage.isRecruitmentAdminDashBoardDisplayed());
+
+
+
+
+
+    }
+
+    @And("^user searches the request for Advert has to be created$")
+    public void userSearchesTheRequestForAdvertHasToBeCreated() throws Throwable {
+
+        recruitmentAdministratorPage.searchRecruitmentRequest();
+        recruitmentAdministratorPage.waitForRecordToBeDisplayed();
+
+
+        // Write code here that turns the phrase above into concrete actions
+
+    }
+
+    @Then("^the recruitment request page opens for editing$")
+    public void theRecruitmentRequestPageOpensForEditing() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        System.out.println (  recruitmentAdministratorPage.isRecruitmentRequestOpenedForEditing());
+        waitTime ( 3000 );
+        Assert.assertTrue("Recruitment Request not displayed for editing!!!",recruitmentAdministratorPage.isRecruitmentRequestOpenedForEditing());
+    }
+
+    @When("^I Click Recruitment Request Option from Menu on RA Page$")
+    public void iClickRecruitmentRequestOptionFromMenuOnRAPage() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentAdministratorPage.iClickRecruitmentRequest();
+
+    }
+
+    @When("^the status of request is changed to GenerateAdvert$")
+    public void theStatusOfRequestIsChangedToGenerateAdvert(DataTable t) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = t.asMaps(String.class,String.class);
+        recruitmentAdministratorPage.changeRecruitmentRequestStatus(data.get (0).get("Status"));
+    }
+
+    @And("^I click on Save Button on Recruitment Administrator Page$")
+    public void iClickOnSaveButtonOnRecruitmentAdministratorPage() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        waitTime ( 1000 );
+        recruitmentAdministratorPage.clickSaveButton();
+
+    }
+
+    @And("^upload the applicant xml$")
+    public void uploadTheApplicantXml() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        recruitmentAdministratorPage.attachJobDesc();
+    }
+
+    @And("^I click on Attachment icon on the Tool bar on Recruitment Administrator Page$")
+    public void iClickOnAttachmentIconOnTheToolBarOnRecruitmentAdministratorPage() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentAdministratorPage.clickAttachmentButton();
+
+    }
+
+    @Then("^Status Should be GenerateAdvert$")
+    public void statusShouldBeGenerateAdvert() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        waitTime ( 2000 );
+        Assert.assertTrue("Generate Advert Failed!!!",recruitmentAdministratorPage.isRecruitmentRequestStatusGenerateAdvert());
+
+    }
+
+    @When("^the status of request is changed to Advert$")
+    public void theStatusOfRequestIsChangedToAdvert(DataTable t) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = t.asMaps(String.class,String.class);
+        recruitmentAdministratorPage.changeRecruitmentRequestStatus(data.get (0).get("Status"));
+    }
+
+    @Then("^Status Should be Advert$")
+    public void statusShouldBeAdvert() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        waitTime ( 2000 );
+        Assert.assertTrue(" Advert Failed!!!",recruitmentAdministratorPage.isRecruitmentRequestStatusAdvert());
+    }
+
+    @When("^the status of request is changed to PlaceAdvert$")
+    public void theStatusOfRequestIsChangedToPlaceAdvert(DataTable t) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = t.asMaps(String.class,String.class);
+        recruitmentAdministratorPage.changeRecruitmentRequestStatus(data.get (0).get("Status"));
+
+    }
+
+    @And("^I click on Tick mark of the Attachment Window of Recruitment Admin Page$")
+    public void iClickOnTickMarkOfTheAttachmentWindowOfRecruitmentAdminPage() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentAdministratorPage.clickOK();
+    }
+
+    @Then("^the detail record should have applicants uploaded$")
+    public void theDetailRecordShouldHaveApplicantsUploaded() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        System.out.println ( "Feature Completed");
+        Assert.assertTrue(" Advert Failed!!!",recruitmentAdministratorPage.isRecruitmentRequestVacancyClosed());
+
 
     }
 

@@ -36,8 +36,11 @@ public class NewPositionRequestPage {
     @FindBy(xpath = "//div//div//table//tr//td/textarea[@title='Textual summary of this request']")
     WebElement businessCase;
 
-    @FindBy(xpath = "//div//div[@class='adwindow-north z-div']//div/a/span/img[@src='/webui/theme/default/images/Save24.png']")
+    @FindBy(xpath = "//div[@class='adwindow-north z-div']/div/div/div[@class='z-toolbar-content z-toolbar-start']/a[@title[contains(., 'Save changes')]]/span[@class='z-toolbarbutton-content']/img[@src[contains(., 'Save')]]")
     WebElement saveButton;
+
+    //div[@class='adwindow-north z-div']/div/div/div[@class='z-toolbar-content z-toolbar-start']/a[@title[contains(., 'Save changes')]]/span[@class='z-toolbarbutton-content']/img[@src[contains(., 'Save')]]
+
 
     @FindBy(xpath = "//div//div//table//tr//td/span[@instancename='R_Request0he_pos_id']/a[@class='z-combobox-button']/i")
     WebElement posTemplateCombo;
@@ -45,7 +48,7 @@ public class NewPositionRequestPage {
     @FindBy(xpath = "//div//div//table//tr//td/span[@instancename='R_Request0he_pos_id']/input[@class='z-combobox-input']")
     WebElement posTemplateTxt;
 
-    @FindBy(xpath = "//div//div[@class='adwindow-north z-div']//div/a/span/img[@src='/webui/theme/default/images/Attachment24.png']")
+    @FindBy(xpath = "//div//div[@class='adwindow-north z-div']//div/a/span/img[@src='/webui/theme/businessTeamBlue/images/Attachment24.png']")
     WebElement attachmentButton;
 
 

@@ -14,7 +14,7 @@ import static co.uk.optum.utility.CommonUtility.waitTime;
 
 public class  HomePage {
 
-    private WebDriver driver;
+       private WebDriver driver;
 
     @Inject
     public HomePage() {

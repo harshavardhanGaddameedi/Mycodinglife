@@ -3,17 +3,12 @@ package co.uk.optum.utility;
 import com.cucumber.listener.ExtentCucumberFormatter;
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
-import gherkin.lexer.Ca;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-
-import static java.time.LocalDate.*;
 
 @RunWith(Cucumber.class)
 //@CucumberOptions(
@@ -28,7 +23,7 @@ import static java.time.LocalDate.*;
 @CucumberOptions(
         glue = {"co.uk.optum"},
         features = {"src\\test\\resources\\features\\finance.smokeTest"},
-        tags = {"@smoke1"},
+        tags = {"@smoke"},
 //        format = {"pretty","json:report/report.json","html:report/cucumber-reports","html:report/"},
         plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}
 //        format = {"pretty","html:report/results.html"},
