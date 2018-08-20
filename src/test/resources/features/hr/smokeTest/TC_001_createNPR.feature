@@ -128,3 +128,39 @@ When the status of request is changed to GenerateAdvert
 Examples:
  |user |password |role|
  |LeadGP1 |LeadGP1|Recruitment Administrator|
+
+ Scenario Outline: Compare the applicants on the basis of longlisting, shortlisting and Interviews
+
+  Given I am in login Page
+  And I login to IDempiere with "<user>" "<password>" "<role>"
+  Then the dashboard of RA is displayed
+  When I Click Recruitment Request Option from Menu on RA Page
+  Then the recruitment request page opens
+  And user searches the request for which recruitment has to be continued
+  Then the recruitment request page opens for editing
+  When the status of request is changed to Vacancy in LongListing
+   |Status|
+   |55_Vacancy in Long Listing|
+  And I click on Save Button on Recruitment Administrator Page
+  Then Status Should be LongListing
+
+  And I select Longlisting criteria from Menu
+  Then the Longlisting page opens up
+  And user searches the request for which longlisting to be done
+  Then the recruitment request page opens for longlisting
+  When User selects some of the applicants to be shortlisted
+  And change the status in Recruitment Request to Short Listing
+   |Status|
+   |60_Vacancy in ShortListing|
+  Then Status Should be ShortListing
+
+  Examples:
+   |user |password |role|
+   |LeadGP1 |LeadGP1|Recruitment Administrator|
+
+
+
+
+
+
+

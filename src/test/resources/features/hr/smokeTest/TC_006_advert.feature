@@ -3,32 +3,42 @@
 #Last Updated date:30-05-2018
 
 Feature: Generate and place advert
-Scenario: Login as Line Manager and generate Advert
-#Given user launches the Idempiere application
-#When user logs in using the "<Username>" and "<Password>"
- Given I am in login Page
- And I login to IDempiere with "<user>" "<password>"
- |Username|Password| 
- |LeadGP1 |LeadGP1 |
-And selects the role as Recruitment Administrator
-And hits ok
-Then the dashboard of RA is displayed 
-And user Clicks on Menu button 
-And Selects 'Human resource & Payroll'
-And selects 'Human resource'
-And selects 'Requests'
-And selects 'Recruitment Request'
-Then the recruitment request page opens
-And user selects and edits the request
-When the status of request is chnaged to "30_GenerateAdvert"
-And hits save 
-Then a file will be downloaded 
-When the status of request is changed to '40_Advert' 
-And upload the applicant xml 
-And hit save 
-And change the status to '50_PlaceAdvert'
-And hit save 
-Then the detail record should have applicants uploaded
+ Scenario Outline: Login as Line Manager and generate Advert
+ #Given user launches the Idempiere application
+ #When user logs in using the "<Username>" and "<Password>"
+  Given I am in login Page
+  And I login to IDempiere with "<user>" "<password>" "<role>"
+  Then the dashboard of RA is displayed
+  When I Click Recruitment Request Option from Menu on RA Page
+  Then the recruitment request page opens
+  And user searches the request for Advert has to be created
+  Then the recruitment request page opens for editing
+
+  When the status of request is changed to GenerateAdvert
+   |Status|
+   |30_Generate Advert|
+  And I click on Save Button on Recruitment Administrator Page
+  Then Status Should be GenerateAdvert
+
+  When the status of request is changed to Advert
+   |Status|
+   |40_ Advert Placed|
+
+  And I click on Save Button on Recruitment Administrator Page
+  Then Status Should be Advert
+
+  When the status of request is changed to PlaceAdvert
+   |Status|
+   |50_Vacancy Closed|
+
+  And I click on Attachment icon on the Tool bar on Recruitment Administrator Page
+  And upload the applicant xml
+  And I click on Tick mark of the Attachment Window of Recruitment Admin Page
+
+  And I click on Save Button on Recruitment Administrator Page
+  Then the detail record should have applicants uploaded
 
 
- 
+  Examples:
+   |user |password |role|
+   |LeadGP1 |LeadGP1|Recruitment Administrator|

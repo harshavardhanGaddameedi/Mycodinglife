@@ -2,24 +2,23 @@
 #Created date:06-06-2018
 #Last Updated date:06-06-2018
 Feature: Approve Recruitment Request
-Scenario: Login as Line Manage's Manager (COO)
-#  Given user launches the Idempiere application
-#When user logs in using the <Username> and <Password>
-  Given I am in login Page
-  And I login to IDempiere with "<user>" "<password>"
-|Username|Password| 
-|COO1 |COO1|
-And selects the role as 'COO'
-And hits ok
-Then the dashboard of COO is displayed 
-And user Clicks on Menu button 
-And Selects 'Human resource & Payroll'
-And selects 'Human resource'
-And selects 'Requests'
-And selects 'Recruitment Request'
-Then the recruitment request page opens
-And user selects and edits the request
-And user fills the 'Comments' field
-And the status of request is chnaged to "20_VacancyApproved"
-And hits save 
-Then the request is saved as approved
+  Scenario Outline: Login as Line Manager's Manager (COO)
+  #  Given user launches the Idempiere application
+  #When user logs in using the <Username> and <Password>
+    Given I am in login Page
+    And I login to IDempiere with "<user>" "<password>" "<role>"
+    Then the dashboard is displayed
+    When I Click Recruitment Request Option from Menu
+    Then the recruitment request page opens
+    And user searches the request to be approved
+    And Select Request and change the status to Accepted by adding comments
+      |Status|Comments|
+      |20_ Vacancy Approved|Test Comments|
+    And I click on Save Button on Recruitment Request Approval Page
+    Then the request Should be in Approved State
+      |Status|
+      |20_ Vacancy Approved|
+
+    Examples:
+      |user |password |role|
+      |COO1 |COO1|COO      |

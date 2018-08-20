@@ -425,6 +425,65 @@ public class EmpOnboarding {
 
     }
 
+    @And("^user searches the request for which recruitment has to be continued$")
+    public void userSearchesTheRequestForWhichRecruitmentHasToBeContinued() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentAdministratorPage.searchRecruitmentRequest();
+        recruitmentAdministratorPage.waitForRecordToBeDisplayed();
+
+    }
+
+    @Then("^Status Should be LongListing$")
+    public void statusShouldBeLongListing() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        waitTime ( 2000 );
+        Assert.assertTrue(" Long Listing Failed!!!",recruitmentAdministratorPage.isRecruitmentRequestLongListing());
+    }
+
+    @When("^the status of request is changed to Vacancy in LongListing$")
+    public void theStatusOfRequestIsChangedToVacancyInLongListing(DataTable t) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = t.asMaps(String.class,String.class);
+        recruitmentAdministratorPage.changeRecruitmentRequestStatus(data.get (0).get("Status"));
+    }
+
+    @And("^I select Longlisting criteria from Menu$")
+    public void iSelectLonglistingCriteriaFromMenu() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentAdministratorPage.iClickLongListingMenu();
+
+    }
+
+    @Then("^the Longlisting page opens up$")
+    public void theLonglistingPageOpensUp() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue(" Advert Failed!!!",recruitmentAdministratorPage.isLongListingCriteriaPageDisplayed());
+    }
+
+    @And("^user searches the request for which longlisting to be done$")
+    public void userSearchesTheRequestForWhichLonglistingToBeDone() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentAdministratorPage.searchRecruitmentRequest();
+        recruitmentAdministratorPage.waitForRecordToBeDisplayed();
+
+
+    }
+
+    @Then("^the recruitment request page opens for longlisting$")
+    public void theRecruitmentRequestPageOpensForLonglisting() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        System.out.println (  recruitmentAdministratorPage.isRecruitmentRequestOpenedForLongListing());
+        waitTime ( 3000 );
+        Assert.assertTrue("Recruitment Request not displayed for longListing!!!",recruitmentAdministratorPage.isRecruitmentRequestOpenedForLongListing());
+    }
+
+    @When("^User selects some of the applicants to be shortlisted$")
+    public void userSelectsSomeOfTheApplicantsToBeShortlisted() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentAdministratorPage.shortListApplicants();
+
+    }
+
 //
 //    @Then("^the Job Description is attached$")
 //    public void theJobDescriptionIsAttached() throws Throwable {

@@ -1,6 +1,7 @@
 package co.uk.optum.pages.hr;
 
 import co.uk.optum.utility.DriverProvider;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +12,8 @@ import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 
 import javax.inject.Inject;
+
+import java.util.List;
 
 import static co.uk.optum.utility.CommonUtility.*;
 
@@ -47,6 +50,10 @@ public class RecruitmentAdministratorPage {
     WebElement recruitmentRequestMenu;
 
 
+    @FindBy(xpath = "//div//tr/td/div/a[contains (.,'Long Listing Criteria')]")
+    WebElement longListingCriteria;
+
+
     @FindBy(xpath = "//div/a[@title[contains(.,'Lookup')]]/span[@class='z-toolbarbutton-content']/img[@src[contains(.,'Find24')]]")
     WebElement lookupRecordIcon;
 
@@ -58,6 +65,13 @@ public class RecruitmentAdministratorPage {
 
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Recruitment Request')]")
     WebElement recruitmentRequestTab;
+
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Long Listing Criteria')]")
+    WebElement longListingCriteriaTab;
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Applicant')]")
+    WebElement applicantTab;
 
     @FindBy(xpath = "//div[@class='adwindow-north z-div']/div/div/div[@class='z-toolbar-content z-toolbar-start']/a[@title[contains(., 'Save changes')]]/span[@class='z-toolbarbutton-content']/img[@src[contains(., 'Save')]]")
     WebElement saveButton;
@@ -223,6 +237,62 @@ public class RecruitmentAdministratorPage {
 
     public boolean isRecruitmentRequestVacancyClosed() {
         return statusInput.getAttribute ( "value" ).equals ( "50_Vacancy Closed" );
+
+
+    }
+
+    public boolean isRecruitmentRequestLongListing() {
+
+//        55_Vacancy in Long Listing
+
+        if (statusInput.getAttribute ( "value" ).equals ( "55_Vacancy in Long Listing" ))
+        {
+            System.out.println ( "Status Changed to 55_Vacancy in Long Listing " );
+        }
+
+        return statusInput.getAttribute ( "value" ).equals ( "55_Vacancy in Long Listing" );
+    }
+
+    public void iClickLongListingMenu() {
+
+//        menuIcon.click ();
+//        waitForElementToBeDisplayed ( hrpMenu);
+////        waitForElementToBeDisplayed ( hrpMenu);
+//        hrpMenu.click();
+//        waitForElementToBeDisplayed ( hrMenu);
+//        hrMenu.click();
+//        waitForElementToBeDisplayed ( requestMenu );
+//        requestMenu.click();
+        waitForElementToBeDisplayed ( longListingCriteria );
+        longListingCriteria.click();
+        waitForElementToBeDisplayed ( longListingCriteriaTab );
+        waitTime ( 2000 );
+    }
+
+    public boolean isLongListingCriteriaPageDisplayed() {
+
+        return longListingCriteriaTab.isDisplayed ();
+    }
+
+    public boolean isRecruitmentRequestOpenedForLongListing() {
+        return (longListingCriteriaTab.isDisplayed ()&& applicantTab.isDisplayed ());
+
+    }
+
+    public void shortListApplicants() {
+
+        List<WebElement> elements = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]" ) );
+        System.out.println ( elements.size () );
+        for(int i=0;i<elements.size ();i++)
+        {
+            elements.get ( i ).click ();
+            System.out.println ( "Clicked" );
+
+
+        }
+
+
+//        //div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]
 
 
     }
