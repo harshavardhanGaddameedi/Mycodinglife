@@ -10,7 +10,6 @@ import org.sikuli.hotkey.Keys;
 import javax.inject.Inject;
 
 import static co.uk.optum.utility.CommonUtility.*;
-import static co.uk.optum.utility.FeatureContext.getStoredRequisitionNumber;
 import static co.uk.optum.utility.FeatureContext.setRequisitionNumber;
 
 public class RecruitmentRequestApprovalPage {
@@ -70,8 +69,9 @@ public class RecruitmentRequestApprovalPage {
         lookupRecordIcon.click ();
         waitForElementToBeDisplayed ( nprDocNumberlookupBox );
         waitTime ( 1000 );
-        nprDocNumberlookupBox.sendKeys ( getStoredRequisitionNumber () );
-//        nprDocNumberlookupBox.sendKeys ( "1002896" );
+//        nprDocNumberlookupBox.sendKeys ( getStoredRequisitionNumber () );
+//        1003007
+        nprDocNumberlookupBox.sendKeys ( "1003011" );
 //        waitTime ( 3000 );
         lookupRecordOkbutton.click ();
     }

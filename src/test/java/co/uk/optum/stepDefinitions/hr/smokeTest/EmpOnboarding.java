@@ -464,7 +464,7 @@ public class EmpOnboarding {
     public void userSearchesTheRequestForWhichLonglistingToBeDone() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         recruitmentAdministratorPage.searchRecruitmentRequest();
-        recruitmentAdministratorPage.waitForRecordToBeDisplayed();
+        waitTime ( 1000 );
 
 
     }
@@ -472,7 +472,6 @@ public class EmpOnboarding {
     @Then("^the recruitment request page opens for longlisting$")
     public void theRecruitmentRequestPageOpensForLonglisting() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        System.out.println (  recruitmentAdministratorPage.isRecruitmentRequestOpenedForLongListing());
         waitTime ( 3000 );
         Assert.assertTrue("Recruitment Request not displayed for longListing!!!",recruitmentAdministratorPage.isRecruitmentRequestOpenedForLongListing());
     }
@@ -483,6 +482,151 @@ public class EmpOnboarding {
         recruitmentAdministratorPage.shortListApplicants();
 
     }
+
+    @And("^change the status in Recruitment Request to Short Listing$")
+    public void changeTheStatusInRecruitmentRequestToShortListing(DataTable t) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = t.asMaps(String.class,String.class);
+        recruitmentAdministratorPage.changeRecruitmentRequestStatus(data.get (0).get("Status"));
+        waitTime ( 2000 );
+        recruitmentAdministratorPage.saveLongListingRec();
+
+
+    }
+
+    @Then("^Status Should be ShortListing$")
+    public void statusShouldBeShortListing() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        waitTime ( 2000 );
+        Assert.assertTrue(" Shortlisting Failed!!!",recruitmentAdministratorPage.isRecruitmentRequestShortListng());
+    }
+
+
+    @Then("^the Shortlisting page opens up$")
+    public void theShortlistingPageOpensUp() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue(" Advert Failed!!!",recruitmentAdministratorPage.isShortListingCriteriaPageDisplayed());
+
+    }
+
+    @And("^user searches the request for which Shortlisting to be done$")
+    public void userSearchesTheRequestForWhichShortlistingToBeDone() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentAdministratorPage.searchRecruitmentRequest();
+        waitTime ( 1000 );
+
+    }
+
+    @When("^I select Short Listing Criteria from Menu$")
+    public void iSelectShortListingCriteriaFromMenu() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentAdministratorPage.iClickShortListingMenu();
+    }
+
+    @Then("^the recruitment request page opens for Shortlisting$")
+    public void theRecruitmentRequestPageOpensForShortlisting() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        waitTime ( 3000 );
+        Assert.assertTrue("Recruitment Request not displayed for Shortlisting!!!",recruitmentAdministratorPage.isRecruitmentRequestOpenedForShortListing());
+    }
+
+    @When("^User selects some of the applicants to be passed from shortlisting$")
+    public void userSelectsSomeOfTheApplicantsToBePassedFromShortlisting() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentAdministratorPage.passApplicantstoVacancyInAssessment();
+
+
+    }
+
+
+
+    @And("^change the status in Recruitment Request to Vacancy in Assessment$")
+    public void changeTheStatusInRecruitmentRequestToVacancyInAssessment(DataTable t) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = t.asMaps(String.class,String.class);
+        recruitmentAdministratorPage.changeRecruitmentRequestStatus(data.get (0).get("Status"));
+        waitTime ( 2000 );
+        recruitmentAdministratorPage.saveShortListingRec();
+
+    }
+
+    @Then("^Status Should be Vacancy in Assessment$")
+    public void statusShouldBeVacancyInAssessment() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        waitTime ( 2000 );
+        Assert.assertTrue(" VacancyInAssessment Failed!!!",recruitmentAdministratorPage.isRecruitmentRequestVacancyInAssessment());
+
+
+    }
+
+
+    @When("^I open Vacancy Assessment from Menu$")
+    public void iOpenVacancyAssessmentFromMenu() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentAdministratorPage.iClickVacancyAssessmentMenu();
+    }
+
+    @Then("^the Vacancy Assessment Page opens up$")
+    public void theVacancyAssessmentPageOpensUp() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        Assert.assertTrue(" Vacancy Assessment Page Not Opened!!!",recruitmentAdministratorPage.isVacancyAssessmentPageOpened());
+
+    }
+
+    @And("^user searches the request for which Assessment to be done$")
+    public void userSearchesTheRequestForWhichAssessmentToBeDone() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        recruitmentAdministratorPage.searchRecruitmentRequest();
+        waitTime ( 1000 );
+
+
+
+    }
+
+
+
+    @And("^I enter Max Date Online Assessment  and Save the request$")
+    public void iEnterMaxDateOnlineAssessmentAndSaveTheRequest() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+            recruitmentAdministratorPage.saveMaxDateOnlineTestDate(-1);
+
+    }
+
+    @When("^User selects some of the applicants to be passed from Assessment$")
+    public void userSelectsSomeOfTheApplicantsToBePassedFromAssessment() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentAdministratorPage.passApplicantsToInterviewStage();
+
+
+    }
+
+    @And("^change the status in Recruitment Request to Interviews$")
+    public void changeTheStatusInRecruitmentRequestToInterviews() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+    }
+
+    @Then("^Status Should be Interviews$")
+    public void statusShouldBeInterviews() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+    }
+
+    @Then("^the recruitment request page opens for Assessment$")
+    public void theRecruitmentRequestPageOpensForAssessment() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue(" Vacancy Assessment Page Not Opened For Editing!!!",recruitmentAdministratorPage.isVacancyAssessmentPageOpenedForEditing());
+    }
+
+    @Then("^the recruitment request should be opened for entering assessment details$")
+    public void theRecruitmentRequestShouldBeOpenedForEnteringAssessmentDetails() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Recruitment Request not displayed for entering assessments!!!",recruitmentAdministratorPage.isRecruitmentRequestOpenedForEnterningAssesmentDetails());
+    }
+
 
 //
 //    @Then("^the Job Description is attached$")

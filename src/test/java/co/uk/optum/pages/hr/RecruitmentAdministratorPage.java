@@ -12,7 +12,6 @@ import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 
 import javax.inject.Inject;
-
 import java.util.List;
 
 import static co.uk.optum.utility.CommonUtility.*;
@@ -53,6 +52,11 @@ public class RecruitmentAdministratorPage {
     @FindBy(xpath = "//div//tr/td/div/a[contains (.,'Long Listing Criteria')]")
     WebElement longListingCriteria;
 
+    @FindBy(xpath = "//div//tr/td/div/a[contains (.,'Short Listing Criteria')]")
+    WebElement shortListingCriteria;
+
+    @FindBy(xpath="//div//tr/td/div/a[contains (.,'Vacancy in Assessment')]")
+    WebElement vacancyAssessmentMenu;
 
     @FindBy(xpath = "//div/a[@title[contains(.,'Lookup')]]/span[@class='z-toolbarbutton-content']/img[@src[contains(.,'Find24')]]")
     WebElement lookupRecordIcon;
@@ -66,9 +70,27 @@ public class RecruitmentAdministratorPage {
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Recruitment Request')]")
     WebElement recruitmentRequestTab;
 
+    @FindBy (xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a//div[@class='z-tab-button']/i")
+    WebElement recruitmentRequestTabClose;
+
+    //div/ul/li[@class[contains(.,'z-tab-selected')]]/a//div[@class='z-tab-button']/i
+
 
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Long Listing Criteria')]")
     WebElement longListingCriteriaTab;
+
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Short Listing Criteria')]")
+    WebElement shortListingCriteriaTab;
+
+
+
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Vacancy in Assessment')]")
+    WebElement vacancyAssessmentTab;
+
+
+//    vacancyAssessmentTab
 
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Applicant')]")
     WebElement applicantTab;
@@ -92,6 +114,30 @@ public class RecruitmentAdministratorPage {
     WebElement attachmentOK;
 
 
+    @FindBy(xpath = ".//*[@class='z-borderlayout-icon z-icon-chevron-up']")
+    WebElement detailRecord;
+
+    @FindBy(xpath = "//div[@class='adtab-form z-vlayout']//table//td/span[@instancename='he_person0he_pass_sl']/input[@type='checkbox']")
+    WebElement shortlistCheck;
+
+    @FindBy(xpath = ".//div//table//tr//td/a[@class='z-a']")
+    WebElement request;
+
+
+    @FindBy(xpath = "//div[@class='adtab-form z-vlayout']//table//td/span[@instancename='he_person0he_pass_test']/input[@type='checkbox']")
+    WebElement passToNextStageCheck;
+
+
+    @FindBy(xpath = "//div[@class='adtab-form z-vlayout']//table//td/span[@instancename='he_person0he_pass_to_int']/input[@type='checkbox']")
+    WebElement passToInterviewCheck;
+
+    @FindBy(xpath = "//div[@instancename='R_Request0he_date_onl_test']/span/input[@class='z-datebox-input']")
+    WebElement maxDateOnlineAssessment;
+
+
+    @FindBy(xpath = "//div[@instancename='R_Request0he_date_onl_test']/span/input[@class='z-timebox-input']")
+    WebElement getMaxDateOnlineAssessmentTime;
+
 
 
 
@@ -112,8 +158,8 @@ public class RecruitmentAdministratorPage {
         waitForElementToBeDisplayed ( nprDocNumberlookupBox );
         waitTime ( 1000 );
 //        nprDocNumberlookupBox.sendKeys ( getStoredRequisitionNumber () );
-        nprDocNumberlookupBox.sendKeys ( "1002897" );
-//        waitTime ( 3000 );
+        nprDocNumberlookupBox.sendKeys ( "1002958" );
+        waitTime ( 3000 );
         lookupRecordOkbutton.click ();
     }
 
@@ -152,11 +198,12 @@ public class RecruitmentAdministratorPage {
     public void changeRecruitmentRequestStatus(String status) {
 
 
-//        waitTime ( 2000 );
+        waitTime ( 2000 );
         moveElementToVisibility(statusInput);
         statusInput.clear ();
         statusInput.sendKeys ( status+ Keys.TAB);
         waitTime ( 2000 );
+
 
     }
 
@@ -250,12 +297,21 @@ public class RecruitmentAdministratorPage {
             System.out.println ( "Status Changed to 55_Vacancy in Long Listing " );
         }
 
-        return statusInput.getAttribute ( "value" ).equals ( "55_Vacancy in Long Listing" );
+        String statusActual = statusInput.getAttribute ( "value" );
+        closeRecruitmentRequestTab();
+
+        return statusActual.equals ( "55_Vacancy in Long Listing" );
     }
+
+    public void closeRecruitmentRequestTab() {
+
+    recruitmentRequestTabClose.click ();
+    }
+
 
     public void iClickLongListingMenu() {
 
-//        menuIcon.click ();
+       menuIcon.click ();
 //        waitForElementToBeDisplayed ( hrpMenu);
 ////        waitForElementToBeDisplayed ( hrpMenu);
 //        hrpMenu.click();
@@ -267,6 +323,7 @@ public class RecruitmentAdministratorPage {
         longListingCriteria.click();
         waitForElementToBeDisplayed ( longListingCriteriaTab );
         waitTime ( 2000 );
+
     }
 
     public boolean isLongListingCriteriaPageDisplayed() {
@@ -275,24 +332,278 @@ public class RecruitmentAdministratorPage {
     }
 
     public boolean isRecruitmentRequestOpenedForLongListing() {
+
+
+//        detailRecord.click();
+        waitTime ( 1000 );
         return (longListingCriteriaTab.isDisplayed ()&& applicantTab.isDisplayed ());
 
     }
 
     public void shortListApplicants() {
 
-        List<WebElement> elements = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]" ) );
-        System.out.println ( elements.size () );
-        for(int i=0;i<elements.size ();i++)
-        {
-            elements.get ( i ).click ();
-            System.out.println ( "Clicked" );
 
+        List<WebElement> elements = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]" ) );
+        List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']" ) );
+        for(int i=0;i<elements.size ();i++)
+
+        {
+            int node = i + 1;
+            String appSelect= "("+"//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]"+")"+"["+node+"]";
+            waitTime ( 2000 );
+            driver.findElement(By.xpath(appSelect)).click ();
+                   for (int j=0;j<shortlist.size ();j++) {
+
+                    if (j==i)
+                    {
+
+
+                        int node1 = j + 1;
+                        String editRec ="("+"//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']"+")"+"["+node1+"]";
+                        waitTime ( 2000 );
+                        driver.findElement(By.xpath(editRec)).click ();
+
+
+
+                    }
+                }
+
+            waitForElementToBeDisplayed ( shortlistCheck );
+            shortlistCheck.click ();
+            saveButton.click ();
+            waitTime ( 1000 );
+            request.click ();
+            waitForElementToBeDisplayed ( longListingCriteriaTab );
 
         }
 
 
+
+
 //        //div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]
+
+
+    }
+
+    public boolean isRecruitmentRequestShortListng() {
+
+        if (statusInput.getAttribute ( "value" ).equals ( "60_Vacancy in short listing" ))
+        {
+            System.out.println ( "Status Changed to 60_Vacancy in short listing " );
+        }
+
+        String statusActual = statusInput.getAttribute ( "value" );
+        closeRecruitmentRequestTab();
+
+        return statusActual.equals ( "60_Vacancy in short listing" );
+
+    }
+
+    public void saveLongListingRec() {
+
+        waitForElementToBeDisplayed ( longListingCriteriaTab );
+        saveButton.click ();
+        System.out.println ( "Status Saved" );
+
+    }
+
+    public void iClickShortListingMenu() {
+
+
+        menuIcon.click ();
+//        waitForElementToBeDisplayed ( hrpMenu);
+////        waitForElementToBeDisplayed ( hrpMenu);
+//        hrpMenu.click();
+//        waitForElementToBeDisplayed ( hrMenu);
+//        hrMenu.click();
+//        waitForElementToBeDisplayed ( requestMenu );
+//        requestMenu.click();
+        waitForElementToBeDisplayed ( shortListingCriteria );
+        shortListingCriteria.click();
+        waitForElementToBeDisplayed ( shortListingCriteriaTab );
+        waitTime ( 2000 );
+
+
+    }
+
+    public boolean isRecruitmentRequestOpenedForShortListing() {
+
+        waitTime ( 1000 );
+        try {
+            if (detailRecord.isDisplayed ()) {
+                detailRecord.click ();
+            }
+        }catch (Exception e){return (shortListingCriteriaTab.isDisplayed ()&& applicantTab.isDisplayed ());}
+//    return (shortListingCriteriaTab.isDisplayed ()&& applicantTab.isDisplayed ());    return (shortListingCriteriaTab.isDisplayed ()&& applicantTab.isDisplayed ());
+        return (shortListingCriteriaTab.isDisplayed ()&& applicantTab.isDisplayed ());
+
+
+
+    }
+
+    public boolean isShortListingCriteriaPageDisplayed() {
+
+        return shortListingCriteriaTab.isDisplayed ();
+    }
+
+    public void passApplicantstoVacancyInAssessment() {
+
+        List<WebElement> elements = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]" ) );
+        List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']" ) );
+        for(int i=0;i<elements.size ();i++)
+
+        {
+            int node = i + 1;
+            String appSelect= "("+"//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]"+")"+"["+node+"]";
+            waitTime ( 2000 );
+            driver.findElement(By.xpath(appSelect)).click ();
+            for (int j=0;j<shortlist.size ();j++) {
+                if (j==i)
+                {
+                    int node1 = j + 1;
+                    String editRec ="("+"//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']"+")"+"["+node1+"]";
+                    waitTime ( 2000 );
+                    driver.findElement(By.xpath(editRec)).click ();
+                }
+            }
+
+            waitForElementToBeDisplayed ( passToNextStageCheck );
+            passToNextStageCheck.click ();
+            saveButton.click ();
+            waitTime ( 1000 );
+            request.click ();
+            waitForElementToBeDisplayed ( shortListingCriteriaTab );
+
+        }
+
+    }
+    public void saveShortListingRec() {
+        waitForElementToBeDisplayed ( shortListingCriteriaTab );
+        saveButton.click ();
+        System.out.println ( "Status Saved" );
+
+    }
+
+    public boolean isRecruitmentRequestVacancyInAssessment() {
+
+        if (statusInput.getAttribute ( "value" ).equals ( "70_Vacancy in Assessment" ))
+        {
+            System.out.println ( "Status Changed to 70_Vacancy in Assessment " );
+        }
+
+        String statusActual = statusInput.getAttribute ( "value" );
+        closeRecruitmentRequestTab();
+
+        return statusActual.equals ( "70_Vacancy in Assessment" );
+
+
+    }
+
+    public void iClickVacancyAssessmentMenu() {
+
+        menuIcon.click ();
+        waitForElementToBeDisplayed ( vacancyAssessmentMenu );
+        vacancyAssessmentMenu.click ();
+        waitForElementToBeDisplayed ( maxDateOnlineAssessment );
+    }
+
+    public boolean isVacancyAssessmentPageOpened() {
+
+        return maxDateOnlineAssessment.isDisplayed () && getMaxDateOnlineAssessmentTime.isDisplayed ();
+    }
+
+    public boolean isVacancyAssessmentPageOpenedForEditing() {
+        return maxDateOnlineAssessment.isDisplayed () && getMaxDateOnlineAssessmentTime.isDisplayed ();
+    }
+
+    public void saveMaxDateOnlineTestDate(int i) {
+
+        maxDateOnlineAssessment.clear();
+        maxDateOnlineAssessment.sendKeys(getFutureDate(i));
+        saveButton.click ();
+    }
+
+    public void passApplicantsToInterviewStage() {
+
+
+        try {
+            if (detailRecord.isDisplayed ()) {
+                detailRecord.click ();
+            }
+        }catch (Exception e){
+            List<WebElement> elements = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]" ) );
+            List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']" ) );
+            for(int i=0;i<elements.size ();i++)
+
+            {
+                int node = i + 1;
+                String appSelect= "("+"//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]"+")"+"["+node+"]";
+                waitTime ( 2000 );
+                driver.findElement(By.xpath(appSelect)).click ();
+                for (int j=0;j<shortlist.size ();j++) {
+                    if (j==i)
+                    {
+                        int node1 = j + 1;
+                        String editRec ="("+"//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']"+")"+"["+node1+"]";
+                        waitTime ( 2000 );
+                        driver.findElement(By.xpath(editRec)).click ();
+                    }
+                }
+
+                waitForElementToBeDisplayed ( passToInterviewCheck );
+                passToNextStageCheck.click ();
+                saveButton.click ();
+                waitTime ( 1000 );
+                request.click ();
+                waitForElementToBeDisplayed ( vacancyAssessmentTab );
+
+            }
+
+        }
+
+
+        List<WebElement> elements = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]" ) );
+        List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']" ) );
+        for(int i=0;i<elements.size ();i++)
+
+        {
+            int node = i + 1;
+            String appSelect= "("+"//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]"+")"+"["+node+"]";
+            waitTime ( 2000 );
+            driver.findElement(By.xpath(appSelect)).click ();
+            for (int j=0;j<shortlist.size ();j++) {
+                if (j==i)
+                {
+                    int node1 = j + 1;
+                    String editRec ="("+"//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']"+")"+"["+node1+"]";
+                    waitTime ( 2000 );
+                    driver.findElement(By.xpath(editRec)).click ();
+                }
+            }
+
+            waitForElementToBeDisplayed ( passToInterviewCheck );
+            passToInterviewCheck.click ();
+            saveButton.click ();
+            waitTime ( 1000 );
+            request.click ();
+            waitForElementToBeDisplayed ( vacancyAssessmentTab );
+
+        }
+
+
+
+    }
+
+    public boolean isRecruitmentRequestOpenedForEnterningAssesmentDetails() {
+
+        waitTime ( 1000 );
+        try {
+            if (detailRecord.isDisplayed ()) {
+                detailRecord.click ();
+            }
+        }catch (Exception e){return (applicantTab.isDisplayed ());}
+        return ( applicantTab.isDisplayed ());
+
 
 
     }

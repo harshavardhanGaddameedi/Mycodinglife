@@ -87,7 +87,7 @@ Feature: Create New Position Request, Authorize NPR
 
   Examples:
    |user |password |role|
-   |COO1 |COO1|COO      |
+   |COO1 |COO1|COO|
 
 Scenario Outline: Login as Line Manager and generate Advert
 #Given user launches the Idempiere application
@@ -129,7 +129,7 @@ Examples:
  |user |password |role|
  |LeadGP1 |LeadGP1|Recruitment Administrator|
 
- Scenario Outline: Compare the applicants on the basis of longlisting, shortlisting and Interviews
+ Scenario Outline: Compare the applicants on the basis of longlisting, shortlisting and etc
 
   Given I am in login Page
   And I login to IDempiere with "<user>" "<password>" "<role>"
@@ -151,15 +151,56 @@ Examples:
   When User selects some of the applicants to be shortlisted
   And change the status in Recruitment Request to Short Listing
    |Status|
-   |60_Vacancy in ShortListing|
+   |60_Vacancy in short listing|
   Then Status Should be ShortListing
+
+  When I select Short Listing Criteria from Menu
+  Then the Shortlisting page opens up
+  And user searches the request for which Shortlisting to be done
+  Then the recruitment request page opens for Shortlisting
+  When User selects some of the applicants to be passed from shortlisting
+  And change the status in Recruitment Request to Vacancy in Assessment
+   |Status|
+   |70_Vacancy in Assessment|
+  Then Status Should be Vacancy in Assessment
+
+
+# When the user opens up vacancy assessmnt tab in the detail record
+#  And clicks on the edit button of "Max Date Online Assessment"
+#  And enters the Max Date Online Assessment
+#  And hits Save
+#
+  When I open Vacancy Assessment from Menu
+  Then the Vacancy Assessment Page opens up
+  And user searches the request for which Assessment to be done
+  Then the recruitment request page opens for Assessment
+  And I enter Max Date Online Assessment  and Save the request
+  Then the recruitment request should be opened for entering assessment details
+  When User selects some of the applicants to be passed from Assessment
+  And change the status in Recruitment Request to Interviews
+   |Status|
+   |71_Interviews|
+  Then Status Should be Interviews
+#
+#  When I  opens the applicant tab again
+#  And Updates the Test Schedule tab for each applicant
+#  Then the applicants to be taken forward to Interview stage are selected
+#  When the User changes the status of RR to Interviews
+#   |Status|
+#   |71_Interviews|
+
+  And hits save
+  And opens the detail record
+  And the user goes to Panel Interviewer selection in Menu
+  Then the Panel Interviewer page opens up
+  When the user Opens the Panel interviewer tab on  Panel interviewer tab
+  And sets the initial and Final date of assessment
+  And hits save
+  Then the Member tab in the detail record secin would get enabled with the interviewer
 
   Examples:
    |user |password |role|
    |LeadGP1 |LeadGP1|Recruitment Administrator|
-
-
-
 
 
 

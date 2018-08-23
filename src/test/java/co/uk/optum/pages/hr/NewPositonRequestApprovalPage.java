@@ -9,9 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import javax.inject.Inject;
 
-import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
-import static co.uk.optum.utility.CommonUtility.waitForElementToBeEnabled;
-import static co.uk.optum.utility.CommonUtility.waitTime;
+import static co.uk.optum.utility.CommonUtility.*;
 import static co.uk.optum.utility.FeatureContext.getStoredRequisitionNumber;
 
 public class NewPositonRequestApprovalPage {
@@ -51,6 +49,7 @@ public class NewPositonRequestApprovalPage {
         waitForElementToBeDisplayed ( nprDocNumberlookupBox );
         waitTime ( 1000 );
         nprDocNumberlookupBox.sendKeys ( getStoredRequisitionNumber () );
+//        nprDocNumberlookupBox.sendKeys ( "1002986" );
 //        waitTime ( 3000 );
         lookupRecordOkbutton.click ();
     }
