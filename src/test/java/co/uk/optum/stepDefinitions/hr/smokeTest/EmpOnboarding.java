@@ -28,6 +28,8 @@ public class EmpOnboarding {
     private final RecruitmentRequestPage recruitmentRequestPage;
     private final RecruitmentRequestApprovalPage recruitmentRequestApprovalPage;
     private final RecruitmentAdministratorPage recruitmentAdministratorPage;
+    private final  HRAdminHomePage hrAdminHomePage;
+
 
 
     @Inject
@@ -41,6 +43,7 @@ public class EmpOnboarding {
         this.recruitmentRequestPage = new RecruitmentRequestPage ();
         this.recruitmentRequestApprovalPage = new RecruitmentRequestApprovalPage ();
         this.recruitmentAdministratorPage = new RecruitmentAdministratorPage ();
+        this.hrAdminHomePage = new HRAdminHomePage ();
 
 
 
@@ -76,6 +79,8 @@ public class EmpOnboarding {
 //        //div//div[@class='adwindow-north z-div']//div/a/span/img[@src='/webui/theme/default/images/Save24.png']
         newPositionRequestPage.clickSaveButton();
         newPositionRequestPage.waitForElementEnablement();
+
+
 
 
 
@@ -178,6 +183,7 @@ public class EmpOnboarding {
         // Write code here that turns the phrase above into concrete actions
 
 
+        waitTime ( 1000 );
         Assert.assertTrue("NPR Approval Failed!!!",newPositionRequestApprovalPage.isNPRApproved());
     }
 
@@ -204,7 +210,7 @@ public class EmpOnboarding {
         System.out.println(data.get (0).get("Position"));
 
         lineManagerTeamView.searchPosition();
-
+//Anand to write code to pass the position that was created
         lineManagerTeamView.enterPositionToSearch(data.get (0).get("Position"));
         lineManagerTeamView.clickOKTeamviewSearch();
         waitTime ( 2000 );
@@ -604,14 +610,25 @@ public class EmpOnboarding {
     }
 
     @And("^change the status in Recruitment Request to Interviews$")
-    public void changeTheStatusInRecruitmentRequestToInterviews() throws Throwable {
+    public void changeTheStatusInRecruitmentRequestToInterviews(DataTable t) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
+
+
+        List<Map<String,String>> data = t.asMaps(String.class,String.class);
+        waitTime ( 2000 );
+//        recruitmentAdministratorPage.clickSaveButtonOnInterviewPage ();
+        recruitmentAdministratorPage.changeRecruitmentRequestStatusInterview(data.get (0).get("Status"));
+
+
 
     }
 
     @Then("^Status Should be Interviews$")
     public void statusShouldBeInterviews() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
+
+        waitTime ( 2000 );
+        Assert.assertTrue(" Changing Status to Interview failed!!!",recruitmentAdministratorPage.isRecruitmentRequestStatusInterview());
 
     }
 
@@ -627,9 +644,120 @@ public class EmpOnboarding {
         Assert.assertTrue("Recruitment Request not displayed for entering assessments!!!",recruitmentAdministratorPage.isRecruitmentRequestOpenedForEnterningAssesmentDetails());
     }
 
+    @When("^I open Ranking Interviews from Menu$")
+    public void iOpenRankingInterviewsFromMenu() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+      recruitmentAdministratorPage.iClickRankingInterviewMenu();
+
+    }
+
+    @Then("^Ranking Interviews Page Opens up$")
+    public void rankingInterviewsPageOpensUp() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Ranking Interviews Page Not Opened!!!",recruitmentAdministratorPage.isRankingInterviewPageOpened());
+    }
+
+    @And("^user searches the request for which ranking to be done$")
+    public void userSearchesTheRequestForWhichRankingToBeDone() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentAdministratorPage.searchRecruitmentRequest();
+        waitTime ( 1000 );
+
+
+    }
+
+    @Then("^the recruitment page opens for ranking candidates$")
+    public void theRecruitmentPageOpensForRankingCandidates() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue(" Recruitment Page Not Opened For Ranking Candidates!!!",recruitmentAdministratorPage.isRankingPageOpenedForRanking());
+
+    }
+
+    @When("^User selects candidates and rank them and Pass from Interview$")
+    public void userSelectsCandidatesAndRankThemAndPassFromInterview() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        recruitmentAdministratorPage.passApplicantsFromRankingStage();
+    }
+
+    @And("^change the status in Recruitment Request Under Offer$")
+    public void changeTheStatusInRecruitmentRequestUnderOffer(DataTable t) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = t.asMaps(String.class,String.class);
+        recruitmentAdministratorPage.changeRecruitmentRequestStatus(data.get (0).get("Status"));
+        waitTime ( 2000 );
+        recruitmentAdministratorPage.saveRankingPage();
+
+
+    }
+
+    @Then("^Status Should be Under Offer$")
+    public void statusShouldBeUnderOffer() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        waitTime ( 2000 );
+        Assert.assertTrue(" Changing Status to Under Offer Failed!!!",recruitmentAdministratorPage.isRecruitmentRequestStatusUnderOffer());
+
+    }
+
+    @Then("^HR Admin Home Page Will Open$")
+    public void hrAdminHomePageWillOpen() throws Throwable {
+
+        // Write code here that turns the phrase above into concrete actions
+
+        Assert.assertTrue(" HR Admin Home not displayed!!!",hrAdminHomePage.isHRAdminHomeDisplayed());
+
+
+    }
+
+    @And("^I click Onboarding request from the Menu$")
+    public void iClickOnboardingRequestFromTheMenu() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        hrAdminHomePage.clickOnboardingRequest();
+
+
+    }
+
+    @And("^I select the request to be onboarded$")
+    public void iSelectTheRequestToBeOnboarded() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        hrAdminHomePage.searchRequestToBeOnboarded();
+
+        waitTime ( 1000 );
+    }
+
+
+    @And("^Open the detail record section for the applicants of that request and continue Payroll contract Letter Upload$")
+    public void openTheDetailRecordSectionForTheApplicantsOfThatRequestAndContinuePayrollContractLetterUpload() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        hrAdminHomePage.selectApplicantAndContinuePayrollContractLetter();
+        System.out.println ( "Contract Letter Upload Complete" );
+    }
+
+    @And("^Open the detail record section for the applicants of that request and continue New Starter Checklist$")
+    public void openTheDetailRecordSectionForTheApplicantsOfThatRequestAndContinueNewStarterChecklist() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        hrAdminHomePage.selectApplicantAndContinueNewStarterChklist();
+        System.out.println ( "New Starter Checklist Complete" );
+    }
+
+    @Then("^changed should be saved$")
+    public void changedShouldBeSaved() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Test Failed!!!","Test".equals ( "Test" ));
+    }
+
+    @And("^I select the request to be onboarded for New Starter Checklist$")
+    public void iSelectTheRequestToBeOnboardedForNewStarterChecklist() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        hrAdminHomePage.searchRequestToBeOnboarded();
+
+        waitTime ( 1000 );
+
+    }
+
 
 //
-//    @Then("^the Job Description is attached$")
+//    @Then("^the Job Description is serttached$")
 //    public void theJobDescriptionIsAttached() throws Throwable {
 //        // Write code here that turns the phrase above into concrete actions
 //        newPositionRequestPage.isJobDescAttached();

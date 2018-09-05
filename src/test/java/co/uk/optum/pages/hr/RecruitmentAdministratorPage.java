@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 import static co.uk.optum.utility.CommonUtility.*;
+import static co.uk.optum.utility.FeatureContext.getStoredRequisitionNumber;
 
 public class RecruitmentAdministratorPage {
 
@@ -139,6 +140,29 @@ public class RecruitmentAdministratorPage {
     WebElement getMaxDateOnlineAssessmentTime;
 
 
+    @FindBy(xpath = "//div//tr//td//a[text()='Ranking Interviews']")
+    WebElement rankingInterviewsMenu;
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Ranking Interviews')]")
+    WebElement rankingInterviewsTab;
+
+    @FindBy(xpath = "//div//table//tr/td/input[@instancename='he_person0he_nat_ins_no']")
+    WebElement nationalInsuranceNumText;
+
+    @FindBy(xpath = "//div//table//tr//td/span[@instancename='he_person0he_success']/input")
+    WebElement outcomeOfInterview;
+
+    @FindBy(xpath = "//div//table//tr//td/span[@instancename='he_person0he_gender']/input")
+    WebElement genderDropdown;
+
+    @FindBy(xpath = "//div//table//tr//td/span[@instancename='he_person0he_gender']/a")
+    WebElement genderDropdownButton;
+
+    @FindBy(xpath = "//div//button[@class='z-messagebox-button z-button']")
+    WebElement okButton;
+
+
+
 
 
     public boolean isRecruitmentAdminDashBoardDisplayed() {
@@ -157,8 +181,9 @@ public class RecruitmentAdministratorPage {
         lookupRecordIcon.click ();
         waitForElementToBeDisplayed ( nprDocNumberlookupBox );
         waitTime ( 1000 );
-//        nprDocNumberlookupBox.sendKeys ( getStoredRequisitionNumber () );
-        nprDocNumberlookupBox.sendKeys ( "1002958" );
+        nprDocNumberlookupBox.sendKeys ( getStoredRequisitionNumber () );
+
+//        nprDocNumberlookupBox.sendKeys ( "1003024" );
         waitTime ( 3000 );
         lookupRecordOkbutton.click ();
     }
@@ -344,7 +369,7 @@ public class RecruitmentAdministratorPage {
 
 
         List<WebElement> elements = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]" ) );
-        List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']" ) );
+        List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr/td[@title='Edit Record']" ) );
         for(int i=0;i<elements.size ();i++)
 
         {
@@ -359,7 +384,7 @@ public class RecruitmentAdministratorPage {
 
 
                         int node1 = j + 1;
-                        String editRec ="("+"//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']"+")"+"["+node1+"]";
+                        String editRec ="("+"//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr/td[@title='Edit Record']"+")"+"["+node1+"]";
                         waitTime ( 2000 );
                         driver.findElement(By.xpath(editRec)).click ();
 
@@ -449,7 +474,7 @@ public class RecruitmentAdministratorPage {
     public void passApplicantstoVacancyInAssessment() {
 
         List<WebElement> elements = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]" ) );
-        List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']" ) );
+        List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr/td[@title='Edit Record']" ) );
         for(int i=0;i<elements.size ();i++)
 
         {
@@ -461,7 +486,7 @@ public class RecruitmentAdministratorPage {
                 if (j==i)
                 {
                     int node1 = j + 1;
-                    String editRec ="("+"//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']"+")"+"["+node1+"]";
+                    String editRec ="("+"//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr/td[@title='Edit Record']"+")"+"["+node1+"]";
                     waitTime ( 2000 );
                     driver.findElement(By.xpath(editRec)).click ();
                 }
@@ -532,7 +557,7 @@ public class RecruitmentAdministratorPage {
             }
         }catch (Exception e){
             List<WebElement> elements = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]" ) );
-            List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']" ) );
+            List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr/td[@title='Edit Record']" ) );
             for(int i=0;i<elements.size ();i++)
 
             {
@@ -544,14 +569,14 @@ public class RecruitmentAdministratorPage {
                     if (j==i)
                     {
                         int node1 = j + 1;
-                        String editRec ="("+"//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']"+")"+"["+node1+"]";
+                        String editRec ="("+"//div[@class[@class='z-grid-body z-word-nowrap']//table/tbody/tr/td[@title='Edit Record']"+")"+"["+node1+"]";
                         waitTime ( 2000 );
                         driver.findElement(By.xpath(editRec)).click ();
                     }
                 }
 
                 waitForElementToBeDisplayed ( passToInterviewCheck );
-                passToNextStageCheck.click ();
+                passToInterviewCheck.click ();
                 saveButton.click ();
                 waitTime ( 1000 );
                 request.click ();
@@ -563,7 +588,7 @@ public class RecruitmentAdministratorPage {
 
 
         List<WebElement> elements = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]" ) );
-        List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']" ) );
+        List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr/td[@title='Edit Record']" ) );
         for(int i=0;i<elements.size ();i++)
 
         {
@@ -575,7 +600,7 @@ public class RecruitmentAdministratorPage {
                 if (j==i)
                 {
                     int node1 = j + 1;
-                    String editRec ="("+"//div[@class[contains(.,'adwindow-detailpane-tabpanel z-tabpanel')]]//table/tbody/tr/td[@title='Edit Record']"+")"+"["+node1+"]";
+                    String editRec ="("+"//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr/td[@title='Edit Record']"+")"+"["+node1+"]";
                     waitTime ( 2000 );
                     driver.findElement(By.xpath(editRec)).click ();
                 }
@@ -603,6 +628,200 @@ public class RecruitmentAdministratorPage {
             }
         }catch (Exception e){return (applicantTab.isDisplayed ());}
         return ( applicantTab.isDisplayed ());
+
+
+
+    }
+
+
+
+    public boolean isRecruitmentRequestStatusInterview() {
+
+
+        if (statusInput.getAttribute ( "value" ).equals ( "71_Interviews" ))
+        {
+            System.out.println ( "Status Changed to 71_Interviews " );
+        }
+
+        String statusActual = statusInput.getAttribute ( "value" );
+        closeRecruitmentRequestTab();
+
+        return statusActual.equals ( "71_Interviews" );
+
+
+
+    }
+
+    public void changeRecruitmentRequestStatusInterview(String status) {
+
+                  recruitmentRequestTabClose.click ();
+                  menuIcon.click ();
+                  waitForElementToBeDisplayed (recruitmentRequestMenu  );
+                  recruitmentRequestMenu.click ();
+                  waitForElementToBeDisplayed ( recruitmentRequestTab );
+                  searchRecruitmentRequest ();
+                  waitForElementToBeDisplayed ( recruitmentRequestTab );
+                  changeRecruitmentRequestStatus(status);
+                  saveButton.click ();
+
+    }
+
+    public void iClickRankingInterviewMenu() {
+
+        menuIcon.click ();
+        waitForElementToBeDisplayed ( rankingInterviewsMenu );
+        rankingInterviewsMenu.click ();
+        waitForElementToBeDisplayed ( rankingInterviewsTab );
+
+
+
+
+    }
+
+    public boolean isRankingInterviewPageOpened() {
+
+        return rankingInterviewsTab.isDisplayed ();
+
+    }
+
+    public boolean isRankingPageOpenedForRanking() {
+
+
+        waitTime ( 1000 );
+        try {
+            if (detailRecord.isDisplayed ()) {
+                detailRecord.click ();
+            }
+        }catch (Exception e){return (rankingInterviewsTab.isDisplayed () && applicantTab.isDisplayed ());}
+
+        return (rankingInterviewsTab.isDisplayed () && applicantTab.isDisplayed ());
+
+    }
+
+    public void passApplicantsFromRankingStage() {
+
+        try {
+            if (detailRecord.isDisplayed ()) {
+                detailRecord.click ();
+            }
+        }catch (Exception e){
+            List<WebElement> elements = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]" ) );
+            List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr/td[@title='Edit Record']" ) );
+            for(int i=0;i<elements.size ();i++)
+
+            {
+                int node = i + 1;
+                String appSelect= "("+"//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]"+")"+"["+node+"]";
+                waitTime ( 2000 );
+                driver.findElement(By.xpath(appSelect)).click ();
+                for (int j=0;j<shortlist.size ();j++) {
+                    if (j==i)
+                    {
+                        int node1 = j + 1;
+                        String editRec ="("+"//div[@class[@class='z-grid-body z-word-nowrap']//table/tbody/tr/td[@title='Edit Record']"+")"+"["+node1+"]";
+                        waitTime ( 2000 );
+                        driver.findElement(By.xpath(editRec)).click ();
+                    }
+                }
+                waitForElementToBeDisplayed ( nationalInsuranceNumText );
+                String nationalInsNum= "NIN"+ randomAlphaNumeric ( 6 );
+                nationalInsuranceNumText.sendKeys ( nationalInsNum );
+//                genderDropdown.clear ();
+                genderDropdownButton.click ();
+                waitForElementToBeDisplayed ( driver.findElement(By.xpath("//li/span["+ stringToContainsTag("Male")+"]"))) ;
+                waitTime ( 1000 );
+                driver.findElement(By.xpath("//li/span["+ stringToContainsTag("Male")+"]")).click();
+                waitTime ( 3000 );
+                /*
+        waitForElementToBeDisplayed ( driver.findElement(By.xpath("//li/span["+ stringToContainsTag(role)+"]"))) ;
+        driver.findElement(By.xpath("//li/span["+ stringToContainsTag(role)+"]")).click();
+                 */
+
+                outcomeOfInterview.clear();
+                waitTime ( 1000 );
+                outcomeOfInterview.sendKeys ( "Successful"+ Keys.TAB );
+                waitTime ( 1000 );
+
+
+
+                saveButton.click ();
+                request.click ();
+                waitForElementToBeDisplayed ( applicantTab );
+
+
+
+
+            }
+
+        }
+
+
+        List<WebElement> elements = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]" ) );
+        List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr/td[@title='Edit Record']" ) );
+        for(int i=0;i<elements.size ();i++)
+
+        {
+            int node = i + 1;
+            String appSelect= "("+"//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]"+")"+"["+node+"]";
+            waitTime ( 2000 );
+            driver.findElement(By.xpath(appSelect)).click ();
+            for (int j=0;j<shortlist.size ();j++) {
+                if (j==i)
+                {
+                    int node1 = j + 1;
+                    String editRec ="("+"//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr/td[@title='Edit Record']"+")"+"["+node1+"]";
+                    waitTime ( 2000 );
+                    driver.findElement(By.xpath(editRec)).click ();
+                }
+            }
+            waitForElementToBeDisplayed ( nationalInsuranceNumText );
+            String nationalInsNum= "NIN"+ randomAlphaNumeric ( 6 );
+            nationalInsuranceNumText.sendKeys ( nationalInsNum );
+//                genderDropdown.clear ();
+            genderDropdownButton.click ();
+            waitForElementToBeDisplayed ( driver.findElement(By.xpath("//li/span["+ stringToContainsTag("Male")+"]"))) ;
+            waitTime ( 1000 );
+            driver.findElement(By.xpath("//li/span["+ stringToContainsTag("Male")+"]")).click();
+            waitTime ( 1000 );
+            outcomeOfInterview.clear();
+            waitTime ( 1000 );
+            outcomeOfInterview.sendKeys ( "Successful"+ Keys.TAB );
+            waitTime ( 1000 );
+
+
+
+            saveButton.click ();
+            request.click ();
+            waitForElementToBeDisplayed ( applicantTab );
+
+        }
+
+
+
+
+    }
+
+    public void saveRankingPage() {
+
+        saveButton.click ();
+        waitForElementToBeDisplayed ( okButton );
+        okButton.click();
+        waitForElementToBeDisplayed ( rankingInterviewsTab );
+    }
+
+    public boolean isRecruitmentRequestStatusUnderOffer() {
+
+
+        if (statusInput.getAttribute ( "value" ).equals ( "72_Under offer" ))
+        {
+            System.out.println ( "Status Changed to 72_Under offer " );
+        }
+
+        String statusActual = statusInput.getAttribute ( "value" );
+        closeRecruitmentRequestTab();
+
+        return statusActual.equals ( "72_Under offer" );
+
 
 
 

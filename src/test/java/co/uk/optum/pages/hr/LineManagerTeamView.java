@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
 import static co.uk.optum.utility.CommonUtility.waitTime;
+import static co.uk.optum.utility.FeatureContext.getPositionName;
 
 public class LineManagerTeamView {
 
@@ -59,7 +60,7 @@ public class LineManagerTeamView {
     public void enterPositionToSearch(String position) {
 
         waitForElementToBeDisplayed ( lookupPosition );
-        lookupPosition.sendKeys ( position );
+        lookupPosition.sendKeys ( getPositionName() );
 
 
     }

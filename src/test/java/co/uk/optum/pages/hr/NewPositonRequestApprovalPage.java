@@ -62,6 +62,7 @@ public class NewPositonRequestApprovalPage {
     public void requestForApproveNPR(String status) {
         statusInput.sendKeys ( status );
         statusInput.sendKeys ( Keys.TAB );
+        waitTime(2000);
     }
 
     public void selectNPRtoApprove() {

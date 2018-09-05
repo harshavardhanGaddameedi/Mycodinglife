@@ -76,10 +76,12 @@ public class LoginPage{
     public String[] getApprovalUser(){
         String[] user = new String[2];
         float totalLineAmount = Float.parseFloat(getTotalLineAmount());
-        if (totalLineAmount < 1000.00){
+        if (totalLineAmount < 1000.00)
+        {
             user[0] = "PracticeManager";
             user[1] = "PracticeManager";
-        }else if(totalLineAmount >= 1000.00 && totalLineAmount < 10000.00){
+        }
+                    else if(totalLineAmount >= 1000.00 && totalLineAmount < 10000.00){
             user[0] = "FinanceBP1";
             user[1] = "FinanceBP1";
         }else if(totalLineAmount >= 10000.00 && totalLineAmount < 20000.00 ){

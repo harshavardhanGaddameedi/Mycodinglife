@@ -4,7 +4,7 @@
 Feature: Create New Position Request, Authorize NPR
  Scenario Outline:Creation of New Position Request for Clinical Pharmacist
   Given I am in login Page
-  And I login to IDempiere with "<user>" "<password>"
+  And I login to IDempiere with "<user>" "<password>" "<role>"
   And I click on New Position Request
   And I enter all the New Position Request Details
    |Business case|
@@ -24,12 +24,12 @@ Feature: Create New Position Request, Authorize NPR
   And I click on Save Button
   Then I Should see the New Position Request is saved and sent for approval
   Examples:
-   |user| password|
-   | HRBP1| HRBP1|
+   |user| password|role|
+   | HRBP1| HRBP1|HR Business Partner|
 
  Scenario Outline: Approve of New Position Request for Clinical Pharmacist
   Given I am in login Page
-  And I login to IDempiere with "<user>" "<password>"
+  And I login to IDempiere with "<user>" "<password>" "<role>"
   And I click on New Position Request created by HR Business Partner
   And Select NPR and change the status to Accepted
    |Status|
@@ -37,17 +37,18 @@ Feature: Create New Position Request, Authorize NPR
   And I click on Save Button
   Then the New Position Request is saved
   Examples:
-   |user | password |
-   |HRDirector|HRDirector|
+   |user | password |role|
+   |HRDirector|HRDirector|HR Director|
+
 
  Scenario Outline: Login as Line Manager and create RR from Team View
   Given I am in login Page
   And I login to IDempiere with "<user>" "<password>" "<role>"
   Then the dashboard is displayed
- #  And user Clicks on Menu button
- #  And Selects Human resource & Payroll
- #  And selects Human resource
- #  And selects Team View
+  #  And user Clicks on Menu button
+  #  And Selects Human resource & Payroll
+  #  And selects Human resource
+  #  And selects Team View
   When I Click Team View Option from Menu
   And select the position which was created
    |Position|
@@ -69,8 +70,8 @@ Feature: Create New Position Request, Authorize NPR
 # C:\GP_Empower_Automation1\src\test\java\co\uk\optum\stepDefinitions\hr\smokeTest
 
  Scenario Outline: Login as Line Manager's Manager (COO)
- #  Given user launches the Idempiere application
- #When user logs in using the <Username> and <Password>
+  #  Given user launches the Idempiere application
+  #When user logs in using the <Username> and <Password>
   Given I am in login Page
   And I login to IDempiere with "<user>" "<password>" "<role>"
   Then the dashboard is displayed
@@ -89,45 +90,45 @@ Feature: Create New Position Request, Authorize NPR
    |user |password |role|
    |COO1 |COO1|COO|
 
-Scenario Outline: Login as Line Manager and generate Advert
-#Given user launches the Idempiere application
-#When user logs in using the "<Username>" and "<Password>"
-Given I am in login Page
-And I login to IDempiere with "<user>" "<password>" "<role>"
-Then the dashboard of RA is displayed
-When I Click Recruitment Request Option from Menu on RA Page
-Then the recruitment request page opens
-And user searches the request for Advert has to be created
-Then the recruitment request page opens for editing
+ Scenario Outline: Login as Line Manager and generate Advert
+ #Given user launches the Idempiere application
+ #When user logs in using the "<Username>" and "<Password>"
+  Given I am in login Page
+  And I login to IDempiere with "<user>" "<password>" "<role>"
+  Then the dashboard of RA is displayed
+  When I Click Recruitment Request Option from Menu on RA Page
+  Then the recruitment request page opens
+  And user searches the request for Advert has to be created
+  Then the recruitment request page opens for editing
 
-When the status of request is changed to GenerateAdvert
- |Status|
- |30_Generate Advert|
- And I click on Save Button on Recruitment Administrator Page
- Then Status Should be GenerateAdvert
+  When the status of request is changed to GenerateAdvert
+   |Status|
+   |30_Generate Advert|
+  And I click on Save Button on Recruitment Administrator Page
+  Then Status Should be GenerateAdvert
 
- When the status of request is changed to Advert
-  |Status|
-  |40_ Advert Placed|
+  When the status of request is changed to Advert
+   |Status|
+   |40_ Advert Placed|
 
- And I click on Save Button on Recruitment Administrator Page
- Then Status Should be Advert
+  And I click on Save Button on Recruitment Administrator Page
+  Then Status Should be Advert
 
- When the status of request is changed to PlaceAdvert
-  |Status|
-  |50_Vacancy Closed|
+  When the status of request is changed to PlaceAdvert
+   |Status|
+   |50_Vacancy Closed|
 
- And I click on Attachment icon on the Tool bar on Recruitment Administrator Page
- And upload the applicant xml
- And I click on Tick mark of the Attachment Window of Recruitment Admin Page
+  And I click on Attachment icon on the Tool bar on Recruitment Administrator Page
+  And upload the applicant xml
+  And I click on Tick mark of the Attachment Window of Recruitment Admin Page
 
- And I click on Save Button on Recruitment Administrator Page
+  And I click on Save Button on Recruitment Administrator Page
   Then the detail record should have applicants uploaded
 
 
-Examples:
- |user |password |role|
- |LeadGP1 |LeadGP1|Recruitment Administrator|
+  Examples:
+   |user |password |role|
+   |LeadGP1 |LeadGP1|Recruitment Administrator|
 
  Scenario Outline: Compare the applicants on the basis of longlisting, shortlisting and etc
 
@@ -165,11 +166,11 @@ Examples:
   Then Status Should be Vacancy in Assessment
 
 
-# When the user opens up vacancy assessmnt tab in the detail record
-#  And clicks on the edit button of "Max Date Online Assessment"
-#  And enters the Max Date Online Assessment
-#  And hits Save
-#
+ # When the user opens up vacancy assessmnt tab in the detail record
+ #  And clicks on the edit button of "Max Date Online Assessment"
+ #  And enters the Max Date Online Assessment
+ #  And hits Save
+ #
   When I open Vacancy Assessment from Menu
   Then the Vacancy Assessment Page opens up
   And user searches the request for which Assessment to be done
@@ -181,22 +182,16 @@ Examples:
    |Status|
    |71_Interviews|
   Then Status Should be Interviews
-#
-#  When I  opens the applicant tab again
-#  And Updates the Test Schedule tab for each applicant
-#  Then the applicants to be taken forward to Interview stage are selected
-#  When the User changes the status of RR to Interviews
-#   |Status|
-#   |71_Interviews|
 
-  And hits save
-  And opens the detail record
-  And the user goes to Panel Interviewer selection in Menu
-  Then the Panel Interviewer page opens up
-  When the user Opens the Panel interviewer tab on  Panel interviewer tab
-  And sets the initial and Final date of assessment
-  And hits save
-  Then the Member tab in the detail record secin would get enabled with the interviewer
+  When I open Ranking Interviews from Menu
+  Then Ranking Interviews Page Opens up
+  And user searches the request for which ranking to be done
+  Then the recruitment page opens for ranking candidates
+  When User selects candidates and rank them and Pass from Interview
+  And change the status in Recruitment Request Under Offer
+   |Status|
+   |72_Under offer|
+  Then Status Should be Under Offer
 
   Examples:
    |user |password |role|
@@ -204,4 +199,27 @@ Examples:
 
 
 
-
+#Scenario Outline: Generating Payroll Contract letter
+#Given I am in login Page
+#And I login to IDempiere with "<user>" "<password>" "<role>"
+#Then HR Admin Home Page Will Open
+#And I click Onboarding request from the Menu
+#And I select the request to be onboarded
+#And Open the detail record section for the applicants of that request and continue Payroll contract Letter Upload
+#
+##
+##    Comented for Debugging
+##    Then in the applicant tab following fields will be visible
+##    When i click on Open Payroll Contract letter
+##    And click on OK on Open Payroll contract Letter window
+##    Then the payroll contract window will open up
+##    And i click on Contract Letter Upload
+#Then the attachment icon will be highlighted indicating the upload of Payroll contract letter
+##
+#Examples:
+#|user |password |role|
+#|HRAdmin| HRAdmin| HR Administrator  |
+#
+##      |fields|
+##      |Open payroll Contract letter|
+##      |New Starter Checklist|

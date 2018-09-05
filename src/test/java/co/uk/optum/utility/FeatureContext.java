@@ -7,6 +7,7 @@ public class FeatureContext {
 
     private static final FeatureContext instance = new FeatureContext();
     public static String requisitionNumber;
+    public static String positionName;
     public static String totalLineAmount;
     public static String purchaseOrderNumber;
     public static String businessPartner;
@@ -25,6 +26,19 @@ public class FeatureContext {
     public static void setRequisitionNumber(String requisitionNumber){
         FeatureContext.requisitionNumber = requisitionNumber;
     }
+
+
+    public static String getPositionName(){
+        return positionName;
+    }
+
+    public static void setPosistionName(String positionName){
+        FeatureContext.positionName = positionName;
+    }
+
+
+
+
 
     public static void setTotalLineAmount(String totalLineAmount){
         FeatureContext.totalLineAmount = totalLineAmount;

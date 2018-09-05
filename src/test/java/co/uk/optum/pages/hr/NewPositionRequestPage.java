@@ -13,6 +13,7 @@ import org.sikuli.script.Screen;
 import javax.inject.Inject;
 
 import static co.uk.optum.utility.CommonUtility.*;
+import static co.uk.optum.utility.FeatureContext.setPosistionName;
 import static co.uk.optum.utility.FeatureContext.setRequisitionNumber;
 
 //import org.sikuli.api.Screen;
@@ -76,6 +77,8 @@ public class NewPositionRequestPage {
     @FindBy(xpath = "//div//div//table//tr//td/input[@title='Document sequence number of the document']")
     WebElement nprDocNumber;
 
+    @FindBy(xpath = "//div//input[@instancename='R_Request0he_pos_name']")
+    WebElement positionName;
 
 
     public void setBusinessCase(String business_case) {
@@ -105,13 +108,15 @@ public class NewPositionRequestPage {
 
 
 
+
+
     }
 
 
     public void waitForElementEnablement() {
         //div//div//table//tr//td/span/input[@value='Specialist GP']
         waitForElementToBeDisplayed (newPositionRequestTab );
-//        waitForElementEnabled(posTemplateCombo);
+        //        waitForElementEnabled(posTemplateCombo);
 
 
     }
@@ -122,6 +127,10 @@ public class NewPositionRequestPage {
         posTemplateTxt.sendKeys ( position_template );
         posTemplateTxt.sendKeys ( Keys.TAB );
         waitTime ( 1000 );
+        positionName.clear ();
+        positionName.sendKeys ( position_template+"_"+randomAlphaNumeric ( 3 ) );
+
+
 
     }
 
@@ -208,6 +217,7 @@ public class NewPositionRequestPage {
     public String NPRStatus() {
 
         return statusInput.getAttribute ( "value" );
+
     }
 
     public String getNPRDocNumber() {
@@ -215,6 +225,10 @@ public class NewPositionRequestPage {
 
         System.out.println ( nprDocNumber.getText () );
         setRequisitionNumber ( nprDocNumber.getAttribute ( "value" ) );
+        System.out.println ( positionName.getText() );
+        System.out.println ( positionName.getAttribute ("value") );
+        setPosistionName(positionName.getAttribute ("value"));
+
         return nprDocNumber.getAttribute ( "value" );
 
     }

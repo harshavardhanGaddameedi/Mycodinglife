@@ -40,6 +40,63 @@ public class CommonUtility {
         return ddString;
     }
 
+
+    public static String randomAlphaNumeric(int count) {
+
+        String ALPHA_NUMERIC_STRING = "123456789ABCDEF";
+        StringBuilder builder = new StringBuilder();
+
+        while (count-- != 0) {
+
+            int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
+
+            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+
+        }
+
+        return builder.toString();
+
+    }
+
+
+
+    public static String randomAccountName(int count) {
+
+        String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder builder = new StringBuilder();
+
+        while (count-- != 0) {
+
+            int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
+
+            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+
+        }
+
+        return builder.toString();
+
+    }
+
+    public static String randomAccountNumber(int count) {
+
+        String ALPHA_NUMERIC_STRING = "123456789";
+        StringBuilder builder = new StringBuilder();
+
+        while (count-- != 0) {
+
+            int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
+
+            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+
+        }
+
+        return builder.toString();
+
+    }
+
+
+
+
     public static void waitTime(long millis){
         try {
             Thread.sleep(millis);
