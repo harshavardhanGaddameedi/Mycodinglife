@@ -77,7 +77,7 @@ public class LoginStepDef {
 
     @And("^I login to IDempiere with Approval user$")
     public void iLoginToIDempiereWithApprovalUser() throws Throwable {
-        iLoginToIDempiereWith(loginPage.getApprovalUser()[0],loginPage.getApprovalUser()[1]);
+        iLoginToIDempiereWith(loginPage.getApprovalUser()[0],loginPage.getApprovalUser()[1],loginPage.getApprovalUser()[2]);
     }
 
     @And("^Select Role and click Login$")
@@ -116,6 +116,7 @@ public class LoginStepDef {
         selectRolePage.selectRole(role);
         selectRolePage.clickSelectRolePageOkBtn ();
         System.out.println ( "Login with Role Successful" );
+        iShouldBeInTheHomePage();
 
 
 

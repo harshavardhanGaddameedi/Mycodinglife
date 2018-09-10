@@ -684,7 +684,7 @@ public class EmpOnboarding {
         // Write code here that turns the phrase above into concrete actions
         List<Map<String,String>> data = t.asMaps(String.class,String.class);
         recruitmentAdministratorPage.changeRecruitmentRequestStatus(data.get (0).get("Status"));
-        waitTime ( 2000 );
+        waitTime ( 4000 );
         recruitmentAdministratorPage.saveRankingPage();
 
 
@@ -753,6 +753,12 @@ public class EmpOnboarding {
 
         waitTime ( 1000 );
 
+    }
+
+    @Then("^Onboarding flow should be completed$")
+    public void onboardingFlowShouldBeCompleted() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Test Failed!!!","Test".equals ( "Test" ));
     }
 
 

@@ -3,7 +3,7 @@ Feature: Receivables / Private Revenue Order Creation, Approval and Invoice Gene
 
   Scenario Outline: Revenue Invoice Creation
     Given I am in login Page
-    And I login to IDempiere with "<user>" "<password>"
+    And I login to IDempiere with "<user>" "<password>" "<role>"
     And I click on Receivables menu
     #And I click on Private Revenue section
     And I click on Revenue Order
@@ -15,23 +15,24 @@ Feature: Receivables / Private Revenue Order Creation, Approval and Invoice Gene
     Then I should see the Revenue Order created
 
     Examples:
-      | user                  | password              |
-      | OperationsProcessor1     | OperationsProcessor1  |
+      | user                  | password              |role|
+      | OperationsProcessor1  | OperationsProcessor1  |  Operations Processor  |
+
 
   Scenario Outline: Approve Revenue Order
     Given I am in login Page
-    And I login to IDempiere with "<user>" "<password>"
+    And I login to IDempiere with "<user>" "<password>" "<role>"
     When I click on Workflow Activities section in Home Page
     And I Select and Approve the Revenue Order
     Then I Should see the Revenue Order Approved
 
     Examples:
-      | user                  | password              |
-      | FinanceProcessor1     | FinanceProcessor1  |
+      | user                  | password              |role|
+      | FinanceProcessor1     | FinanceProcessor1  |Finance Processor|
 
   Scenario Outline: Revenue Invoice Generation
     Given I am in login Page
-    And I login to IDempiere with "<user>" "<password>"
+    And I login to IDempiere with "<user>" "<password>" "<role>"
     And I click on Receivables menu
     #And I click on Private Revenue section
     And I click on Revenue Invoice section
@@ -50,5 +51,5 @@ Feature: Receivables / Private Revenue Order Creation, Approval and Invoice Gene
     Then Revenue invoice will be generated
 
     Examples:
-      | user                  | password              |
-      | FinanceProcessor1     | FinanceProcessor1  |
+      | user                  | password              |role|
+      | FinanceProcessor1     | FinanceProcessor1  |Finance Processor|

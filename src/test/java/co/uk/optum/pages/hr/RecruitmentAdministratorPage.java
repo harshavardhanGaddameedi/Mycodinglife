@@ -227,7 +227,7 @@ public class RecruitmentAdministratorPage {
         moveElementToVisibility(statusInput);
         statusInput.clear ();
         statusInput.sendKeys ( status+ Keys.TAB);
-        waitTime ( 2000 );
+        waitTime ( 60000 );
 
 
     }
@@ -473,6 +473,7 @@ public class RecruitmentAdministratorPage {
 
     public void passApplicantstoVacancyInAssessment() {
 
+        waitTime ( 2000 );
         List<WebElement> elements = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]" ) );
         List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr/td[@title='Edit Record']" ) );
         for(int i=0;i<elements.size ();i++)
@@ -550,6 +551,9 @@ public class RecruitmentAdministratorPage {
 
     public void passApplicantsToInterviewStage() {
 
+
+//        waitForElementToBeDisplayed (  statusInput);
+        waitTime ( 2000 );
 
         try {
             if (detailRecord.isDisplayed ()) {
@@ -700,11 +704,13 @@ public class RecruitmentAdministratorPage {
 
     public void passApplicantsFromRankingStage() {
 
+        waitTime ( 1000 );
         try {
             if (detailRecord.isDisplayed ()) {
                 detailRecord.click ();
             }
-        }catch (Exception e){
+        }catch (Exception e)
+        {
             List<WebElement> elements = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,'AR-')]]" ) );
             List<WebElement> shortlist = driver.findElements ( By.xpath ( "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr/td[@title='Edit Record']" ) );
             for(int i=0;i<elements.size ();i++)
@@ -727,27 +733,35 @@ public class RecruitmentAdministratorPage {
                 String nationalInsNum= "NIN"+ randomAlphaNumeric ( 6 );
                 nationalInsuranceNumText.sendKeys ( nationalInsNum );
 //                genderDropdown.clear ();
-                genderDropdownButton.click ();
-                waitForElementToBeDisplayed ( driver.findElement(By.xpath("//li/span["+ stringToContainsTag("Male")+"]"))) ;
+//                genderDropdownButton.click ();
+//                waitForElementToBeDisplayed ( driver.findElement(By.xpath("//li/span["+ stringToContainsTag("Male")+"]"))) ;
+                genderDropdown.clear ();
+                genderDropdown.sendKeys ( "Male"+Keys.TAB );
                 waitTime ( 1000 );
-                driver.findElement(By.xpath("//li/span["+ stringToContainsTag("Male")+"]")).click();
-                waitTime ( 3000 );
-                /*
-        waitForElementToBeDisplayed ( driver.findElement(By.xpath("//li/span["+ stringToContainsTag(role)+"]"))) ;
-        driver.findElement(By.xpath("//li/span["+ stringToContainsTag(role)+"]")).click();
-                 */
-
+//                driver.findElement(By.xpath("//li/span["+ stringToContainsTag("Male")+"]")).click();
+//                waitTime ( 3000 );
+//                /*
                 outcomeOfInterview.clear();
                 waitTime ( 1000 );
                 outcomeOfInterview.sendKeys ( "Successful"+ Keys.TAB );
                 waitTime ( 1000 );
-
-
-
                 saveButton.click ();
+                waitTime ( 2000 );
+                if (genderDropdown.getAttribute ( "value" ).equals ( "Male" ))
+
+                {
+                    request.click ();
+                    waitForElementToBeDisplayed ( applicantTab );
+
+                }
+                else
+                {
+                    genderDropdown.sendKeys ( "Male"+Keys.TAB );
+                    saveButton.click ();
+                    waitTime ( 2000 );
+                }
                 request.click ();
                 waitForElementToBeDisplayed ( applicantTab );
-
 
 
 
@@ -778,19 +792,31 @@ public class RecruitmentAdministratorPage {
             String nationalInsNum= "NIN"+ randomAlphaNumeric ( 6 );
             nationalInsuranceNumText.sendKeys ( nationalInsNum );
 //                genderDropdown.clear ();
-            genderDropdownButton.click ();
-            waitForElementToBeDisplayed ( driver.findElement(By.xpath("//li/span["+ stringToContainsTag("Male")+"]"))) ;
-            waitTime ( 1000 );
-            driver.findElement(By.xpath("//li/span["+ stringToContainsTag("Male")+"]")).click();
+            genderDropdown.clear ();
+            genderDropdown.sendKeys ( "Male"+Keys.TAB );
             waitTime ( 1000 );
             outcomeOfInterview.clear();
             waitTime ( 1000 );
             outcomeOfInterview.sendKeys ( "Successful"+ Keys.TAB );
             waitTime ( 1000 );
-
-
-
             saveButton.click ();
+            waitTime ( 2000 );
+            if (genderDropdown.getAttribute ( "value" ).equals ( "Male" ))
+
+            {
+                request.click ();
+                waitForElementToBeDisplayed ( applicantTab );
+
+            }
+            else
+            {
+                genderDropdown.sendKeys ( "Male"+Keys.TAB );
+                saveButton.click ();
+                waitTime ( 2000 );
+            }
+
+
+
             request.click ();
             waitForElementToBeDisplayed ( applicantTab );
 

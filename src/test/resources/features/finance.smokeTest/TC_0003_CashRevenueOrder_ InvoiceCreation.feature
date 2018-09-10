@@ -1,10 +1,10 @@
-
+@smoke
 Feature: Receivables / Cash Revenue Invoice Generation Scenarios
 
   Scenario Outline: Cash Revenue Invoice Creation
 
     Given I am in login Page
-    And I login to IDempiere with "<user>" "<password>"
+    And I login to IDempiere with "<user>" "<password>" "<role>"
     And I click on Receivables menu
     #And I click on Private Revenue section
     And I click on Revenue Order
@@ -16,12 +16,12 @@ Feature: Receivables / Cash Revenue Invoice Generation Scenarios
     Then I should see the Revenue Order created
 
     Examples:
-      | user                  | password              |
-      | FinanceProcessor1     | FinanceProcessor1     |
+      | user                  | password              |role|
+      | FinanceProcessor1     | FinanceProcessor1     |Finance Processor|
 
   Scenario Outline: Cash Invoice Creation
     Given I am in login Page
-    And I login to IDempiere with "<user>" "<password>"
+    And I login to IDempiere with "<user>" "<password>" "<role>"
     And I click on ReceivablesCashDesk
     And I click on Revenue Invoice Cash
     And I Click on New button
@@ -38,5 +38,5 @@ Feature: Receivables / Cash Revenue Invoice Generation Scenarios
     Then Cash Revenue invoice will be generated
 
     Examples:
-      | user                  | password              |
-      | FinanceProcessor1     | FinanceProcessor1     |
+      | user                  | password              |role|
+      | FinanceProcessor1     | FinanceProcessor1     |Finance Processor|
