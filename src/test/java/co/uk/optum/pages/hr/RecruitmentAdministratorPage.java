@@ -227,7 +227,7 @@ public class RecruitmentAdministratorPage {
         moveElementToVisibility(statusInput);
         statusInput.clear ();
         statusInput.sendKeys ( status+ Keys.TAB);
-        waitTime ( 60000 );
+
 
 
     }

@@ -684,8 +684,8 @@ public class EmpOnboarding {
         // Write code here that turns the phrase above into concrete actions
         List<Map<String,String>> data = t.asMaps(String.class,String.class);
         recruitmentAdministratorPage.changeRecruitmentRequestStatus(data.get (0).get("Status"));
-        waitTime ( 4000 );
         recruitmentAdministratorPage.saveRankingPage();
+        waitTime ( 60000 );
 
 
     }

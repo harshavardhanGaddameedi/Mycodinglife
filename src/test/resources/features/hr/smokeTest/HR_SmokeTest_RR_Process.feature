@@ -198,28 +198,29 @@ Feature: Create New Position Request, Authorize NPR
    |LeadGP1 |LeadGP1|Recruitment Administrator|
 
 
+ Scenario Outline: Generating Payroll Contract letter
+  Given I am in login Page
+  And I login to IDempiere with "<user>" "<password>" "<role>"
+  Then HR Admin Home Page Will Open
+  And I click Onboarding request from the Menu
+  And I select the request to be onboarded
+  And Open the detail record section for the applicants of that request and continue Payroll contract Letter Upload
 
-#Scenario Outline: Generating Payroll Contract letter
-#Given I am in login Page
-#And I login to IDempiere with "<user>" "<password>" "<role>"
-#Then HR Admin Home Page Will Open
-#And I click Onboarding request from the Menu
-#And I select the request to be onboarded
-#And Open the detail record section for the applicants of that request and continue Payroll contract Letter Upload
-#
-##
-##    Comented for Debugging
-##    Then in the applicant tab following fields will be visible
-##    When i click on Open Payroll Contract letter
-##    And click on OK on Open Payroll contract Letter window
-##    Then the payroll contract window will open up
-##    And i click on Contract Letter Upload
-#Then the attachment icon will be highlighted indicating the upload of Payroll contract letter
-##
-#Examples:
-#|user |password |role|
-#|HRAdmin| HRAdmin| HR Administrator  |
-#
-##      |fields|
-##      |Open payroll Contract letter|
-##      |New Starter Checklist|
+  Examples:
+   |user |password |role|
+   |HRAdmin| HRAdmin| HR Administrator  |
+
+
+ Scenario Outline: New Starter Checklist
+  Given I am in login Page
+  And I login to IDempiere with "<user>" "<password>" "<role>"
+  Then HR Admin Home Page Will Open
+  And I click Onboarding request from the Menu
+  And I select the request to be onboarded for New Starter Checklist
+  And Open the detail record section for the applicants of that request and continue New Starter Checklist
+  Then Onboarding flow should be completed
+
+  Examples:
+   |user |password |role|
+   |HRAdmin| HRAdmin| HR Administrator  |
+

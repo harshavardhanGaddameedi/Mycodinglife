@@ -42,14 +42,19 @@ public class DriverProvider {
 
     @After
     public void tearDown(Scenario scenario) {
-        try {
-            final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            scenario.embed(screenshot, "image/png");
-            driver.close();
-            driver.quit();
-        } catch (Exception e) {
+        if (scenario.isFailed ()) {
+            try {
+                final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs ( OutputType.BYTES );
+                scenario.embed ( screenshot, "image/png" );
+                driver.close ();
+                driver.quit ();
+            } catch (Exception e) {
 
+            }
         }
+        driver.close ();
+        driver.quit ();
+
     }
 
 }
