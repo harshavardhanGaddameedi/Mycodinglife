@@ -2,7 +2,7 @@
 #Created date:01-06-2018
 #Last Updated date:03-05-2018
 @smokeHR
-Feature: Create New Posi.tion Request, Authorize NPR
+Feature: Create New Position Request, Authorize NPR
  Scenario Outline:Creation of New Position Request for Clinical Pharmacist
   Given I am in login Page
   And I login to IDempiere with "<user>" "<password>" "<role>"
