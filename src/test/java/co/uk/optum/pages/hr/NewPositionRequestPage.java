@@ -104,7 +104,8 @@ public class NewPositionRequestPage {
 
     public void clickSaveButton() {
 
-        saveButton.click();
+        saveButton.click();;
+        waitTime(2000);
 
 
 

@@ -227,6 +227,8 @@ public class RecruitmentAdministratorPage {
         moveElementToVisibility(statusInput);
         statusInput.clear ();
         statusInput.sendKeys ( status+ Keys.TAB);
+        saveButton.click ();
+        waitTime ( 3000 );
 
 
 
@@ -235,6 +237,7 @@ public class RecruitmentAdministratorPage {
     public void clickSaveButton() {
         waitForElementToBeDisplayed ( recruitmentRequestTab );
         saveButton.click ();
+        waitTime ( 2000 );
         System.out.println ( "Status Saved" );
 
     }
@@ -281,7 +284,7 @@ public class RecruitmentAdministratorPage {
         s.type(fileInputTextBox, inputFilePath + "\\"+"1_FullAplicationExample.xml");
         s.click(openButton);
         System.out.println ( "Attachment Opened" );
-        waitTime ( 5000 );
+        waitTime ( 10000 );
 //        if (!fileAttached.getText ().isEmpty ())
 //
 //        {
@@ -585,7 +588,8 @@ public class RecruitmentAdministratorPage {
                 waitTime ( 1000 );
                 request.click ();
                 waitForElementToBeDisplayed ( vacancyAssessmentTab );
-
+                waitTime ( 1000 );
+                saveButton.click ();
             }
 
         }
@@ -616,7 +620,7 @@ public class RecruitmentAdministratorPage {
             waitTime ( 1000 );
             request.click ();
             waitForElementToBeDisplayed ( vacancyAssessmentTab );
-
+            saveButton.click ();
         }
 
 
@@ -641,6 +645,9 @@ public class RecruitmentAdministratorPage {
 
     public boolean isRecruitmentRequestStatusInterview() {
 
+        saveButton.click ();
+        closeRecruitmentRequestTab();
+
 
         if (statusInput.getAttribute ( "value" ).equals ( "71_Interviews" ))
         {
@@ -658,6 +665,7 @@ public class RecruitmentAdministratorPage {
 
     public void changeRecruitmentRequestStatusInterview(String status) {
 
+//                  saveButton.click ();
                   recruitmentRequestTabClose.click ();
                   menuIcon.click ();
                   waitForElementToBeDisplayed (recruitmentRequestMenu  );
@@ -666,7 +674,10 @@ public class RecruitmentAdministratorPage {
                   searchRecruitmentRequest ();
                   waitForElementToBeDisplayed ( recruitmentRequestTab );
                   changeRecruitmentRequestStatus(status);
-                  saveButton.click ();
+                  waitTime ( 2000 );
+
+
+
 
     }
 
@@ -759,9 +770,11 @@ public class RecruitmentAdministratorPage {
                     genderDropdown.sendKeys ( "Male"+Keys.TAB );
                     saveButton.click ();
                     waitTime ( 2000 );
+                    request.click ();
+                    waitTime ( 2000 );
+                    waitForElementToBeDisplayed ( applicantTab );
                 }
-                request.click ();
-                waitForElementToBeDisplayed ( applicantTab );
+
 
 
 
@@ -805,6 +818,7 @@ public class RecruitmentAdministratorPage {
 
             {
                 request.click ();
+                waitTime ( 2000 );
                 waitForElementToBeDisplayed ( applicantTab );
 
             }
@@ -813,12 +827,10 @@ public class RecruitmentAdministratorPage {
                 genderDropdown.sendKeys ( "Male"+Keys.TAB );
                 saveButton.click ();
                 waitTime ( 2000 );
+                request.click ();
+                waitTime ( 2000 );
+                waitForElementToBeDisplayed ( applicantTab );
             }
-
-
-
-            request.click ();
-            waitForElementToBeDisplayed ( applicantTab );
 
         }
 

@@ -761,6 +761,15 @@ public class EmpOnboarding {
         Assert.assertTrue("Test Failed!!!","Test".equals ( "Test" ));
     }
 
+    @Then("^Contract Letter Upload Should be Completed for applicant$")
+    public void contractLetterUploadShouldBeCompletedForApplicant() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        Assert.assertTrue("Contract Letter Upload Fialed!!!",hrAdminHomePage.isContractLetterUploadComplete());
+
+
+    }
+
 
 //
 //    @Then("^the Job Description is serttached$")

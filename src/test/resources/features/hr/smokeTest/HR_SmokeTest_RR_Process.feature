@@ -1,7 +1,8 @@
 #Author: Sucharitha Revanuru
 #Created date:01-06-2018
 #Last Updated date:03-05-2018
-Feature: Create New Position Request, Authorize NPR
+@smokeHR
+Feature: Create New Posi.tion Request, Authorize NPR
  Scenario Outline:Creation of New Position Request for Clinical Pharmacist
   Given I am in login Page
   And I login to IDempiere with "<user>" "<password>" "<role>"
@@ -38,7 +39,7 @@ Feature: Create New Position Request, Authorize NPR
   Then the New Position Request is saved
   Examples:
    |user | password |role|
-   |HRDirector|HRDirector|HR Director|
+   |FinanceDirector1|FinanceDirector1|Finance Director|
 
 
  Scenario Outline: Login as Line Manager and create RR from Team View
@@ -205,22 +206,7 @@ Feature: Create New Position Request, Authorize NPR
   And I click Onboarding request from the Menu
   And I select the request to be onboarded
   And Open the detail record section for the applicants of that request and continue Payroll contract Letter Upload
-
+  Then Contract Letter Upload Should be Completed for applicant
   Examples:
    |user |password |role|
    |HRAdmin| HRAdmin| HR Administrator  |
-
-
- Scenario Outline: New Starter Checklist
-  Given I am in login Page
-  And I login to IDempiere with "<user>" "<password>" "<role>"
-  Then HR Admin Home Page Will Open
-  And I click Onboarding request from the Menu
-  And I select the request to be onboarded for New Starter Checklist
-  And Open the detail record section for the applicants of that request and continue New Starter Checklist
-  Then Onboarding flow should be completed
-
-  Examples:
-   |user |password |role|
-   |HRAdmin| HRAdmin| HR Administrator  |
-

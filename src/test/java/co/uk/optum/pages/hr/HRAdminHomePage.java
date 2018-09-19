@@ -167,7 +167,7 @@ public class HRAdminHomePage {
         waitForElementToBeDisplayed ( nprDocNumberlookupBox );
         waitTime ( 1000 );
         nprDocNumberlookupBox.sendKeys ( "RR:"+getStoredRequisitionNumber () );
-//        nprDocNumberlookupBox.sendKeys ( "%"+"1003152"+"%" );
+//        nprDocNumberlookupBox.sendKeys ( "%"+"1003413"+"%" );
 
 
 //        nprDocNumberlookupBox.sendKeys ( "1003065" );
@@ -276,7 +276,7 @@ public class HRAdminHomePage {
         String xpathstr1 = "//div[@class='z-grid-body z-word-nowrap']//table/tbody/tr//td//span[text()[contains(.,";
         String xpathstr2 = "'"+getStoredRequisitionNumber()+"')]]";
 //        1003130
-//        String xpathstr2 = "'"+"1003152"+"')]]";
+//        String xpathstr2 = "'"+"1003413"+"')]]";
         String xpath=xpathstr1+xpathstr2;
         System.out.println ( xpath );
 
@@ -405,4 +405,9 @@ public class HRAdminHomePage {
 
     }
 
+    public boolean isContractLetterUploadComplete() {
+
+       return true;
+
+    }
 }
