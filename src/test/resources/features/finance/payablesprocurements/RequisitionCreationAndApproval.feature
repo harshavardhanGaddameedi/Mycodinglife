@@ -1,4 +1,4 @@
-@smoke
+
 Feature: Requisition Creation and Approval Scenarios
 
   Scenario Outline: Create Custom Requisition

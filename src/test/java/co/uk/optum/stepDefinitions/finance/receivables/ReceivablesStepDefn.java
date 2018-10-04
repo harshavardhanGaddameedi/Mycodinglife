@@ -250,6 +250,7 @@ public class ReceivablesStepDefn {
     @And("^I click on Receivables Core Revenue$")
     public void iClickOnReceivablesCoreRevenue() throws Throwable {
 
+
         homePage.clickMenuIcon ();
         homePage.clickFinanceMenu ();
         homePage.clickReceivablesCoreRevenue();

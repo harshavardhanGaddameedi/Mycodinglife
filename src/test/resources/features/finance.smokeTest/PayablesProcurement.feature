@@ -13,6 +13,7 @@ Feature: Payables / Procurement Functionality Scenarios
       | user                  | password              |role|
       | OperationsProcessor1  | OperationsProcessor1  |  Operations Processor  |
 
+
     Scenario: Approve Custom Requisition
       Given I am in login Page
       And I login to IDempiere with Approval user
@@ -27,6 +28,8 @@ Feature: Payables / Procurement Functionality Scenarios
       And I Select Custom Requisition and generate PO
       When I Submit the Generated PO
       Then I should see the PO Successfully Submitted
+
+
 
       Examples:
          | user                  | password              |role|

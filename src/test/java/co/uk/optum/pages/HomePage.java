@@ -130,6 +130,7 @@ public class  HomePage {
     }
 
     public void clickMenuIcon() {
+        waitTime(2000);
         menuIcon.click();
         waitForElementToBeDisplayed(financeMenu);
     }
