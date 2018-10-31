@@ -1,6 +1,6 @@
 @smoke
 Feature: Payables / Procurement Functionality Scenarios
-  Scenario Outline: Create Custom Requisition
+      Scenario Outline: Create Custom Requisition
     Given I am in login Page
     And I login to IDempiere with "<user>" "<password>" "<role>"
     And I click PayablesProcurement menu

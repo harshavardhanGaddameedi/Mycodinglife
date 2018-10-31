@@ -1,6 +1,7 @@
 package co.uk.optum.pages;
 
 import co.uk.optum.utility.DriverProvider;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -95,13 +96,25 @@ public class  HomePage {
     @FindBy(xpath = "//div//div[@class [contains(.,'z-tree-body')]]/table//tr/td/div/a[contains(.,'Team View')]")
     WebElement teamView;
 
+
+    @FindBy(xpath = "//div//div[@class [contains(.,'z-tree-body')]]/table//tr/td/div/a[contains(.,'Details View')]")
+    WebElement myDetailsView;
+
+    @FindBy(xpath = "//div//div[@class [contains(.,'z-tree-body')]]/table//tr/td/div/a[contains(.,'Change Personal Data')]")
+    WebElement changePersonalData;
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Change Personal Data')]")
+    WebElement changePersonalDataTab;
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'My Details View')]")
+    WebElement myDetailsViewTab;
+
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Team View')]")
     WebElement teamViewTAb;
 
 
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'New Position Request')]")
     WebElement newPositionRequestTab;
-
 
 
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'*Recruitment Request')]")
@@ -231,6 +244,37 @@ public class  HomePage {
 //        waitForElementToBeDisplayed (teamViewTAb);
 //        System.out.println ( "Teamview Opened ");
         waitTime ( 2000 );
+
+    }
+
+    public void clickMyDetailsView() {
+        menuIcon.click ();
+        waitForElementToBeDisplayed ( hrpMenu);
+        hrpMenu.click();
+        waitForElementToBeDisplayed ( hrMenu);
+        hrMenu.click();
+        waitForElementToBeDisplayed ( myDetailsView);
+        myDetailsView.click ();
+        waitForElementToBeDisplayed ( myDetailsViewTab );
+
+
+    }
+
+    public void openChangePersonaDataPage() {
+
+        waitForElementToBeDisplayed ( menuIcon );
+        menuIcon.click ();
+        waitForElementToBeDisplayed ( hrpMenu );
+        hrpMenu.click ();
+        waitForElementToBeDisplayed ( hrMenu );
+        hrMenu.click ();
+        waitForElementToBeDisplayed ( requestMenu );
+        requestMenu.click ();
+        waitForElementToBeDisplayed ( changePersonalData );
+        changePersonalData.click ();
+        waitForElementToBeDisplayed ( changePersonalDataTab);
+        Assert.assertTrue (" Change Personal Data Tab Not Opened",changePersonalDataTab.isDisplayed ());
+
 
     }
 }

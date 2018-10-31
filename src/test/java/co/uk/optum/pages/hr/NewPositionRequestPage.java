@@ -183,9 +183,6 @@ public class NewPositionRequestPage {
         System.out.println ( "Browse Button Clicked" );
         waitTime ( 5000 );
         Screen screen = new Screen();
-
-
-
     }
 
     public void clickOK() {

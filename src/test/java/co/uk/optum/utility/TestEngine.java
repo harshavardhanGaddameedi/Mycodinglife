@@ -23,8 +23,8 @@ import java.util.Date;
 @CucumberOptions(
         glue = {"co.uk.optum"},
         features = {"src\\test\\resources\\features"},
-        tags = {"@smokeHR, @smoke"},
-//        tags = {"@smokeTest"},
+//        tags = {"@smokeHR, @smoke"},
+        tags = {"@mydetailsview"},
 //        format = {"pretty","json:report/report.json","html:report/cucumber-reports","html:report/"},
         plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}
 //        format = {"pretty","html:report/results.html"},

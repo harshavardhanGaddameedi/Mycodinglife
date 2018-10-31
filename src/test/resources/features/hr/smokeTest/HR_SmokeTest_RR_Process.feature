@@ -28,6 +28,7 @@ Feature: Create New Position Request, Authorize NPR
    |user| password|role|
    | HRBP1| HRBP1|HR Business Partner|
 
+
  Scenario Outline: Approve of New Position Request for Clinical Pharmacist
   Given I am in login Page
   And I login to IDempiere with "<user>" "<password>" "<role>"
@@ -40,6 +41,7 @@ Feature: Create New Position Request, Authorize NPR
   Examples:
    |user | password |role|
    |FinanceDirector1|FinanceDirector1|Finance Director|
+
 
 
  Scenario Outline: Login as Line Manager and create RR from Team View
