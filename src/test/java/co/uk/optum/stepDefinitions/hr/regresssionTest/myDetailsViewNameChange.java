@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class myDetailsViewNameChange {
+public class MyDetailsViewNameChange {
 
     private final WebDriver driver;
     private final HomePage homePage;
@@ -29,7 +29,7 @@ public class myDetailsViewNameChange {
 
 
     @Inject
-    public myDetailsViewNameChange() {
+    public MyDetailsViewNameChange() {
         this.driver = DriverProvider.driver;
         PageFactory.initElements (driver, this);
         this.homePage = new HomePage ();

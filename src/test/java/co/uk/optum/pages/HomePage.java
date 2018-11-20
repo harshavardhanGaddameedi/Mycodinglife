@@ -123,6 +123,16 @@ public class  HomePage {
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Recruitment Request')]")
     WebElement recruitmentRequestTab;
 
+
+    @FindBy(xpath = "//div//tr/td/div/a[contains (.,'Leaver Request')]")
+    WebElement leaverRequest;
+
+
+
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Leaver')]")
+    WebElement leaverRequestTab;
+
     //div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Recruitment Request')]
 
     public void clickWorkflowActivities(){
@@ -274,6 +284,22 @@ public class  HomePage {
         changePersonalData.click ();
         waitForElementToBeDisplayed ( changePersonalDataTab);
         Assert.assertTrue (" Change Personal Data Tab Not Opened",changePersonalDataTab.isDisplayed ());
+
+
+    }
+
+    public void openLeaverRequestPage() {
+
+        menuIcon.click ();
+        waitForElementToBeDisplayed ( hrpMenu);
+        hrpMenu.click();
+        waitForElementToBeDisplayed ( hrMenu);
+        hrMenu.click();
+        waitForElementToBeDisplayed ( requestMenu );
+        requestMenu.click ();
+        waitForElementToBeDisplayed (  leaverRequest);
+        leaverRequest.click();
+        waitForElementToBeDisplayed ( leaverRequestTab );
 
 
     }

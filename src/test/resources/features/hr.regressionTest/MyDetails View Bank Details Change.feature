@@ -13,7 +13,7 @@ And I click on Save Button on MyDetailsView Page to save changes
 Then Bank Details Should be Saved
   Examples:
     |user| password|role|
-    | RohitSharma| RohitSharma|Employee|
+    |RohitSharma|RohitSharma|Employee|
    
 Scenario Outline: Approve the personal Data Change
 Given I am in login Page
@@ -24,4 +24,4 @@ Then I should see status as accepted
 
 Examples:
    |user| password|role|
-   |HRAdmin| HRAdmin|HR Administrator|
+   |HRAdmin|HRAdmin|HR Administrator|
