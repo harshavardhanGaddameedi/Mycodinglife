@@ -16,5 +16,5 @@ And edit the Diversity details
 
   Examples:
    |user| password|role|
-   |RohitSharma|RohitSharma|Employee|
+   |AlanPeters|AlanPeters|Employee|
    

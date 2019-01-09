@@ -13,7 +13,7 @@ And I click on Save Button on MyDetailsView Page
 Then Details Should be Saved
   Examples:
    |user| password|role|
-   |RohitSharma|RohitSharma|Employee|
+   |AlanPeters|AlanPeters|Employee|
    
 Scenario Outline: Approve the personal Data Change
 Given I am in login Page
