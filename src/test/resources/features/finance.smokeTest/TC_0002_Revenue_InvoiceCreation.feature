@@ -1,4 +1,4 @@
-@smoke
+@update
 Feature: Receivables / Private Revenue Order Creation, Approval and Invoice Generation Scenarios.
 
   Scenario Outline: Revenue Invoice Creation

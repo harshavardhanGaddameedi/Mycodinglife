@@ -219,7 +219,9 @@ public class ReceivablesPage {
         enterRequisitionNumForLookup ();
         clickLookupRecordOkbutton ();
         System.out.println ( revenueOrderStatus.getAttribute ( "value" ) );
-        return revenueOrderStatus.getAttribute ( "value" ).equals ( "Completed" );
+//        return revenueOrderStatus.getAttribute ( "value" ).equals ( "Completed" );
+//        Updated due to the change in expected status to Submitted
+        return revenueOrderStatus.getAttribute ( "value" ).equals ( "Submitted" );
 
 
     }
@@ -355,7 +357,9 @@ public class ReceivablesPage {
     public boolean isRevenueInvoiceCreated() {
 
         System.out.println ( revenueInvoiceStatus.getAttribute ( "value" ) );
-        return revenueInvoiceStatus.getAttribute ( "value" ).equals ( "Completed" );
+//        return revenueInvoiceStatus.getAttribute ( "value" ).equals ( "Completed" );
+//Updated as per the change in expected revenue Invoice Status
+        return revenueInvoiceStatus.getAttribute ( "value" ).equals ( "Submitted" );
 
     }
 
@@ -421,12 +425,17 @@ public class ReceivablesPage {
         enterRequisitionNumForLookup ();
         clickLookupRecordOkbutton ();
         System.out.println ( coreRevenueOrderStatus.getAttribute ( "value" ) );
-        return coreRevenueOrderStatus.getAttribute ( "value" ).equals ( "Completed" );
+        //Updated as per the change in expected revenue Invoice Status
+//        return coreRevenueOrderStatus.getAttribute ( "value" ).equals ( "Completed" );
+        return coreRevenueOrderStatus.getAttribute ( "value" ).equals ( "Submitted" );
+
     }
 
     public boolean isCashRevenueInvoiceCreated() {
         System.out.println ( revenueInvoiceStatus.getAttribute ( "value" ) );
-        return revenueInvoiceStatus.getAttribute ( "value" ).equals ( "Completed" );
+        //Updated as per the change in expected revenue Invoice Status
+//        return revenueInvoiceStatus.getAttribute ( "value" ).equals ( "Completed" );
+        return revenueInvoiceStatus.getAttribute ( "value" ).equals ( "Submitted" );
 
 
     }

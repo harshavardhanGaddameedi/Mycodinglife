@@ -2,16 +2,14 @@ package co.uk.optum.pages.finance.payables;
 
 import co.uk.optum.utility.CommonUtility;
 import co.uk.optum.utility.DriverProvider;
-import co.uk.optum.utility.FeatureContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import javax.inject.Inject;
 
-import static co.uk.optum.utility.CommonUtility.moveElementToVisibility;
-import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
-import static co.uk.optum.utility.CommonUtility.waitTime;
+import static co.uk.optum.utility.CommonUtility.*;
 import static co.uk.optum.utility.FeatureContext.*;
 
 /**
@@ -66,7 +64,9 @@ public class CustomPurchaseOrderPage {
 
     public boolean isPOSubmittedSuccessfully(){
         System.out.println("PO Status : " + retrievePOStatus());
-        if(retrievePOStatus().equalsIgnoreCase("Completed")){
+//        if(retrievePOStatus().equalsIgnoreCase("Completed")){
+        //updating due to the change in expected status to Susbmitted instead of Completed.
+        if(retrievePOStatus().equalsIgnoreCase("Submitted")){
             return true;
         }
         return false;

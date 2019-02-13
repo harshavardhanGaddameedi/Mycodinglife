@@ -31,10 +31,10 @@ public class CustomRequisitionPage {
     @FindBy(xpath = "//span[@title='Document type or rules']/a[@class='z-combobox-button']")
     WebElement documentTypeDropDownIcon;
 
-    @FindBy (xpath = "//tbody/tr[1]/td[2]/span[@title='Document type or rules']/input[@value='Purchase Requisition']")
+    @FindBy (xpath = "//span[@title='Document type or rules']/input[@value='Purchase Requisition']")
     WebElement documentTypeTextBox;
 
-    @FindBy (xpath = "//tbody/tr[5]/td[2]/span[@title='Date when required']/input")
+    @FindBy (xpath = "//span[@title='Date when required']/input")
     WebElement dateRequiredTextBox;
 
     @FindBy(xpath = "//a[@title[contains(., 'Detail record')]]")
@@ -52,10 +52,10 @@ public class CustomRequisitionPage {
     @FindBy(xpath = "//button[@title='OK']")
     WebElement okButton;
 
-    @FindBy(xpath = "//tbody/tr[2]/td[2]/input[@title='Document sequence number of the document']")
+    @FindBy(xpath = "//input[@title='Document sequence number of the document']")
     WebElement requisitionNumber;
 
-    @FindBy(xpath = "//tbody/tr[7]/td[2]/div[@title='Total of all document lines']/input")
+    @FindBy(xpath = "//div[@title='Total of all document lines']/input")
     WebElement totalLines;
 
     @FindBy(xpath = "//div/a[@title[contains(.,'Lookup')]]/span[@class='z-toolbarbutton-content']/img[@src[contains(.,'Find24')]]")

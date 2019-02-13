@@ -114,6 +114,7 @@ public class LoginStepDef {
         iShouldBeInSelectRolePage();
         waitTime(2000);
         selectRolePage.selectRole(role);
+        selectRolePage.selectOrganisation("ErpPractice");
         selectRolePage.clickSelectRolePageOkBtn ();
         System.out.println ( "Login with Role Successful" );
         iShouldBeInTheHomePage();
