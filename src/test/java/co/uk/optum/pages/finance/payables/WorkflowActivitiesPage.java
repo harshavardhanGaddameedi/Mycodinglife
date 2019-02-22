@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import static co.uk.optum.utility.CommonUtility.*;
 import static co.uk.optum.utility.FeatureContext.*;
+import static co.uk.optum.utility.FeatureContext.getStoredDocumentNumber;
 
 /**
  * Created by bganesa5 on 3/12/2018.
@@ -32,6 +33,11 @@ public class WorkflowActivitiesPage {
 
     @FindBy(xpath = "//table/tbody/tr/td[3]/select")
     WebElement approvalDropdown;
+    @FindBy(xpath = "//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'Shipment/Receipt')]")
+    WebElement materialReceiptList;
+
+    @FindBy(xpath = "//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'Payment')]")
+    WebElement paymentList;
 
     public void selectRequisitionForApproval(String customRequisitionNumber){
         driver.findElement(By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'"+ customRequisitionNumber +"')]")).click();
@@ -58,4 +64,71 @@ public class WorkflowActivitiesPage {
         tickButton.click();
     }
 
+    public void selectAndRejectCustomRequisition() {
+        waitForElementToBeDisplayed(customRequisitionList);
+        selectRequisitionForApproval(getStoredRequisitionNumber());
+        waitTime(2000);
+        selectAnswer("No");
+        waitTime(2000);
+        clickTickButton();
+        waitTime(2000);
+    }
+    private void selectMaterialReceiptForApproval(String storedDocumentNumber) {
+        driver.findElement(By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'"+ storedDocumentNumber +"')]")).click();
+    }
+    public void selectAndApproveMaterialReceipt() {
+        waitForElementToBeDisplayed(materialReceiptList);
+        System.out.println(getStoredDocumentNumber());
+        selectMaterialReceiptForApproval(getStoredDocumentNumber());
+        // selectMaterialReceiptForApproval("1000093");
+        waitTime(2000);
+        selectAnswer("Yes");
+        waitTime(2000);
+        clickTickButton();
+        waitTime(2000);
+
+    }
+
+    public void selectAndRejectMaterialReceipt() {
+        waitForElementToBeDisplayed(materialReceiptList);
+        System.out.println(getStoredDocumentNumber());
+        selectMaterialReceiptForApproval(getStoredDocumentNumber());
+        // selectMaterialReceiptForApproval("1000093");
+        waitTime(2000);
+        selectAnswer("No");
+        waitTime(2000);
+        clickTickButton();
+        waitTime(2000);
+    }
+
+    public void selectAndApprovePaymentReceipt() {
+        waitForElementToBeDisplayed(paymentList);
+        //selectPaymentRecordForApproval(getStoredDocumentNumber());
+        selectMaterialReceiptForApproval("1000227");
+        waitTime(2000);
+        selectAnswer("Yes");
+        waitTime(2000);
+        clickTickButton();
+        waitTime(2000);
+        ;
+
+    }
+    private void selectPaymentRecordForApproval(String storedDocumentNumber) {
+        driver.findElement(By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'"+ storedDocumentNumber +"')]")).click();
+
+
+    }
+
+    public void selectAndRejectPaymentReceipt() {
+        waitForElementToBeDisplayed(paymentList);
+        selectPaymentRecordForApproval(getStoredDocumentNumber());
+       // selectMaterialReceiptForApproval("1000227");
+        waitTime(2000);
+        selectAnswer("No");
+        waitTime(2000);
+        clickTickButton();
+        waitTime(2000);
+
+
+    }
 }

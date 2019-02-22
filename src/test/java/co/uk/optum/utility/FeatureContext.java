@@ -11,6 +11,8 @@ public class FeatureContext {
     public static String totalLineAmount;
     public static String purchaseOrderNumber;
     public static String businessPartner;
+    public static String documentNumber;
+
 
 
     private FeatureContext(){}
@@ -27,6 +29,13 @@ public class FeatureContext {
         FeatureContext.requisitionNumber = requisitionNumber;
     }
 
+    public static String getStoredDocumentNumber() {
+        return documentNumber;
+    }
+
+    public static void setDocumentNumber(String documentNumber){
+        FeatureContext.documentNumber = documentNumber;
+    }
 
     public static String getPositionName(){
         return positionName;

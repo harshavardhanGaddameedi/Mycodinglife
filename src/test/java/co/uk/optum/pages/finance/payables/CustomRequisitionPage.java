@@ -40,7 +40,9 @@ public class CustomRequisitionPage {
     @FindBy(xpath = "//a[@title[contains(., 'Detail record')]]")
     WebElement detailRecordDownArrowToolbarIcon;
 
-    @FindBy(xpath = "//button[@instancename='M_Requisition0DocAction']")
+   // updating xpath to match with the document action button in all instances
+   // @FindBy(xpath = "//button[@instancename='M_Requisition0DocAction']"
+    @FindBy(xpath = "//button[@instancename[contains(.,'DocAction')]]")
     WebElement documentActionButton;
 
     @FindBy(xpath = "//select[@class='z-select']")
@@ -170,4 +172,16 @@ public class CustomRequisitionPage {
         waitForElementToBeDisplayed(documentActionButton);
     }
 
+    public boolean isCustomRequisitionRejected() {
+        waitTime(3000);
+        clickLookupRecordIcon();
+        enterRequisitionNumForLookup();
+        clickLookupRecordOkbutton();
+        return isApprovedCheckboxUnChecked();
+    }
+
+    private boolean isApprovedCheckboxUnChecked() {
+
+        return Boolean.parseBoolean(approvedCheckbox.getAttribute("unchecked"));
+    }
 }

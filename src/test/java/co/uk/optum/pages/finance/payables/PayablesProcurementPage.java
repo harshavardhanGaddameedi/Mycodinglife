@@ -36,6 +36,13 @@ public class PayablesProcurementPage {
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Create PO from Requisition')]")
     WebElement createPOfromRequisitionTab;
 
+    @FindBy(xpath = "//tr/td/img[@title[contains(.,'Purchase Order or Supplier Invoice')]]")
+    WebElement goodsReceivedNoteIcon;
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Goods Received Note')]")
+    WebElement goodsReceivedNoteTab;
+
+
     public void clickCreatePOfromRequisition(){
         createPOfromRequisitionWorkFlowIcon.click();
         waitForElementToBeDisplayed(createPOfromRequisitionTab);
@@ -48,5 +55,10 @@ public class PayablesProcurementPage {
     public void clickCustomRequisition(){
         customRequisitionWrokFlowIcon.click();
         waitForElementToBeDisplayed(customRequisitionTab);
+    }
+
+    public void clickGoodsReceivedNote() {
+        goodsReceivedNoteIcon.click();
+        waitForElementToBeDisplayed(goodsReceivedNoteTab);
     }
 }

@@ -108,8 +108,9 @@ public class ReceivablesPage {
 
     @FindBy(xpath = "//div//button[@title='Process which will generate a new document lines based on an existing document']")
     WebElement createLinesFrom;
-
-    @FindBy(xpath = "//div[@instancename='Invoice____Create_lines_from']")
+    // changing xpath to match with the popup in all the instances
+    //@FindBy(xpath = "//div[@instancename='Invoice____Create_lines_from']")
+    @FindBy(xpath = "//div[@instancename[contains(.,'____Create_lines_from')]]")
     WebElement theCreateLinesFromPopup;
 
 
@@ -128,8 +129,18 @@ public class ReceivablesPage {
 
     @FindBy(xpath = "//div/div[@class[contains(.,'desktop-tabpanel z-tabpanel')]]//table//tr/td[1]/img")
     WebElement revenueOrderCore;
+
+    @FindBy(xpath = "//div/div[@class[contains(.,'desktop-tabpanel z-tabpanel')]]//table//tr/td[2]/img")
+    WebElement revenueInvoiceCore;
+
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Revenue Order Core')]")
     WebElement revenueOrderCoreTab;
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Revenue Invoice Core')]")
+    WebElement revenueInvoiceCoreTab;
+
+
+
 
 //    @FindBy(xpath ="//div/table[contains(@id, '-cave')]/tbody/tr/td[4]//div/select/option[contains(text(),'50091')]")
 //    WebElement orderDropdown;
@@ -350,6 +361,7 @@ public class ReceivablesPage {
 
 
         waitForElementToBeDisplayed ( revenueInvoiceTab );
+        waitTime(3000);
 
     }
 
@@ -438,6 +450,22 @@ public class ReceivablesPage {
         return revenueInvoiceStatus.getAttribute ( "value" ).equals ( "Submitted" );
 
 
+    }
+
+    public boolean isRevenueOrderRejected() {
+        waitTime ( 3000 );
+        clickLookupRecordIcon ();
+        enterRequisitionNumForLookup ();
+        clickLookupRecordOkbutton ();
+        System.out.println ( revenueOrderStatus.getAttribute ( "value" ) );
+        return revenueOrderStatus.getAttribute ( "value" ).equals ( "In Progress" );
+
+    }
+
+    public void clickCoreRevenueInvoice() {
+
+        revenueInvoiceCore.click();
+     waitForElementToBeDisplayed(revenueInvoiceCoreTab);
     }
 }
 

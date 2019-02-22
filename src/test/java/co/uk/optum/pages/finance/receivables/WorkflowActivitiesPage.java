@@ -45,7 +45,7 @@ public class WorkflowActivitiesPage {
         selectAnswer("Yes");
         waitTime(2000);
         clickTickButton();
-        waitTime(2000);
+        waitTime(5000);
 
     }
 
@@ -69,4 +69,16 @@ public class WorkflowActivitiesPage {
         tickButton.click();
     }
 
+    public void selectAndRejectRevenueOrder() {
+
+        waitForElementToBeDisplayed(revenueOrderList);
+//        System.out.println ( "Continuing" );
+        System.out.println ( getStoredRequisitionNumber() );
+        selectRevenueOrderForApproval(getStoredRequisitionNumber());
+        waitTime(2000);
+        selectAnswer("No");
+        waitTime(2000);
+        clickTickButton();
+        waitTime(5000);
+    }
 }

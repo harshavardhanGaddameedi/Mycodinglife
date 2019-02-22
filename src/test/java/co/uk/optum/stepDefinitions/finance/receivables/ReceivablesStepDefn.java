@@ -5,6 +5,7 @@ import co.uk.optum.pages.finance.receivables.ReceivablesPage;
 import co.uk.optum.pages.finance.receivables.WorkflowActivitiesPage;
 import co.uk.optum.utility.DriverProvider;
 import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -207,6 +208,7 @@ public class ReceivablesStepDefn {
         receivablesPage.clickDocumentActionInvoice();
         receivablesPage.waitForRevenueInvoiceTab ();
 
+
       }
 
     @Then("^Revenue invoice will be generated$")
@@ -303,4 +305,24 @@ public class ReceivablesStepDefn {
     }
 
 
+    @And("^I Select and Reject the Revenue Order$")
+    public void iSelectAndRejectTheRevenueOrder() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        System.out.println ( "REJECTION PROCESS STARTING" );
+        workflowActivitiesPage.selectAndRejectRevenueOrder();
+    }
+
+    @Then("^I Should see the Revenue Order Rejected$")
+    public void iShouldSeeTheRevenueOrderRejected() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        iClickOnReceivablesMenu();
+        iClickOnRevenueOrder();
+        Assert.assertTrue("Revenue Order Approval Failed!!!",receivablesPage.isRevenueOrderRejected());
+    }
+
+    @And("^I click on Revenue Invoice core section$")
+    public void iClickOnRevenueInvoiceCoreSection() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+      receivablesPage.clickCoreRevenueInvoice();
+    }
 }
