@@ -134,7 +134,7 @@ public class CustomRequisitionPage {
         clickDocumentActionDropDown();
         selectSubmitOption();
         clickOk();
-        waitTime(6000);
+        waitTime(10000);
     }
 
     public void clickDetailRecordDownArrowIcon(){

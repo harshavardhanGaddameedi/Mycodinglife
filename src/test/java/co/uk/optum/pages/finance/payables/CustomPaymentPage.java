@@ -96,7 +96,7 @@ public class CustomPaymentPage {
     public void clickInvoiceIcon() {
         waitForElementToBeDisplayed(invoiceIcon);
         invoiceIcon.click();
-        waitTime(1000);
+        waitTime(3000);
 
 
     }
@@ -105,7 +105,7 @@ public class CustomPaymentPage {
         waitForElementToBeDisplayed(documentNum);
 
        documentNum.sendKeys(storedDocumentNumber);
-        //documentNum.sendKeys("1000032");
+      //  documentNum.sendKeys("100172");
         reQuery.click();
         waitTime(1000);
 
