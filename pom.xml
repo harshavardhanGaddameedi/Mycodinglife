@@ -23,6 +23,9 @@
         </plugins>
     </build>
         <dependencies>
+
+
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -110,7 +113,15 @@
                     <groupId>com.sikulix</groupId>
                     <artifactId>sikulix2tigervnc</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>com.github.vidstige</groupId>
+                    <artifactId>jadb</artifactId>
+                </exclusion>
+
             </exclusions>
+
+
+
 
         </dependency>
     </dependencies>
