@@ -188,18 +188,18 @@ public class MyDetailsView {
     public void attachProofOfNameChange() throws FindFailed {
 
         clickBrowseButton();
-        String filepath = toAbsolutePath("src\\test\\resources\\AttachingFilesImages\\");
-        String inputFilePath = toAbsolutePath("src\\test\\resources\\AttachingFilesImages\\");
+        String filepath = toAbsolutePath("src//test//resources//AttachingFilesImages//");
+        String inputFilePath = toAbsolutePath("src//test//resources//AttachingFilesImages//");
 
         System.out.println ( filepath );
         System.out.println (inputFilePath  );
 
 
         Screen s = new Screen();
-        Pattern fileInputTextBox = new Pattern(filepath +"\\"+"FilePath.PNG");
-        Pattern openButton = new Pattern(filepath + "\\"+"OpenFile.PNG");
+        Pattern fileInputTextBox = new Pattern(filepath +"//"+"FilePath.PNG");
+        Pattern openButton = new Pattern(filepath + "//"+"OpenFile.PNG");
         s.wait(fileInputTextBox, 20);
-        s.type(fileInputTextBox, inputFilePath + "\\"+"Proof.doc");
+        s.type(fileInputTextBox, inputFilePath + "//"+"Proof.doc");
         s.click(openButton);
         System.out.println ( "Attachment Opened" );
         waitTime ( 5000 );

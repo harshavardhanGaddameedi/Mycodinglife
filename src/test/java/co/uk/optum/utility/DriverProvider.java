@@ -20,8 +20,8 @@ public class DriverProvider {
 
     @Before
     public void setDriver() throws IOException {
-        loadChromeDriver(System.getProperty("user.dir") + "\\src\\test\\resources\\config\\chromedriver.exe");
-//        loadDriver(System.getProperty("user.dir") + "\\src\\test\\resources\\config\\geckodriver.exe");
+        loadChromeDriver(System.getProperty("user.dir") + "//src//test//resources//config//chromedriver.exe");
+//        loadDriver(System.getProperty("user.dir") + "//src//test//resources//config//geckodriver.exe");
 
     }
 
