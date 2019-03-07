@@ -12,6 +12,7 @@ public class FeatureContext {
     public static String purchaseOrderNumber;
     public static String businessPartner;
     public static String documentNumber;
+    public static String revenueOrderNumber;
 
 
 
@@ -28,6 +29,15 @@ public class FeatureContext {
     public static void setRequisitionNumber(String requisitionNumber){
         FeatureContext.requisitionNumber = requisitionNumber;
     }
+
+    public static String getStoredRevenueOrderNumber(){
+        return revenueOrderNumber;
+    }
+
+    public static void setRevenueOrderNumber(String revenueOrderNumber){
+        FeatureContext.revenueOrderNumber = revenueOrderNumber;
+    }
+
 
     public static String getStoredDocumentNumber() {
         return documentNumber;

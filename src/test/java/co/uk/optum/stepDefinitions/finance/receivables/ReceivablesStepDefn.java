@@ -17,6 +17,10 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 
+import static co.uk.optum.utility.FeatureContext.getStoredDocumentNumber;
+import static co.uk.optum.utility.FeatureContext.getStoredRequisitionNumber;
+import static co.uk.optum.utility.FeatureContext.getStoredRevenueOrderNumber;
+
 public class ReceivablesStepDefn {
 
     private  final WebDriver driver;
@@ -214,7 +218,7 @@ public class ReceivablesStepDefn {
     @Then("^Revenue invoice will be generated$")
     public void revenueInvoiceWillBeGenerated() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-
+        System.out.println (receivablesPage.getRevenueOrderNumber ());
          Assert.assertTrue("Revenue Invoice Creation Failed!!!",receivablesPage.isRevenueInvoiceCreated());
 
 
@@ -301,6 +305,7 @@ public class ReceivablesStepDefn {
     public void cashRevenueInvoiceWillBeGenerated() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
 //         Assert.assertTrue("Revenue Invoice Creation Failed!!!",receivablesPage.isRevenueInvoiceCreated());
+        System.out.println (receivablesPage.getRevenueOrderNumber ());
         Assert.assertTrue("Revenue Invoice Creation Failed!!!",receivablesPage.isCashRevenueInvoiceCreated());
     }
 
@@ -324,5 +329,51 @@ public class ReceivablesStepDefn {
     public void iClickOnRevenueInvoiceCoreSection() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
       receivablesPage.clickCoreRevenueInvoice();
+    }
+
+    @And("^I click on receipt icon$")
+    public void iClickOnReceiptIcon() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        receivablesPage.clickReceiptIcon();
+    }
+
+    @Then("^I should see the Revenue Receipt window$")
+    public void iShouldSeeTheRevenueReceiptWindow() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        receivablesPage.waitForRevenueReceiptWindow();
+    }
+
+    @And("^I enter all the required information in Receipt window$")
+    public void iEnterAllTheRequiredInformationInReceiptWindow(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        System.out.println(data.get (0).get("Customer"));
+        System.out.println(data.get (0).get("Bank Account"));
+        receivablesPage.setReceiptDetails(data.get (0).get("Customer"),data.get (0).get("Bank Account"));
+    }
+
+    @Then("^I should see the Receipt created with Submitted Status$")
+    public void iShouldSeeTheReceiptCreatedWithSubmittedStatus() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Receipt creation Failed!!!",receivablesPage.isRevenueReceiptCreated());
+}
+
+    @And("^I enter revenue invoice details in Invoice Info page$")
+    public void iEnterRevenueInvoiceDetailsInInvoiceInfoPage() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+       // customPaymentPage.enterDocumentNumber(getStoredDocumentNumber());
+        receivablesPage.enterRevenueInvoiceNumber(getStoredRequisitionNumber());
+    }
+
+    @And("^I click on Core receipt icon$")
+    public void iClickOnCoreReceiptIcon() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        receivablesPage.clickCoreReceiptIcon();
+    }
+
+    @And("^I click on Cash receipt icon$")
+    public void iClickOnCashReceiptIcon() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        receivablesPage.clickCashReceiptIcon();
     }
 }

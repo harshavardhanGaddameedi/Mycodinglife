@@ -105,6 +105,14 @@ public class ReceivablesPage {
     @FindBy(xpath = "//table/tbody/tr/td[3]/div/button[@title='OK']")
     WebElement lookupRecordOkbutton;
 
+    @FindBy(xpath = "//tr/td/img[@title[contains(.,'Process Payments')]]")
+    WebElement revenueReceiptIcon;
+
+    @FindBy(xpath = "//div/div[@class[contains(.,'desktop-tabpanel z-tabpanel')]]//table//tr/td[3]/img")
+    WebElement coreReceiptIcon;
+
+    @FindBy(xpath = "//div/div[@class[contains(.,'desktop-tabpanel z-tabpanel')]]//table//tr/td[2]/img")
+    WebElement cashReceiptIcon;
 
     @FindBy(xpath = "//div//button[@title='Process which will generate a new document lines based on an existing document']")
     WebElement createLinesFrom;
@@ -116,7 +124,11 @@ public class ReceivablesPage {
 
     @FindBy(xpath = "//div/table//tr[1]//td[@instancename='Select']/div//input[@type='checkbox']")
     WebElement orderLinesChk;
+    @FindBy(xpath = "//tr//td//div//input[@title[contains(.,'Document sequence number of the')]]")
+    WebElement documentNum;
 
+    @FindBy(xpath = "//div//button[@title[contains(.,'ReQuery')]]")
+    WebElement reQuery;
 
     @FindBy(xpath = "//div//button[@title='OK']")
     WebElement orderLinesOK;
@@ -139,6 +151,11 @@ public class ReceivablesPage {
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Revenue Invoice Core')]")
     WebElement revenueInvoiceCoreTab;
 
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Receipt')]")
+    WebElement revenueReceiptTab;
+
+    @FindBy(xpath = "//td/span[@title[contains(.,'Account at the Bank')]]/input")
+    WebElement bankaccount;
 
 
 
@@ -269,6 +286,7 @@ public class ReceivablesPage {
 
     public void newToolbarIconClick() {
         newToolbarIcon.click ();
+        waitTime(2000);
 
     }
 
@@ -311,6 +329,7 @@ public class ReceivablesPage {
     public void selectRevenueOrderForInvoice() {
 
         selectRevenueOrder ( getStoredRequisitionNumber () );
+       // selectRevenueOrder("50327");
 
         //div/table[contains(@id, '-cave')]/tbody/tr/td[4]//div/select/option[contains(text(),'50091')]
 
@@ -466,6 +485,57 @@ public class ReceivablesPage {
 
         revenueInvoiceCore.click();
      waitForElementToBeDisplayed(revenueInvoiceCoreTab);
+    }
+
+    public void clickReceiptIcon() {
+        revenueReceiptIcon.click();
+        waitForElementToBeDisplayed(revenueReceiptTab);
+    }
+
+    public void waitForRevenueReceiptWindow() {
+        waitForElementToBeDisplayed ( newToolbarIcon );
+        waitTime ( 10000 );
+    }
+
+    public void setReceiptDetails(String customer, String bank_account) {
+        practiceName.clear ();
+        practiceName.sendKeys ( "ErpPractice" );
+        practiceName.sendKeys ( Keys.TAB );
+       waitTime(2000);
+        customerTxt.sendKeys ( customer );
+        customerTxt.sendKeys(Keys.TAB);
+        bankaccount.sendKeys(bank_account);
+        bankaccount.sendKeys(Keys.TAB);
+        waitTime(1000);
+    }
+
+
+    public boolean isRevenueReceiptCreated() {
+        waitTime(2000);
+        System.out.println ( revenueOrderStatus.getAttribute ( "value" ) );
+        waitTime(2000);
+        return revenueOrderStatus.getAttribute ( "value" ).equals ( "Submitted" );
+    }
+
+
+    public void enterRevenueInvoiceNumber(String storedRevenueOrderNumber) {
+        waitForElementToBeDisplayed(documentNum);
+        waitTime(2000);
+        documentNum.sendKeys(storedRevenueOrderNumber);
+        //  documentNum.sendKeys("100172");
+        waitTime(1000);
+        reQuery.click();
+        waitTime(1000);
+    }
+
+    public void clickCoreReceiptIcon() {
+        coreReceiptIcon.click();
+        waitForElementToBeDisplayed(revenueReceiptTab);
+    }
+
+    public void clickCashReceiptIcon() {
+        cashReceiptIcon.click();
+        waitForElementToBeDisplayed(revenueReceiptTab);
     }
 }
 
