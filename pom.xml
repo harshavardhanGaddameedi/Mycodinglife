@@ -29,6 +29,8 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+            <!-- https://mvnrepository.com/artifact/com.github.vidstige/jadb -->
+
              <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>

@@ -1,4 +1,3 @@
-@update
 Feature: Receivables / Core Revenue Order Functionality Scenarios
 
   Scenario Outline: Create Core Revenue Order
