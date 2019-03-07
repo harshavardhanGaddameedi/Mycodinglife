@@ -22,7 +22,7 @@ import java.util.Date;
 
 @CucumberOptions(
         glue = {"co.uk.optum"},
-        features = {"src\\test\\resources\\features"},
+        features = {"src//test//resources//features"},
 //        tags = {"@smokeHR, @smoke"},
         tags = {"@update"},
 //        format = {"pretty","json:report/report.json","html:report/cucumber-reports","html:report/"},
