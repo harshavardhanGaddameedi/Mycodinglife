@@ -1,5 +1,4 @@
-@smoke
-Feature: Receivables / Core Revenue Order Functionality Scenarios
+Feature: Receivables / Core Revenue Order Creation and Rejection Scenarios
   Scenario Outline: Create Core Revenue Order
     Given I am in login Page
     And I login to IDempiere with "<user>" "<password>" "<role>"

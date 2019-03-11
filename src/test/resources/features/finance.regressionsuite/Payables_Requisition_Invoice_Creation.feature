@@ -1,5 +1,5 @@
-@regression
-Feature: Payables / Procurement End to End Functionality Scenarios
+
+Feature: Payables / Procurement Ordercreation to Invoice Generation
   Scenario Outline: Create Custom Requisition
     Given I am in login Page
     And I login to IDempiere with "<user>" "<password>" "<role>"

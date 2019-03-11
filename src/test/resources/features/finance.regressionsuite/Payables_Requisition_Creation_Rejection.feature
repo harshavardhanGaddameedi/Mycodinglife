@@ -1,5 +1,4 @@
-@smoke
-Feature: Requisition Creation and Approval Scenarios
+Feature: Requisition Creation and Rejection Scenarios
 
   Scenario Outline: Create Custom Requisition
     Given I am in login Page

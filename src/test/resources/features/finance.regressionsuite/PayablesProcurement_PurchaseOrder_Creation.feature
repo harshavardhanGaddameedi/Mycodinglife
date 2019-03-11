@@ -1,5 +1,5 @@
-@regression
-Feature: Payables / Procurement Functionality Scenarios
+
+Feature: Payables / Procurement Purchase order creation from Custom requisition
   Scenario Outline: Create Custom Requisition
     Given I am in login Page
     And I login to IDempiere with "<user>" "<password>" "<role>"

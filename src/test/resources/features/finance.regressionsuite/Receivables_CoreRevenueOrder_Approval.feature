@@ -1,5 +1,5 @@
 
-Feature: Receivables / Core Revenue Order Functionality Scenarios
+Feature: Receivables / Core Revenue Order Creation & Approval
 
   Scenario Outline: Create Core Revenue Order
     Given I am in login Page

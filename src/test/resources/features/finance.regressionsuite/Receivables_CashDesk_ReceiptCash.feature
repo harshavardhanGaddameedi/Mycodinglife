@@ -1,4 +1,4 @@
-Feature: Receivables / Cash Revenue Invoice Generation Scenarios
+Feature: Receivables / Cash Revenue Receipt Generation Scenarios
 
   Scenario Outline: Cash Revenue Invoice Creation
 
