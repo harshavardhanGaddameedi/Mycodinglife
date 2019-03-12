@@ -127,11 +127,15 @@ public class  HomePage {
     @FindBy(xpath = "//div//tr/td/div/a[contains (.,'Leaver Request')]")
     WebElement leaverRequest;
 
-
-
-
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Leaver')]")
     WebElement leaverRequestTab;
+
+    @FindBy(xpath="//div//tr/td/div/a[contains (.,'Contract Changes')]")
+    WebElement contractChanges;
+
+    @FindBy(xpath="//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Contract Changes')]")
+    WebElement contractChangeRequestTab;
+
 
     //div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Recruitment Request')]
 
@@ -300,6 +304,21 @@ public class  HomePage {
         waitForElementToBeDisplayed (  leaverRequest);
         leaverRequest.click();
         waitForElementToBeDisplayed ( leaverRequestTab );
+
+
+    }
+
+    public void openContractRequestPage(){
+        menuIcon.click ();
+        waitForElementToBeDisplayed ( hrpMenu);
+        hrpMenu.click();
+        waitForElementToBeDisplayed ( hrMenu);
+        hrMenu.click();
+        waitForElementToBeDisplayed(contractChanges);
+        contractChanges.click();
+        waitForElementToBeDisplayed(contractChangeRequestTab);
+
+
 
 
     }

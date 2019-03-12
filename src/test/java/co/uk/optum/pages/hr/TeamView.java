@@ -60,6 +60,11 @@ public class TeamView {
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Leaver Request')]")
     WebElement leaverRequestTab;
 
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Amend Details View')]")
+    WebElement amendDetailsTab ;
+
+    @FindBy(xpath="//button[ @instancename='he_manager_employee0he_change_emp_details'] ")
+    WebElement 	changeEmployeeDetails ;
 
     @FindBy(xpath = "//button[ @instancename='he_manager_employee0start_leave_proc']")
     WebElement startLeaverProcessButton;
@@ -70,6 +75,15 @@ public class TeamView {
 
     @FindBy(xpath = "//span[@instancename='R_Request0he_termination_date']//input[@class='z-datebox-input']")
     WebElement terminationDate;
+
+    @FindBy(xpath = "//*[@instancename='R_Request0he_eff_date']//input[@class='z-datebox-input']")
+    WebElement effectiveDate;
+
+    @FindBy(xpath = "//span[@instancename='R_Request0he_rea_for_ch']//input[@class='z-combobox-input']")
+    WebElement reasonForChange ;
+
+    @FindBy(xpath = "//span[@instancename='R_Request0HE_GRADE_SALARY_ID']//input[@class='z-combobox-input']")
+    WebElement roleBandSalaryPoint;
     //div[@class='z-grid-body z-word-nowrap']//table[@id[contains(.,'-cave')]]//tr//td[3]//span[text()[contains(.,'Joe')]]/../span[text()[contains(.,'Burns')]]
 
 
@@ -82,6 +96,12 @@ public class TeamView {
         initiateLeaverProcess(empName);
         
 
+    }
+
+    public void searchPositionAndEmpForContract(String positionName, String empName)
+    {
+        searchPosition(positionName);
+        initiateSalaryChange(empName);
     }
 
     private void initiateLeaverProcess(String empName) {
@@ -126,6 +146,46 @@ public class TeamView {
 
     }
 
+    private void initiateSalaryChange(String empName) {
+
+        System.out.println ( empName );
+
+        //div[@class='z-grid-body z-word-nowrap']//table[@id[contains(.,'-cave')]]//tr//td[3]//span[text()[contains(., 'Joe') and contains(., 'Burns')]]
+
+//        driver.findElement(By.xpath("//li/span["+ stringToContainsTag("Male")+"]")).click();
+
+//        driver.findElement(By.xpath("//div[@class='z-grid-body z-word-nowrap']//table[@id[contains(.,'-cave')]]//tr//td[3]//span[text()["+ stringToContainsTag(empName)+"]]")).click();
+
+        try {
+            if (detailRecord.isDisplayed ()) {
+                detailRecord.click ();
+                waitTime(2000);
+            }
+        }catch (Exception e)
+        {
+            waitForElementToBeDisplayed (driver.findElement(By.xpath("//div[@class='z-grid-body z-word-nowrap']//table[@id[contains(.,'-cave')]]//tr//td[3]//span[text()["+ stringToContainsTag(empName)+"]]")));
+            System.out.println ( driver.findElement(By.xpath("//div[@class='z-grid-body z-word-nowrap']//table[@id[contains(.,'-cave')]]//tr//td[3]//span[text()["+ stringToContainsTag(empName)+"]]")).getText () );
+            driver.findElement(By.xpath("//div[@class='z-grid-body z-word-nowrap']//table[@id[contains(.,'-cave')]]//tr//td[3]//span[text()["+ stringToContainsTag(empName)+"]]")).click ();
+            editTeamMember.click ();
+            waitForElementToBeDisplayed ( openMgrWinOfEmp );
+            openMgrWinOfEmp.click ();
+            waitForElementToBeDisplayed ( openMgrWinOfEmpWindow );
+
+        }
+
+        waitTime(2000);
+        waitForElementToBeDisplayed (driver.findElement(By.xpath("//div[@class='z-grid-body z-word-nowrap']//table[@id[contains(.,'-cave')]]//tr//td[3]//span[text()["+ stringToContainsTag(empName)+"]]")));
+        System.out.println ( driver.findElement(By.xpath("//div[@class='z-grid-body z-word-nowrap']//table[@id[contains(.,'-cave')]]//tr//td[3]//span[text()["+ stringToContainsTag(empName)+"]]")).getText ());
+        driver.findElement(By.xpath("//div[@class='z-grid-body z-word-nowrap']//table[@id[contains(.,'-cave')]]//tr//td[3]//span[text()["+ stringToContainsTag(empName)+"]]")).click ();
+        editTeamMember.click ();
+        waitForElementToBeDisplayed ( openMgrWinOfEmp );
+        openMgrWinOfEmp.click ();
+        waitForElementToBeDisplayed ( openMgrWinOfEmpWindow );
+
+
+    }
+
+
     private void searchPosition(String positionName) {
         System.out.println ( positionName );
         lookupRecordIcon.click ();
@@ -168,6 +228,25 @@ public class TeamView {
         terminationDate.sendKeys ( getFutureDate(notice_period)+Keys.TAB );
         setRequisitionNumber(getFutureDate(notice_period));
 
+
+    }
+
+    public void OpenChangeEmployeeDetails()
+    {
+        okButton1.click ();
+        waitForElementToBeDisplayed ( mngrViewOfEmpTab );
+        changeEmployeeDetails.click();
+        waitForElementToBeDisplayed ( amendDetailsTab );
+    }
+
+
+    public void setSalaryChangeDetails(String reason_for_change, int effective_date,String newSalaryPoint){
+        waitForElementToBeDisplayed ( reasonForChange );
+        reasonForChange.sendKeys(reason_for_change.trim ()+ Keys.TAB);
+        waitTime(2000);
+        effectiveDate.sendKeys(getFutureDate(effective_date)+Keys.TAB);
+        roleBandSalaryPoint.clear ();
+        roleBandSalaryPoint.sendKeys(newSalaryPoint.trim()+ Keys.TAB);
 
     }
 
