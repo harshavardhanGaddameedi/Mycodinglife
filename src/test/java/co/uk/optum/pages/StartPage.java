@@ -1,12 +1,11 @@
 package co.uk.optum.pages;
 
-import co.uk.optum.utility.CommonUtility;
 import co.uk.optum.utility.DriverProvider;
 import com.google.inject.Inject;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import static co.uk.optum.utility.CommonUtility.waitTime;
 
 public class StartPage{
     private final WebDriver driver;
@@ -23,7 +22,10 @@ public class StartPage{
     }
 
     public void load() {
-        driver.get(url);
+//        driver.get(url);
+        driver.navigate ().to ( url );
+        waitTime(5000);
+        System.out.println ( driver.getTitle () );
     }
 
 //    public void clickStartNow(){

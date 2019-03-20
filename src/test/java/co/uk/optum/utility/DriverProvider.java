@@ -1,5 +1,7 @@
 package co.uk.optum.utility;
 
+import org.apache.commons.lang.StringUtils;
+
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -9,8 +11,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class DriverProvider {
 
@@ -32,14 +39,53 @@ public class DriverProvider {
     }
 
     private void loadChromeDriver(String driverPath) {
-        System.setProperty("webdriver.chrome.driver", driverPath);
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setExperimentalOption("useAutomationExtension", false);
-        driver = new ChromeDriver(chromeOptions);
-        driver.manage().window().maximize();
+        System.out.println(System.getProperty ( "RemotelyYorN" ));
+        System.out.println(StringUtils.isEmpty (System.getProperty ( "RemotelyYorN" )));
+        System.out.println(System.getProperty ( "RemotelyYorN" ));
+
+//        System.setProperty ( "RemotelyYorN","N");
+//        System.setProperty ( "RemotelyYorN","Y");
+        if (StringUtils.isEmpty (System.getProperty ( "RemotelyYorN" ))||System.getProperty ( "RemotelyYorN" ).equals ( "N") )
+        {
+            System.setProperty ( "webdriver.chrome.driver", driverPath );
+            ChromeOptions chromeOptions = new ChromeOptions ();
+            chromeOptions.setExperimentalOption ( "useAutomationExtension", false );
+            driver = new ChromeDriver ( chromeOptions );
+        }
+        else
+            {
+                driver = createWebDriverSauce ();
+            }
+        driver.manage ().window ().maximize ();
     }
+private RemoteWebDriver createWebDriverSauce()
+{
+    DesiredCapabilities capabilities = null;
+    String USERNAME = "ppurnan";
+    String ACCESS_KEY = "d2b60d6d-4c0e-4268-ada2-9d02b0bd8c3a";
+    String URL1 = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
+    capabilities = DesiredCapabilities.chrome();
+    capabilities.setCapability( CapabilityType.BROWSER_NAME, "chrome");
+    capabilities.setCapability(CapabilityType.VERSION, "47");
+    capabilities.setCapability( CapabilityType.PLATFORM, "Windows 7");
+//    capabilities.setCapability( CapabilityType.ACCEPT_INSECURE_CERTS,true);
+    capabilities.setCapability( CapabilityType.ACCEPT_SSL_CERTS,true);
+    capabilities.setCapability("screenResolution", "1280x1024");
+    capabilities.setCapability("parent-tunnel", "optumtest");
+    capabilities.setCapability("tunnelIdentifier", "Optum-Stage");
+    RemoteWebDriver currentDriver = null;
+    try {
 
-
+        currentDriver = new RemoteWebDriver(new URL (URL1), capabilities);
+        System.out.println ( currentDriver.getTitle () );
+    } catch (MalformedURLException e) {
+       e.printStackTrace ();
+//        TestNGHelper.fail("Invalid SauceLabs URL: [" + URL + "]" + " <br> Exception Message: " + e.getStackTrace());
+    }
+    // log.info("Sucessfully configured connection to Sauce Labs");
+    // currentDriver.setFileDetector(new LocalFileDetector());
+    return currentDriver;
+}
     @After
     public void tearDown(Scenario scenario) {
         if (scenario.isFailed ()) {
