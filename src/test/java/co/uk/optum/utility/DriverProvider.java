@@ -66,11 +66,11 @@ private RemoteWebDriver createWebDriverSauce()
     String URL1 = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
     capabilities = DesiredCapabilities.chrome();
     capabilities.setCapability( CapabilityType.BROWSER_NAME, "chrome");
-    capabilities.setCapability(CapabilityType.VERSION, "47");
-    capabilities.setCapability( CapabilityType.PLATFORM, "Windows 7");
+    capabilities.setCapability(CapabilityType.VERSION, "72");
+    capabilities.setCapability( CapabilityType.PLATFORM, "Windows 10");
 //    capabilities.setCapability( CapabilityType.ACCEPT_INSECURE_CERTS,true);
     capabilities.setCapability( CapabilityType.ACCEPT_SSL_CERTS,true);
-    capabilities.setCapability("screenResolution", "1280x1024");
+    capabilities.setCapability("screenResolution", "1920x1080");
     capabilities.setCapability("parent-tunnel", "optumtest");
     capabilities.setCapability("tunnelIdentifier", "Optum-Stage");
     RemoteWebDriver currentDriver = null;

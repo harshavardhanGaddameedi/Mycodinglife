@@ -177,18 +177,11 @@ public class ReceivablesPage {
 
         System.out.println ( "Clicking New button" );
         waitForElementToBeDisplayed ( revenueOrderTab );
-        try {
-            Thread.sleep ( 5000 );
-        } catch (InterruptedException e) {
-            e.printStackTrace ();
-        }
+        waitTime ( 5000 );
         newToolbarIcon.click ();
+        waitTime ( 5000 );
         waitForElementToBeDisplayed ( revenueOrderTab );
-        try {
-            Thread.sleep ( 6000 );
-        } catch (InterruptedException e) {
-            e.printStackTrace ();
-        }
+        waitTime ( 5000 );
         practiceName.clear ();
         practiceName.sendKeys ( "ErpPractice" );
         practiceName.sendKeys ( Keys.TAB );
@@ -196,11 +189,12 @@ public class ReceivablesPage {
         warehouseName.clear ();
         warehouseName.sendKeys ( "Standard" );
         warehouseName.sendKeys ( Keys.TAB );
-        Thread.sleep ( 5000 );
+        waitTime ( 3000 );
 
         customerTxt.sendKeys ( customer );
         detailRecordAltDown.click ();
         System.out.println ( "NEXT PAGE" );
+        waitTime ( 3000 );
         waitForElementToBeDisplayed ( productDesc );
         productDesc.click ();
         productDesc.sendKeys ( product );
