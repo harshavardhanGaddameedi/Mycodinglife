@@ -203,6 +203,7 @@ public class  HomePage {
 
     public void iClickNewPositonRequest() {
 
+        waitTime ( 2000 );
         menuIcon.click ();
         waitForElementToBeDisplayed ( hrpMenu);
         hrpMenu.click();
@@ -221,6 +222,7 @@ public class  HomePage {
 
     public void iClickTeamView() {
 
+        waitTime ( 2000 );
         menuIcon.click ();
         waitForElementToBeDisplayed ( hrpMenu);
         hrpMenu.click();
@@ -243,6 +245,7 @@ public class  HomePage {
 
     public void iClickRecruitmentRequest() {
 
+        waitTime ( 2000 );
         menuIcon.click ();
         waitForElementToBeDisplayed ( hrpMenu);
         hrpMenu.click();
@@ -262,6 +265,7 @@ public class  HomePage {
     }
 
     public void clickMyDetailsView() {
+        waitTime ( 2000 );
         menuIcon.click ();
         waitForElementToBeDisplayed ( hrpMenu);
         hrpMenu.click();
@@ -276,6 +280,7 @@ public class  HomePage {
 
     public void openChangePersonaDataPage() {
 
+        waitTime ( 2000 );
         waitForElementToBeDisplayed ( menuIcon );
         menuIcon.click ();
         waitForElementToBeDisplayed ( hrpMenu );
@@ -294,6 +299,7 @@ public class  HomePage {
 
     public void openLeaverRequestPage() {
 
+        waitTime ( 2000 );
         menuIcon.click ();
         waitForElementToBeDisplayed ( hrpMenu);
         hrpMenu.click();
@@ -309,6 +315,7 @@ public class  HomePage {
     }
 
     public void openContractRequestPage(){
+        waitTime ( 2000 );
         menuIcon.click ();
         waitForElementToBeDisplayed ( hrpMenu);
         hrpMenu.click();
