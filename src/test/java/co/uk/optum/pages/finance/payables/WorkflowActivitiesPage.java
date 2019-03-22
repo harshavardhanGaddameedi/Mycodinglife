@@ -40,6 +40,8 @@ public class WorkflowActivitiesPage {
     WebElement paymentList;
 
     public void selectRequisitionForApproval(String customRequisitionNumber){
+
+        waitTime ( 2000 );
         driver.findElement(By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'"+ customRequisitionNumber +"')]")).click();
     }
 
@@ -74,6 +76,7 @@ public class WorkflowActivitiesPage {
         waitTime(2000);
     }
     private void selectMaterialReceiptForApproval(String storedDocumentNumber) {
+        waitTime ( 2000 );
         driver.findElement(By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'"+ storedDocumentNumber +"')]")).click();
     }
     public void selectAndApproveMaterialReceipt() {
@@ -114,6 +117,7 @@ public class WorkflowActivitiesPage {
 
     }
     private void selectPaymentRecordForApproval(String storedDocumentNumber) {
+        waitTime ( 2000 );
         driver.findElement(By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'"+ storedDocumentNumber +"')]")).click();
 
 

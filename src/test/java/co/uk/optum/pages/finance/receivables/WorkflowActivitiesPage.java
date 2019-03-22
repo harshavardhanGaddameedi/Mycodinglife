@@ -58,6 +58,7 @@ public class WorkflowActivitiesPage {
     public void selectRevenueOrderForApproval(String storedRequisitionNumber) {
 
 //        System.out.println ( "Continuing------------------" );
+        waitTime ( 2000 );
         driver.findElement( By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'"+ storedRequisitionNumber +"')]")).click();
         waitTime ( 3000 );
 

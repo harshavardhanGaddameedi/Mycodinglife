@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static co.uk.optum.utility.CommonUtility.waitTime;
+
 public class DriverProvider {
 
     public static WebDriver driver;
@@ -88,6 +90,7 @@ private RemoteWebDriver createWebDriverSauce()
 }
     @After
     public void tearDown(Scenario scenario) {
+
         if (scenario.isFailed ()) {
             try {
                 final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs ( OutputType.BYTES );
