@@ -1,4 +1,3 @@
-@maventest
 Feature: Receivables / Private Revenue Order Creation, Approval and Invoice Generation Scenarios.
   Scenario Outline: Revenue Invoice Creation
     Given I am in login Page

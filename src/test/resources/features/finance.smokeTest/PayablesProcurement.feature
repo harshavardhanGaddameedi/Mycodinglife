@@ -1,5 +1,6 @@
+@maventest
 Feature: Payables / Procurement Functionality Scenarios
-      Scenario Outline: Create Custom Requisition
+  Scenario Outline: Create Custom Requisition
     Given I am in login Page
     And I login to IDempiere with "<user>" "<password>" "<role>"
     And I click PayablesProcurement menu
@@ -11,7 +12,6 @@ Feature: Payables / Procurement Functionality Scenarios
     Examples:
       | user                  | password              |role|
       | OperationsProcessor1  | OperationsProcessor1  |  Operations Processor  |
-
 
     Scenario: Approve Custom Requisition
       Given I am in login Page
@@ -27,8 +27,6 @@ Feature: Payables / Procurement Functionality Scenarios
       And I Select Custom Requisition and generate PO
       When I Submit the Generated PO
       Then I should see the PO Successfully Submitted
-
-
 
       Examples:
          | user                  | password              |role|

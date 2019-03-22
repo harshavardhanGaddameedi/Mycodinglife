@@ -1,5 +1,5 @@
+@maventest
 Feature: Receivables / Cash Revenue Invoice Generation Scenarios
-
   Scenario Outline: Cash Revenue Invoice Creation
 
     Given I am in login Page

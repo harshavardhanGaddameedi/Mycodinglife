@@ -1,7 +1,5 @@
-
+@maventest
 Feature: Receivables / Private Revenue Order Creation, Approval and Invoice Generation Scenarios.
-
-  @update
   Scenario Outline: Revenue Invoice Creation
     Given I am in login Page
     And I login to IDempiere with "<user>" "<password>" "<role>"
