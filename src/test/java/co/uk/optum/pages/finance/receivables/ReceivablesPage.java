@@ -204,6 +204,7 @@ public class ReceivablesPage {
         System.out.println ( "Clicking ParentRecAltUp" );
         parentRecAltUp.click ();
         System.out.println ( "Clicked ParentRecAltUp" );
+        waitTime ( 3000 );
         waitForElementToBeDisplayed ( revenueOrderTab );
 
 

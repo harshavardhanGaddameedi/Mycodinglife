@@ -18,6 +18,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 import static co.uk.optum.utility.CommonUtility.waitTime;
 
@@ -79,6 +80,8 @@ private RemoteWebDriver createWebDriverSauce()
     try {
 
         currentDriver = new RemoteWebDriver(new URL (URL1), capabilities);
+        currentDriver.manage ().timeouts ().implicitlyWait ( 3000, TimeUnit.MILLISECONDS );
+
         System.out.println ( currentDriver.getTitle () );
     } catch (MalformedURLException e) {
        e.printStackTrace ();

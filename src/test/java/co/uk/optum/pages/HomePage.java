@@ -144,6 +144,7 @@ public class  HomePage {
     }
 
     public void waitForHomePageLoad() {
+        waitTime ( 2000 );
         waitForElementToBeDisplayed(logoutLink);
     }
 
