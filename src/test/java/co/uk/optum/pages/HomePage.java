@@ -34,6 +34,12 @@ public class  HomePage {
     @FindBy(xpath = "//tbody/tr/td[5]/button[@title='Menu']")
     WebElement menuIcon;
 
+    @FindBy(xpath = "//tr//td//div//a[contains(.,'Landing Page')]")
+    WebElement landingPage;
+
+    @FindBy(xpath="//div//ul//li//a//span[contains(.,'Landing Page')]")
+    WebElement landingPageTab;
+
     @FindBy(xpath = "//tbody/tr/td/div/span[contains(.,'Finance')]")
 //    @FindBy(xpath = "//div/div[@class='z-popup-content']/div/div[@class='z-panel-body']/div[1]/div/div[3]/table/tbody/tr[1]/td/div/span[2]")
     WebElement financeMenu;
@@ -80,7 +86,11 @@ public class  HomePage {
         @FindBy(xpath= "//div//tr/td/div/span[3][contains(.,'Human Resource')]")
         WebElement hrMenu;
 
-//        //div//tr/td/div/span[4][contains(.,'Requests')]
+    @FindBy(xpath="//tr/td/div/a/img[@src='/webui/theme/businessTeamBlue/images/mForm.png']")
+    WebElement newTeamView;
+
+    @FindBy(xpath="//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Team View')]")
+    WebElement newTeamViewTab;
 
      @FindBy(xpath= "//div//tr/td/div/span[4][contains(.,'Requests')]")
      WebElement requestMenu;
@@ -95,7 +105,6 @@ public class  HomePage {
 
     @FindBy(xpath = "//div//div[@class [contains(.,'z-tree-body')]]/table//tr/td/div/a[contains(.,'Team View')]")
     WebElement teamView;
-
 
     @FindBy(xpath = "//div//div[@class [contains(.,'z-tree-body')]]/table//tr/td/div/a[contains(.,'Details View')]")
     WebElement myDetailsView;
@@ -244,6 +253,21 @@ public class  HomePage {
 
     }
 
+    public void iclicknewTeamView()
+    {
+        waitTime ( 2000 );
+        menuIcon.click ();
+        waitForElementToBeDisplayed ( hrpMenu);
+        hrpMenu.click();
+        waitForElementToBeDisplayed ( hrMenu);
+        hrMenu.click();
+        waitForElementToBeDisplayed(newTeamView);
+        newTeamView.click();
+        waitForElementToBeDisplayed(newTeamViewTab);
+        System.out.println( "New Teamview Opened ");
+        waitTime ( 2000 );
+    }
+
     public void iClickRecruitmentRequest() {
 
         waitTime ( 2000 );
@@ -326,8 +350,17 @@ public class  HomePage {
         contractChanges.click();
         waitForElementToBeDisplayed(contractChangeRequestTab);
 
-
-
-
     }
+
+   public void openNewLandingPage()
+   {
+       waitTime ( 2000 );
+       menuIcon.click ();
+       waitForElementToBeDisplayed(landingPage);
+       landingPage.click();
+       waitForElementToBeDisplayed(landingPageTab);
+
+   }
+
+
 }
