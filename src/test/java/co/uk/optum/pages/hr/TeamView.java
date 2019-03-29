@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.sikuli.hotkey.Keys;
+import org.openqa.selenium.support.ui.Select;
+
 
 import javax.inject.Inject;
 import java.util.List;
@@ -84,7 +86,32 @@ public class TeamView {
 
     @FindBy(xpath = "//span[@instancename='R_Request0HE_GRADE_SALARY_ID']//input[@class='z-combobox-input']")
     WebElement roleBandSalaryPoint;
-    //div[@class='z-grid-body z-word-nowrap']//table[@id[contains(.,'-cave')]]//tr//td[3]//span[text()[contains(.,'Joe')]]/../span[text()[contains(.,'Burns')]]
+
+    @FindBy(xpath="//button[contains(.,'Update Employee Details')]")
+    WebElement updateEmployeeDetails;
+
+    @FindBy(xpath="//tr//td//div//select[@class='z-select']")
+    WebElement newReasonForChange;
+
+    @FindBy(xpath = "//tr//td//div//span//input[@class='z-datebox-input']")
+    WebElement newEffectiveDate;
+
+    @FindBy(xpath = "//tr//td//textarea[@class='z-textbox']")
+    WebElement contractTypeComments;
+
+    @FindBy(xpath="//tr[7]//td//div//select[@class='z-select']")
+    WebElement contractTypeDropdown;
+
+    @FindBy(xpath = "//tr//td//div//button[contains(.,'Submit')]")
+    WebElement Submit;
+
+    @FindBy(xpath = "//div//button[@title='OK']")
+    WebElement requestOk;
+
+    @FindBy(xpath = "//div[@title='Close']//i")
+    WebElement popupClose;
+
+    //div[@class='z-grid-body z-word-nowrap']//table[@id  [contains(.,'-cave')]]//tr//td[3]//span[text()[contains(.,'Joe')]]/../span[text()[contains(.,'Burns')]]
 
 
     //div[@class='z-grid-body z-word-nowrap']//table[@id[contains(.,'-cave')]]//tr//td[3]//span[text()[contains(., 'Joe') and contains(., 'Burns')]]
@@ -250,14 +277,60 @@ public class TeamView {
 
     }
 
+
+    public void selectEmployeetoUpdate(String name)
+    {
+        System.out.println("entered to select employee");
+        waitTime(2000);
+        String xpath ="//div/span["+stringToContainsTag(name)+"]/../preceding-sibling::div/img[@src[contains (.,'defaultEmployee')]]";
+       WebElement employee= driver.findElement(By.xpath(xpath));
+       waitForElementToBeDisplayed(employee);
+        employee.click();
+
+    }
+    public void selectUpdateEmployeeDetails()
+    {
+        waitForElementToBeDisplayed(updateEmployeeDetails);
+        waitTime(3000);
+        updateEmployeeDetails.click();
+    }
+
+    public void changeContractType(String new_reason_for_change, int new_effective_date, String Comments, String contractType)
+    {
+        waitForElementToBeDisplayed(newReasonForChange);
+        Select dropdown1 = new Select(newReasonForChange);
+        dropdown1.selectByVisibleText(new_reason_for_change);
+        waitTime(2000);
+        waitForElementToBeDisplayed(newEffectiveDate);
+        newEffectiveDate.sendKeys(getFutureDate(new_effective_date)+Keys.TAB);
+        waitTime(2000);
+        waitForElementToBeDisplayed(contractTypeComments);
+        contractTypeComments.sendKeys(Comments);
+        waitForElementToBeDisplayed(contractTypeDropdown);
+        Select dropdown2 = new Select(contractTypeDropdown);
+        dropdown2.selectByVisibleText(contractType);
+        waitTime(2000);
+    }
+
+    public void SubmitChanges()
+    {
+        Submit.click();
+    }
+
+    public void clickOk()
+    {
+        waitForElementToBeDisplayed(requestOk);
+        waitTime(2000);
+        requestOk.click();
+    }
+
+
     public void saveChanges() {
 
         waitTime(1000);
         List<WebElement> elements = driver.findElements ( By.xpath ( "//div[@class='adwindow-north z-div']/div/div/div[@class='z-toolbar-content z-toolbar-start']/a[@title[contains(., 'Save changes')]]/span[@class='z-toolbarbutton-content']/img[@src[contains(., 'Save')]]" ) );
         elements.get(elements.size ()-1).click ();
         waitTime(1000);
-
-
 
     }
 
