@@ -176,6 +176,7 @@ public class ReceivablesPage {
     public void setRevenueOrderDetails(String customer, String product, String quantity) throws InterruptedException {
 
         System.out.println ( "Clicking New button" );
+        waitTime ( 3000 );
         waitForElementToBeDisplayed ( revenueOrderTab );
         waitTime ( 5000 );
         newToolbarIcon.click ();

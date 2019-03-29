@@ -60,6 +60,7 @@ public class DriverProvider {
                 driver = createWebDriverSauce ();
             }
         driver.manage ().window ().maximize ();
+        driver.manage ().timeouts ().implicitlyWait (10000, TimeUnit.MILLISECONDS );
     }
 private RemoteWebDriver createWebDriverSauce()
 {
@@ -80,7 +81,7 @@ private RemoteWebDriver createWebDriverSauce()
     try {
 
         currentDriver = new RemoteWebDriver(new URL (URL1), capabilities);
-        currentDriver.manage ().timeouts ().implicitlyWait ( 3000, TimeUnit.MILLISECONDS );
+
 
         System.out.println ( currentDriver.getTitle () );
     } catch (MalformedURLException e) {
