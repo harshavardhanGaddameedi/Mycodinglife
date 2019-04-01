@@ -7,7 +7,7 @@
       When I Click on new Team View Option from Menu
       And i click on the employee for whom i want to do the contract change
         |name|
-        |Maggie Campos|
+        |Andrew Banks|
       And select Update Employee Details
       And  on the Make a change to contract page i select the following fields as
         |ReasonForChange|EffectiveDate|Comments|ContractType|
