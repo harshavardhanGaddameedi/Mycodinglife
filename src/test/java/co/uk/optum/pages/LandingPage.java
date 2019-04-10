@@ -24,18 +24,18 @@ public class LandingPage {
 
     }
 
-    @FindBy(xpath = "//td//div//span[contains(.,'Review Changes To Contract')]")
-    WebElement reviewChangesToContract;
+    @FindBy(xpath = "//td//div//span[contains(.,'Approve Contractual Changes')]")
+    WebElement approveContractualChanges;
 
     @FindBy(xpath = "//tr//td//div//button[contains(.,'Approve')]")
     WebElement approveContract;
 
 
-    public void openReviewChangesToContract()
+    public void approveContractualChanges()
     {
         waitTime(2000);
-        waitForElementToBeDisplayed(reviewChangesToContract);
-        reviewChangesToContract.click();
+        waitForElementToBeDisplayed(approveContractualChanges);
+        approveContractualChanges.click();
     }
 
     public void searchContractRequest()

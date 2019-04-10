@@ -77,9 +77,9 @@ public class ChangeContractType {
 
     }
 
-    @When("^i go to review changes in Contract$")
-    public void igotoreviewchangesinContract() throws Throwable {
-        landingPage.openReviewChangesToContract();
+    @And("^i go to Approve Contractual Changes$")
+    public void iGoToApproveContractualChanges() throws Throwable {
+        landingPage.approveContractualChanges();
     }
 
 

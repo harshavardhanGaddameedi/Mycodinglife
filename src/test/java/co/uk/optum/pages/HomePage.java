@@ -239,7 +239,6 @@ public class  HomePage {
         waitForElementToBeDisplayed ( hrMenu);
         hrMenu.click();
         waitForElementToBeDisplayed ( teamView);
-//        requestMenu.click();
         teamView.click ();
         waitForElementToBeDisplayed (teamViewTAb);
         System.out.println ( "Teamview Opened ");
@@ -264,7 +263,6 @@ public class  HomePage {
         waitForElementToBeDisplayed(newTeamView);
         newTeamView.click();
         waitForElementToBeDisplayed(newTeamViewTab);
-        System.out.println( "New Teamview Opened ");
         waitTime ( 2000 );
     }
 
