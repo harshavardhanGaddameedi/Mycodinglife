@@ -1,4 +1,4 @@
-package co.uk.optum.pages.hr;
+package co.uk.optum.stepDefinitions.hr.regresssionTest;
 
 import static co.uk.optum.utility.CommonUtility.stringToContainsTag;
 import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
@@ -77,9 +77,9 @@ public class ChangeContractType {
 
     }
 
-    @When("^i go to review changes in Contract$")
-    public void igotoreviewchangesinContract() throws Throwable {
-        landingPage.openReviewChangesToContract();
+    @And("^i go to Approve Contractual Changes$")
+    public void iGoToApproveContractualChanges() throws Throwable {
+        landingPage.approveContractualChanges();
     }
 
 

@@ -1,4 +1,4 @@
-package co.uk.optum.pages.hr;
+package co.uk.optum.stepDefinitions.hr.regresssionTest;
 
 import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
 import static co.uk.optum.utility.CommonUtility.waitTime;

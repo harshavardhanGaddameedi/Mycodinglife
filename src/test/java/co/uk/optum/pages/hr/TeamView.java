@@ -108,8 +108,11 @@ public class TeamView {
     @FindBy(xpath = "//div//button[@title='OK']")
     WebElement requestOk;
 
-    @FindBy(xpath = "//div[@title='Close']//i")
-    WebElement popupClose;
+    @FindBy(xpath = "//tr[6]//td[2]//div//select[@class='z-select']")
+    WebElement multiplierDropdown;
+
+   // @FindBy(xpath = "//div[@title='Close']//i")
+    //WebElement popupClose;
 
     //div[@class='z-grid-body z-word-nowrap']//table[@id  [contains(.,'-cave')]]//tr//td[3]//span[text()[contains(.,'Joe')]]/../span[text()[contains(.,'Burns')]]
 
@@ -280,7 +283,7 @@ public class TeamView {
 
     public void selectEmployeetoUpdate(String name)
     {
-        System.out.println("entered to select employee");
+
         waitTime(2000);
         String xpath ="//div/span["+stringToContainsTag(name)+"]/../preceding-sibling::div/img[@src[contains (.,'defaultEmployee')]]";
        WebElement employee= driver.findElement(By.xpath(xpath));
@@ -344,5 +347,21 @@ public class TeamView {
 
         else return  false;
 
+    }
+    public void changefulltimetoparttime(String new_reason_for_change, int new_effective_date, String Comments, String multiplier){
+
+        waitForElementToBeDisplayed(newReasonForChange);
+        Select dropdown1 = new Select(newReasonForChange);
+        dropdown1.selectByVisibleText(new_reason_for_change);
+        waitTime(2000);
+        waitForElementToBeDisplayed(newEffectiveDate);
+        newEffectiveDate.sendKeys(getFutureDate(new_effective_date)+Keys.TAB);
+        waitTime(2000);
+        waitForElementToBeDisplayed(contractTypeComments);
+        contractTypeComments.sendKeys(Comments);
+        waitForElementToBeDisplayed(multiplierDropdown);
+        Select dropdown3 = new Select(multiplierDropdown);
+        dropdown3.selectByVisibleText(multiplier);
+        waitTime(2000);
     }
 }
