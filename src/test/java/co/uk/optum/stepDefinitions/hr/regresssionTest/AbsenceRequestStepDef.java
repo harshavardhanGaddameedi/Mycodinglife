@@ -1,4 +1,4 @@
-package co.uk.optum.stepDefinitions;
+package co.uk.optum.stepDefinitions.hr.regresssionTest;
 
 import co.uk.optum.pages.HomePage;
 import co.uk.optum.pages.LandingPage;
@@ -6,14 +6,12 @@ import co.uk.optum.pages.hr.TeamView;
 import co.uk.optum.utility.DriverProvider;
 import com.google.inject.Inject;
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import javax.xml.crypto.Data;
 import java.util.List;
 import java.util.Map;
 
