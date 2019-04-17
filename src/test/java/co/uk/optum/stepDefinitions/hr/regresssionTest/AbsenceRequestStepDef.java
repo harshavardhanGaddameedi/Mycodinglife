@@ -6,6 +6,7 @@ import co.uk.optum.pages.hr.TeamView;
 import co.uk.optum.utility.DriverProvider;
 import com.google.inject.Inject;
 import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.junit.Assert;
@@ -48,7 +49,7 @@ public class AbsenceRequestStepDef {
     @And("^Clicks on Submit Button$")
     public void clicksOnSubmitButton() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-      landingPage.submitAnnualLeaveRequest();
+      landingPage.submitAbsenceLeaveRequest();
     }
 
     @Then("^Annual Leave request should be created$")
@@ -90,5 +91,30 @@ public class AbsenceRequestStepDef {
     public void theRequestWillBeApproved() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         Assert.assertTrue("Leave approved successfully !!!",landingPage.isLeaveapproved());
+    }
+
+    @And("^reject the request using Reject button$")
+    public void rejectTheRequestUsingRejectButton() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+       landingPage.rejectLeaveRequest();
+    }
+
+    @Then("^the request will be rejected$")
+    public void theRequestWillBeRejected() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Leave Rejected successfully !!!",landingPage.isLeaverejected());
+    }
+
+    @And("^I Click on adoption Leave Request Section in landing page$")
+    public void iClickOnAdoptionLeaveRequestSectionInLandingPage() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        landingPage.clickAdoptionLeaveRequest();
+    }
+
+    @And("^I enter all the  leave details in Adoption leave window$")
+    public void iEnterAllTheLeaveDetailsInAdoptionLeaveWindow(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        landingPage.enterAdoptionLeaveRequest(Integer.parseInt(data.get (0).get("dop")));
     }
 }

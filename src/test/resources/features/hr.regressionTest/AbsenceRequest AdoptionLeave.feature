@@ -8,8 +8,8 @@ Feature: Create a new adoption leave request as an employee and approve the same
     When i go to Landing Page
     And I Click on adoption Leave Request Section in landing page
     And I enter all the  leave details in Adoption leave window
-    |DateofPlacement|StartDate|EndDate|
-    |0|1|Whole Day  |Whole Day|
+    |dop|
+    |30|
     And Clicks on Submit Button
     Then adoption Leave request should be created
 
@@ -26,7 +26,7 @@ Feature: Create a new adoption leave request as an employee and approve the same
     And click on Approve Absence Request Section
     And Select the absence request created by employee
       |user         | Type|
-      |Cyrus Mathew|Annual Leave Requests|
+      |Cyrus Mathew|Adoption Requests|
     And I Click on the Access Request button
     And Approve the request using approve button
     Then the request will be approved

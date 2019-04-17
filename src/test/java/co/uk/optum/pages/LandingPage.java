@@ -35,6 +35,10 @@ public class LandingPage {
     @FindBy(xpath = "//td//div//span[contains(.,'Make an Annual Leave Request')]")
     WebElement annulLeaveRequest;
 
+    @FindBy(xpath = "//td//div//span[contains(.,'Make an Adoption Leave Request')]")
+    WebElement adoptionLeaveRequest;
+
+
     @FindBy(xpath = "//div/span[text()='Start Date']/following::span[1]/input[@class=\"z-datebox-input\"]")
     WebElement annualLeaveStartDate;
 
@@ -73,7 +77,11 @@ public class LandingPage {
     @FindBy(xpath = "//div/span[contains(.,'Absence Request has been accepted')]")
     WebElement approveMsg;
 
+    @FindBy(xpath = "//div/button[contains(.,'Reject')]")
+    WebElement rejectButton;
 
+    @FindBy(xpath = "//div/span[text()='Planned Start Date']/following::td[1]/div/span/input")
+    WebElement dateOfPlacement;
 
 
 
@@ -116,7 +124,7 @@ public class LandingPage {
 
     }
 
-    public void submitAnnualLeaveRequest() {
+    public void submitAbsenceLeaveRequest() {
         waitTime(1000);
         submitRequest.click();
     }
@@ -171,6 +179,38 @@ if ((driver.findElement(By.xpath("//div/span[contains(.,'Absence Request has bee
         }
 
         else return  false;
+
+    }
+
+    public void rejectLeaveRequest() {
+    waitForElementToBeDisplayed(rejectButton);
+    rejectButton.click();
+
+    }
+
+    public boolean isLeaverejected() {
+        if ((driver.findElement(By.xpath("//div/span[contains(.,'Absence Request Rejected')]")).isDisplayed()))
+        {
+            return  true;
+
+        }
+
+        else return  false;
+
+    }
+
+
+    public void clickAdoptionLeaveRequest() {
+
+        adoptionLeaveRequest.click();
+        waitTime(2000);
+    }
+
+
+    public void enterAdoptionLeaveRequest(int dop) {
+
+    waitTime(2000);
+    dateOfPlacement.sendKeys(getFutureDate(dop)+Keys.TAB);
 
     }
 }
