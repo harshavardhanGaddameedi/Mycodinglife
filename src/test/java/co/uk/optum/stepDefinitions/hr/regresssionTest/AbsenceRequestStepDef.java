@@ -117,4 +117,83 @@ public class AbsenceRequestStepDef {
         List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
         landingPage.enterAdoptionLeaveRequest(Integer.parseInt(data.get (0).get("dop")));
     }
+
+    @Then("^adoption Leave request should be created$")
+    public void adoptionLeaveRequestShouldBeCreated() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Leave applied successfully !!!",landingPage.isAdoptionLeaveapplied());
+    }
+
+    @And("^I enter the actual placement date$")
+    public void iEnterTheActualPlacementDate(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        landingPage.enterActualAdoptionDates(Integer.parseInt(data.get (0).get("adop")));
+    }
+
+    @And("^I upload proof of Adoption document$")
+    public void iUploadProofOfAdoptionDocument() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        landingPage.proofOfAdoption();
+    }
+
+    @And("^I click on the Save request$")
+    public void iClickOnTheSaveRequest() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        landingPage.clickSaveRequest();
+    }
+
+    @Then("^the request will be saved with latest updates$")
+    public void theRequestWillBeSavedWithLatestUpdates() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        Assert.assertTrue("Adoption Request saved successfully !!!",landingPage.saveAdoptionRequestCompletion());
+    }
+
+    @And("^I Click on paternity Leave Request Section in landing page$")
+    public void iClickOnPaternityLeaveRequestSectionInLandingPage() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        landingPage.createPaternityLeaveRequest();
+    }
+
+    @And("^I enter all the  leave details in paternity leave window$")
+    public void iEnterAllTheLeaveDetailsInPaternityLeaveWindow(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        landingPage.enterPaternityLeaveDetails(Integer.parseInt(data.get (0).get("duedate")));
+    }
+
+    @Then("^paternity Leave request should be created$")
+    public void paternityLeaveRequestShouldBeCreated() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Leave applied successfully !!!",landingPage.isPaternityLeaveapplied());
+    }
+
+    @And("^I enter the actual birth date$")
+    public void iEnterTheActualBirthDate(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        landingPage.enterActualPaternityDates(Integer.parseInt(data.get (0).get("adob")));
+
+    }
+
+    @And("^I upload proof of paternity document$")
+    public void iUploadProofOfPaternityDocument() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+       landingPage.proofOfPaternity();
+    }
+
+    @And("^I Click on shared parental Leave Request Section in landing page$")
+    public void iClickOnSharedParentalLeaveRequestSectionInLandingPage() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        landingPage.clickSharedParentalRequest();
+    }
+
+    @And("^I enter all the shared parental leave details in Annual leave window$")
+    public void iEnterAllTheSharedParentalLeaveDetailsInAnnualLeaveWindow(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        landingPage.enterSharedParentalDetails((Integer.parseInt(data.get (0).get("StartDate"))),Integer.parseInt(data.get (0).get("EndDate")));
+    }
 }
