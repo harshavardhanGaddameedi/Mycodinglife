@@ -148,7 +148,7 @@ public class AbsenceRequestStepDef {
     public void theRequestWillBeSavedWithLatestUpdates() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
 
-        Assert.assertTrue("Adoption Request saved successfully !!!",landingPage.saveAdoptionRequestCompletion());
+        Assert.assertTrue("Adoption Request saved successfully !!!",landingPage.saveRequestCompletion());
     }
 
     @And("^I Click on paternity Leave Request Section in landing page$")
@@ -174,7 +174,7 @@ public class AbsenceRequestStepDef {
     public void iEnterTheActualBirthDate(DataTable arg1) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
-        landingPage.enterActualPaternityDates(Integer.parseInt(data.get (0).get("adob")));
+        landingPage.enterActualBirthDates(Integer.parseInt(data.get (0).get("adob")));
 
     }
 
@@ -195,5 +195,31 @@ public class AbsenceRequestStepDef {
         // Write code here that turns the phrase above into concrete actions
         List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
         landingPage.enterSharedParentalDetails((Integer.parseInt(data.get (0).get("StartDate"))),Integer.parseInt(data.get (0).get("EndDate")));
+    }
+
+    @And("^I Click on maternity Leave Request Section in landing page$")
+    public void iClickOnMaternityLeaveRequestSectionInLandingPage() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        landingPage.clickMaternityLeaveRequest();
+    }
+
+    @And("^I enter all the  leave details in maternity leave window$")
+    public void iEnterAllTheLeaveDetailsInMaternityLeaveWindow(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        landingPage.enterMaternityLeaveDetails((Integer.parseInt(data.get (0).get("ewoc"))));
+    }
+
+    @Then("^maternity Leave request should be created$")
+    public void maternityLeaveRequestShouldBeCreated() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Leave applied successfully !!!",landingPage.isMaternityLeaveApplied());
+    }
+
+    @And("^I upload proof of maternity document$")
+    public void iUploadProofOfMaternityDocument() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        landingPage.proofOfMaternity();
+
     }
 }

@@ -95,6 +95,9 @@ public class LandingPage {
     @FindBy(xpath = "//div/span[text()='Actual Placement Date']/following::td[1]/div/span/input")
     WebElement actualDateOfPlacement;
 
+    @FindBy(xpath = "//div/span[text()='Expected Week of Confinement']/following::td[1]/div/span/input")
+    WebElement expectedWeekOfConfinement;
+
     @FindBy(xpath = "//div/span[text()='Actual Birth Date']/following::td[1]/div/span/input")
     WebElement actualBirthDate;
 
@@ -290,7 +293,7 @@ public class LandingPage {
     }
 
 
-    public boolean saveAdoptionRequestCompletion() {
+    public boolean saveRequestCompletion() {
         if ((driver.findElement(By.xpath("//div/span[contains(.,'Absence Request has been updated')]")).isDisplayed())) {
             okButton.click();
             return true;
@@ -321,8 +324,9 @@ public class LandingPage {
         } else return false;
     }
 
-    public void enterActualPaternityDates(int adob) {
+    public void enterActualBirthDates(int adob) {
         waitTime(1000);
+        actualBirthDate.clear();
         actualBirthDate.sendKeys(getFutureDate(adob) + Keys.TAB);
 
 
@@ -368,6 +372,52 @@ public class LandingPage {
         leaveStartDate.sendKeys(getFutureDate(startDate) + Keys.TAB);
         leaveEndDate.clear();
         leaveEndDate.sendKeys(getFutureDate(endDate) + Keys.TAB);
+
+    }
+
+    public void clickMaternityLeaveRequest() {
+        waitForElementToBeDisplayed(maternityLeaveRequest);
+        maternityLeaveRequest.click();
+    }
+
+    public void enterMaternityLeaveDetails(int ewoc) {
+        expectedWeekOfConfinement.clear();
+        expectedWeekOfConfinement.sendKeys(getFutureDate(ewoc)+Keys.TAB);
+    }
+
+
+    public boolean isMaternityLeaveApplied() {
+        if ((driver.findElement(By.xpath("//div/span[contains(.,'Absence Request has been created and submitted')]")).isDisplayed())) {
+            return true;
+
+        } else if ((driver.findElement(By.xpath("//div/span[contains(.,'Absence Request has been updated and re-submitted')]")).isDisplayed())) {
+            return true;
+        } else return false;
+
+    }
+
+    public void proofOfMaternity() throws FindFailed {
+        waitForElementToBeDisplayed(paternityProofButton);
+        paternityProofButton.click();
+        String filepath = toAbsolutePath("src//test//resources//AttachingFilesImages//");
+        String inputFilePath = toAbsolutePath("src//test//resources//AttachingFilesImages//");
+
+        System.out.println(filepath);
+        System.out.println(inputFilePath);
+
+
+        Screen s = new Screen();
+        Pattern fileInputTextBox = new Pattern(filepath + "//" + "FilePath.PNG");
+        Pattern openButton = new Pattern(filepath + "//" + "OpenFile1.PNG");
+        s.wait(fileInputTextBox, 20);
+        s.type(fileInputTextBox, inputFilePath + "\\" + "ProofOfMaternity.docx");
+        s.click(openButton);
+        if ((driver.findElement(By.xpath("//div/span[contains(.,'ProofOfMaternity.docx Document uploaded')]")).isDisplayed())) {
+            okButton.click();
+        }
+
+        System.out.println("Proof of Maternity uploaded");
+        waitTime(10000);
 
     }
 }
