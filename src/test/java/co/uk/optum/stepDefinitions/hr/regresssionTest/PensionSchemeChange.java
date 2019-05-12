@@ -90,4 +90,15 @@ public class PensionSchemeChange {
         landingPage.verifySchemeApplied(data.get ( 0 ).get ( "Employee Pension" ));
 
     }
+
+    @When("^i opt out of Pension Benefits as$")
+    public void iOptOutOfPensionBenefitsAs(DataTable n) throws Throwable {
+        List<Map<String,String>> data = n.asMaps(String.class,String.class);
+        landingPage.selectPensionOptOutDetails(data.get (0).get("PensionBenefits"),Integer.parseInt(data.get (0).get("Effective Date")));
+    }
+
+    @Then("^i hit Opt Out$")
+    public void iHitOptOut() throws Throwable {
+        landingPage.pensionOptOut();
+    }
 }
