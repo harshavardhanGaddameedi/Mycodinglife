@@ -145,6 +145,17 @@ public class  HomePage {
     @FindBy(xpath="//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Contract Changes')]")
     WebElement contractChangeRequestTab;
 
+    @FindBy(xpath ="//tr[@title='ApplyPensionChange']/td/div/a[contains(.,'ApplyPensionChange')]")
+    WebElement pensionChangeProcess;
+
+    @FindBy(xpath = "//div/ul/li/a/span[contains(.,'ApplyPensionChange')]")
+    WebElement applyPensionTab;
+
+   // @FindBy(xpath="//tr/td/div/span[@class='global-search-box z-bandbox']/input")
+    //WebElement searchBar;
+
+     //@FindBy(xpath="//div/a[2]/span/img[@src=\'/webui/theme/businessTeamBlue/images/expand-header.png\']")
+    //WebElement expandHeader;
 
     //div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Recruitment Request')]
 
@@ -154,6 +165,7 @@ public class  HomePage {
 
     public void waitForHomePageLoad() {
         waitTime ( 2000 );
+       // expandHeader.click();
         waitForElementToBeDisplayed(logoutLink);
     }
 
@@ -359,6 +371,15 @@ public class  HomePage {
        waitForElementToBeDisplayed(landingPageTab);
 
    }
+
+    public void searchPensionProcess(){
+        menuIcon.click();
+        waitForElementToBeDisplayed(pensionChangeProcess);
+        pensionChangeProcess.click();
+        waitForElementToBeDisplayed(applyPensionTab);
+
+
+    }
 
 
 }
