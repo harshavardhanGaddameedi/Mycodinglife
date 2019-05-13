@@ -3,24 +3,28 @@ package co.uk.optum.pages;
 import co.uk.optum.utility.DriverProvider;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 
 import javax.inject.Inject;
 
+import java.util.Objects;
+
 import static co.uk.optum.utility.CommonUtility.*;
 import static co.uk.optum.utility.FeatureContext.getStoredRequisitionNumber;
+import static org.openqa.selenium.Keys.ENTER;
+import static org.openqa.selenium.Keys.TAB;
 
 public class LandingPage {
 
     private WebDriver driver;
+    private boolean assertion;
 
     @Inject
     public LandingPage() {
@@ -119,6 +123,60 @@ public class LandingPage {
     @FindBy(xpath = "//tr/td/div/button[contains(.,'Save Request')]")
     WebElement saveRequestButton;
 
+    @FindBy(xpath="//div[@class=\"landingpage-common-square z-div\"]/div/span[contains(.,'My Benefits')]")
+    WebElement myBenefits;
+
+    @FindBy(xpath="//div/ul/li/a[contains(.,'My Benefits:')]")
+    WebElement myBenefitsTab;
+
+    @FindBy(xpath = "//tr/td/span[@instancename='my_benefits0benefit_options']/input")
+    WebElement benefitOption;
+
+    @FindBy(xpath = "//ul/li/a/span[contains(.,'Landing Page')]")
+    WebElement landingPageTab;
+
+    @FindBy(xpath = "//div/ul/li[4][@class='z-tab z-tab-selected']/a/span[text()='Pension']")
+    WebElement pensionPageTab;
+
+    @FindBy(xpath="//tr/td/span[@instancename='HE_Pension0he_pension_benefit']/input[@class='z-combobox-input']")
+    WebElement pensionBenefitsDropdown;
+
+    @FindBy(xpath="//tr/td/span[@instancename='HE_Pension0HE_Pension_Scheme_ID']/input[@class='z-combobox-input']")
+    WebElement pensionSchemeDropdown;
+
+    @FindBy(xpath="//tr/td/span[@instancename='HE_Pension0he_pension_scheme_level_ID']/input[@class='z-combobox-input']")
+    WebElement pensionSchemeLevel;
+
+    @FindBy(xpath="//tr/td/span[@instancename='HE_Pension0he_eff_date']/input[@class='z-datebox-input']")
+    WebElement pensionEffectiveDate;
+
+    @FindBy(xpath = "//tr/td/button[contains(.,'Apply Change')]")
+    WebElement pensionApplyChange;
+
+    @FindBy(xpath = "//div/button[@class='txt-btn btn-ok z-button'][contains(.,'OK')]")
+    WebElement pensionProcessOkButton;
+
+    @FindBy(xpath="//div/span[contains(.,'Employee Search')]")
+    WebElement employeeSearch;
+
+    @FindBy(xpath="//tr[@class='search-crit-grid z-row']/td[3]/div/input[@class='z-textbox']")
+    WebElement empFirstName;
+
+    @FindBy(xpath="//tr[@class='search-crit-grid z-row']/td[5]/div/input[@class='z-textbox']")
+    WebElement empLastName;
+
+    @FindBy(xpath="//td/div/button[contains(.,'Employee Details')]")
+    WebElement empDetailsButton;
+
+    @FindBy(xpath = "//div/ul[@class='z-tabs-content']/li[8]/a/span[contains(.,'Benefits')]")
+    WebElement empViewBenefitsTab;
+
+    @FindBy(xpath = "//tbody[@class='z-rows']/tr[2][@class='benefits z-row z-grid-odd']/td[2]/div/input")
+    WebElement employeePensionValue;
+
+    @FindBy(xpath = "//tr/td[4]/button[@instancename='HE_Pension0opt_out']")
+    WebElement pensionOptOutButton;
+
     public void approveContractualChanges() {
         waitTime(2000);
         waitForElementToBeDisplayed(approveContractualChanges);
@@ -145,9 +203,9 @@ public class LandingPage {
         waitTime(2000);
         leaveStartDate.clear();
         System.out.println(getFutureDate(startDate));
-        leaveStartDate.sendKeys(getFutureDate(startDate) + Keys.TAB);
+        leaveStartDate.sendKeys(getFutureDate(startDate) + TAB);
         leaveEndDate.clear();
-        leaveEndDate.sendKeys(getFutureDate(endDate) + Keys.TAB);
+        leaveEndDate.sendKeys(getFutureDate(endDate) + TAB);
         Select partialDate = new Select(driver.findElement(By.xpath("//div/span[text()='Partial Date (Start)']/following::td[1]/div/select")));
         partialDate.selectByVisibleText(partialStartDate);
         Select partialDate1 = new Select(driver.findElement(By.xpath("//div/span[text()='Partial Date (End)']/following::td[1]/div/select")));
@@ -235,7 +293,7 @@ public class LandingPage {
     public void enterAdoptionLeaveRequest(int dop) {
 
         waitTime(2000);
-        dateOfPlacement.sendKeys(getFutureDate(dop) + Keys.TAB);
+        dateOfPlacement.sendKeys(getFutureDate(dop) + TAB);
 
     }
 
@@ -253,7 +311,7 @@ public class LandingPage {
     public void enterActualAdoptionDates(int adop) {
 
         waitTime(2000);
-        actualDateOfPlacement.sendKeys(getFutureDate(adop) + Keys.TAB);
+        actualDateOfPlacement.sendKeys(getFutureDate(adop) + TAB);
 
 
     }
@@ -310,7 +368,7 @@ public class LandingPage {
 
     public void enterPaternityLeaveDetails(int duedate) {
         waitTime(1000);
-        babyDueDate.sendKeys(getFutureDate(duedate) + Keys.TAB);
+        babyDueDate.sendKeys(getFutureDate(duedate) + TAB);
 
     }
 
@@ -327,7 +385,7 @@ public class LandingPage {
     public void enterActualBirthDates(int adob) {
         waitTime(1000);
         actualBirthDate.clear();
-        actualBirthDate.sendKeys(getFutureDate(adob) + Keys.TAB);
+        actualBirthDate.sendKeys(getFutureDate(adob) + TAB);
 
 
     }
@@ -369,9 +427,9 @@ public class LandingPage {
         waitTime(2000);
         leaveStartDate.clear();
         System.out.println(getFutureDate(startDate));
-        leaveStartDate.sendKeys(getFutureDate(startDate) + Keys.TAB);
+        leaveStartDate.sendKeys(getFutureDate(startDate) + TAB);
         leaveEndDate.clear();
-        leaveEndDate.sendKeys(getFutureDate(endDate) + Keys.TAB);
+        leaveEndDate.sendKeys(getFutureDate(endDate) + TAB);
 
     }
 
@@ -382,7 +440,7 @@ public class LandingPage {
 
     public void enterMaternityLeaveDetails(int ewoc) {
         expectedWeekOfConfinement.clear();
-        expectedWeekOfConfinement.sendKeys(getFutureDate(ewoc)+Keys.TAB);
+        expectedWeekOfConfinement.sendKeys(getFutureDate(ewoc)+ TAB);
     }
 
 
@@ -418,6 +476,102 @@ public class LandingPage {
 
         System.out.println("Proof of Maternity uploaded");
         waitTime(10000);
+
+    }
+
+    public void openMyBenefits()
+    {
+        waitForElementToBeDisplayed(landingPageTab);
+        waitTime(2000);
+        waitForElementToBeDisplayed(myBenefits);
+        myBenefits.click();
+    }
+
+    public void selectPensionBenefit(String Benefit_Option)
+    {
+
+        waitForElementToBeDisplayed(myBenefitsTab);
+        waitForElementToBeDisplayed(benefitOption);
+        benefitOption.sendKeys(Benefit_Option + ENTER);
+    }
+
+    public void pensionPage(){
+       waitForElementToBeDisplayed(pensionPageTab);
+    }
+    public void selectPensionSchemeDetails(String PensionBenefit,String PensionScheme, String PensionSchemeLevel, int PensionEffectiveDate){
+
+        waitForElementToBeDisplayed(pensionBenefitsDropdown);
+        pensionBenefitsDropdown.clear();
+        pensionBenefitsDropdown.sendKeys(PensionBenefit + ENTER);
+        waitForElementToBeDisplayed(pensionSchemeDropdown);
+        pensionSchemeDropdown.clear();
+        pensionSchemeDropdown.sendKeys(PensionScheme + TAB);
+        waitForElementToBeDisplayed(pensionSchemeLevel);
+        pensionSchemeLevel.clear();
+        pensionSchemeLevel.sendKeys(PensionSchemeLevel + ENTER);
+        waitForElementToBeDisplayed(pensionEffectiveDate);
+        pensionEffectiveDate.clear();
+        pensionEffectiveDate.sendKeys(getFutureDate(PensionEffectiveDate));
+    }
+
+    public void pensionApply(){
+        pensionApplyChange.click();
+    }
+
+
+
+    public void applyPensionProcess(){
+        waitForElementToBeDisplayed(pensionProcessOkButton);
+        pensionProcessOkButton.click();
+        String Verifytext= driver.findElement(By.tagName("font")).getText().trim();
+        Assert.assertEquals(Verifytext, "** null");
+
+
+    }
+
+    public void searchEmployee(String FirstName, String LastName){
+        waitForElementToBeDisplayed(employeeSearch);
+        employeeSearch.click();
+        empFirstName.sendKeys(FirstName + TAB);
+        empLastName.sendKeys(LastName + TAB);
+        waitTime(2000);
+        empDetailsButton.click();
+
+    }
+
+    public void openEmployeeBenefitTab(){
+        waitForElementToBeDisplayed(empViewBenefitsTab);
+        empViewBenefitsTab.click();
+    }
+
+    public boolean verifySchemeApplied(String scheme) {
+
+        if (employeePensionValue.getAttribute("value").equals(scheme))
+
+        {
+            assertion = true;
+            System.out.println(scheme);
+            System.out.println("no scheme applied now");
+
+        }
+        else if(!Objects.equals(employeePensionValue.getAttribute("value"), scheme)){
+            System.out.println("Doesnt Match");
+        }
+         //else{ assertion=false;}
+         return assertion;
+    }
+
+    public void selectPensionOptOutDetails(String PensionBenefit, int PensionEffectiveDate){
+        //pensionBenefitsDropdown.clear();
+        pensionBenefitsDropdown.sendKeys(PensionBenefit + ENTER);
+        //pensionEffectiveDate.clear();
+        pensionEffectiveDate.sendKeys(getFutureDate(PensionEffectiveDate));
+
+    }
+    public void pensionOptOut(){
+       waitForElementToBeDisplayed(pensionOptOutButton);
+        waitTime(4000);
+       pensionOptOutButton.click();
 
     }
 }
