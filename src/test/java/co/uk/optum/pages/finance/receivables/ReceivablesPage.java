@@ -32,8 +32,12 @@ public class ReceivablesPage {
     @FindBy(xpath = " //tr/td/img[@title[contains(.,'The Customer Invoice Window allows you to display and enter invoices for a customer')]]")
     WebElement revenueInvoice;
 
-    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Revenue Order')]")
+//    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Revenue Order')]")
+//    WebElement revenueOrderTab;
+
+    @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Sales Order')]")
     WebElement revenueOrderTab;
+
 
 
     @FindBy(xpath = "//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Revenue Invoice')]")
@@ -186,11 +190,11 @@ public class ReceivablesPage {
         practiceName.clear ();
         practiceName.sendKeys ( "ErpPractice" );
         practiceName.sendKeys ( Keys.TAB );
-        Thread.sleep ( 5000 );
-        warehouseName.clear ();
-        warehouseName.sendKeys ( "Standard" );
-        warehouseName.sendKeys ( Keys.TAB );
-        waitTime ( 3000 );
+        waitTime(3000);
+//        warehouseName.clear ();
+//        warehouseName.sendKeys ( "Standard" );
+//        warehouseName.sendKeys ( Keys.TAB );
+//        waitTime ( 3000 );
 
         customerTxt.sendKeys ( customer );
         detailRecordAltDown.click ();
@@ -219,7 +223,7 @@ public class ReceivablesPage {
         waitForElementToBeDisplayed ( submitOption );
         submitOption.click ();
         okButton.click ();
-        waitTime ( 6000 );
+        waitTime ( 10000 );
 
     }
 
@@ -416,6 +420,7 @@ public class ReceivablesPage {
     }
 
       public void clickRevenueInvoiceCash() {
+        waitForElementToBeDisplayed ( revenueInvoiceCash );
         revenueInvoiceCash.click ();
         waitForElementToBeDisplayed ( revenueInvoiceCashTab );
         waitTime ( 2000 );
