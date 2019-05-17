@@ -8,12 +8,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.sikuli.hotkey.Keys;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 
 import javax.inject.Inject;
-
 import java.util.Objects;
 
 import static co.uk.optum.utility.CommonUtility.*;
@@ -176,6 +176,39 @@ public class LandingPage {
 
     @FindBy(xpath = "//tr/td[4]/button[@instancename='HE_Pension0opt_out']")
     WebElement pensionOptOutButton;
+
+    @FindBy(xpath = "//span[@class='z-tab-text'][text()='Health Benefits']")
+    WebElement healthBenefitTab;
+
+    @FindBy(xpath = "//tr[4]/td[2]/span[@instancename='HR_Benifits_Management0hr_benefit_scheme_ID']/input")
+    WebElement healthInsurance;
+
+    @FindBy(xpath = "//tr/td/span[@instancename='HR_Benifits_Management0IsBenifit']/input")
+    WebElement selectBenefit;
+
+    @FindBy(xpath="//tr/td/span[@instancename='HR_Benifits_Management0HR_Membership_Option_ID']/input")
+    WebElement membershipOption;
+
+    @FindBy(xpath = "//tr/td/span[@instancename='HR_Benifits_Management0he_eff_date']/input")
+    WebElement healthBenefitEffectiveDate;
+
+    @FindBy(xpath = "//tr/td/button[@instancename='HR_Benifits_Management0apply_change']")
+    WebElement benefitApplyChange;
+
+    @FindBy(xpath = "//tr/td/button[@instancename='HR_Benifits_Management0OptOut']")
+    WebElement benefitOptOut;
+
+    @FindBy(xpath = "//div/button[@class='txt-btn btn-ok z-button']")
+    WebElement healthBenefitOkButton;
+
+    @FindBy(xpath="//tr/td/button[@class='z-messagebox-button z-button']")
+    WebElement healthBenefitOKPopup;
+
+    @FindBy(xpath = "//div/button[@class='txt-btn btn-ok z-button']")
+    WebElement benefitProcessOKButton;
+
+    @FindBy(xpath = "//tbody[@class='z-rows']/tr[6][@class='benefits z-row z-grid-odd']/td[2]/div/input[@class='z-textbox z-textbox-readonly']")
+    WebElement employeehealthBenefitValue;
 
     public void approveContractualChanges() {
         waitTime(2000);
@@ -498,6 +531,7 @@ public class LandingPage {
     public void pensionPage(){
        waitForElementToBeDisplayed(pensionPageTab);
     }
+
     public void selectPensionSchemeDetails(String PensionBenefit,String PensionScheme, String PensionSchemeLevel, int PensionEffectiveDate){
 
         waitForElementToBeDisplayed(pensionBenefitsDropdown);
@@ -551,11 +585,11 @@ public class LandingPage {
         {
             assertion = true;
             System.out.println(scheme);
-            System.out.println("no scheme applied now");
+
 
         }
         else if(!Objects.equals(employeePensionValue.getAttribute("value"), scheme)){
-            System.out.println("Doesnt Match");
+            System.out.println("Benefit Doesn't Match");
         }
          //else{ assertion=false;}
          return assertion;
@@ -574,4 +608,93 @@ public class LandingPage {
        pensionOptOutButton.click();
 
     }
+
+    public void verifyHealthBenefitTab(){
+        waitForElementToBeDisplayed(healthBenefitTab);
+    }
+
+
+   /* public WebElement healthBenefitPage() throws TimeoutException, InterruptedException {
+
+      WebElement  element =driver.findElement(By.xpath("//div[@class='adwindow-toolbar z-toolbar']/div/a[3][@title='New    Alt+N']/span"));
+        while (!isDisplayed(element))
+        {
+            Thread.sleep(3000);
+            System.out.println("Element is not visible yet");
+        }
+        return element;
+    }
+    public static boolean isDisplayed(WebElement element) {
+        try {
+            if(element.isDisplayed())
+                return element.isDisplayed();
+        }catch (TimeoutException ex) {
+            return false;
+        }
+        return false;
+    }*/
+
+
+    public void selectHealthBenefitDetails(String health_Insurance, String select_benefit, String membership_option, int health_effective_date){
+        waitTime(2000);
+       waitForElementToBeDisplayed(healthInsurance);
+       healthInsurance.clear();
+       healthInsurance.sendKeys(health_Insurance + Keys.TAB);
+       waitForElementToBeDisplayed(selectBenefit);
+       selectBenefit.clear();
+       selectBenefit.sendKeys(select_benefit +Keys.TAB);
+       waitForElementToBeDisplayed(membershipOption);
+       membershipOption.clear();
+       membershipOption.sendKeys(membership_option + Keys.TAB);
+       waitForElementToBeDisplayed(healthBenefitEffectiveDate);
+       healthBenefitEffectiveDate.clear();
+       healthBenefitEffectiveDate.sendKeys(getFutureDate(health_effective_date));
+
+    }
+
+    public void applyBenefitChange(){
+        waitForElementToBeDisplayed(benefitApplyChange);
+        benefitApplyChange.click();
+        waitForElementToBeDisplayed(healthBenefitOkButton);
+        healthBenefitOkButton.click();
+        waitForElementToBeDisplayed(healthBenefitOKPopup);
+        healthBenefitOKPopup.click();
+    }
+
+   public void  applyBenefitManualProcess(){
+       waitForElementToBeDisplayed(benefitProcessOKButton);
+       benefitProcessOKButton.click();
+       String Verifytext= driver.findElement(By.tagName("font")).getText().trim();
+       Assert.assertEquals(Verifytext, "** null");
+   }
+
+   public boolean verifyBenefitApplied(String benefitvalue){
+       if (employeehealthBenefitValue.getAttribute("value").equals(benefitvalue))
+
+       {
+           assertion = true;
+           System.out.println(benefitvalue);
+
+
+       }
+       else if(!Objects.equals(employeehealthBenefitValue.getAttribute("value"), benefitvalue)){
+           System.out.println("Doesnt Match");
+       }
+       //else{ assertion=false;}
+       return assertion;
+   }
+
+   public void selectHealthBenefitOptOut(int effect_date){
+       waitForElementToBeDisplayed(healthBenefitEffectiveDate);
+       healthBenefitEffectiveDate.sendKeys(getFutureDate(effect_date));
+   }
+
+   public void healthBenefitOptOut(){
+       waitForElementToBeDisplayed(benefitOptOut);
+       benefitOptOut.click();
+       healthBenefitOkButton.click();
+       healthBenefitOKPopup.click();
+   }
+
 }
+

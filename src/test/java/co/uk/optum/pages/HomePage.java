@@ -151,6 +151,12 @@ public class  HomePage {
     @FindBy(xpath = "//div/ul/li/a/span[contains(.,'ApplyPensionChange')]")
     WebElement applyPensionTab;
 
+    @FindBy(xpath = "//tr/td/div/a[text()='Apply Benefits Changes']")
+    WebElement benefitChangeProcess;
+
+    @FindBy(xpath = "//div/ul/li[2]/a/span[text()='Apply Benefits Changes']")
+    WebElement applyBenefitTab;
+
    // @FindBy(xpath="//tr/td/div/span[@class='global-search-box z-bandbox']/input")
     //WebElement searchBar;
 
@@ -378,7 +384,12 @@ public class  HomePage {
         pensionChangeProcess.click();
         waitForElementToBeDisplayed(applyPensionTab);
 
-
+    }
+    public void searchBenefitChangeProcess(){
+        menuIcon.click();
+        waitForElementToBeDisplayed(benefitChangeProcess);
+        benefitChangeProcess.click();
+        waitForElementToBeDisplayed(applyBenefitTab);
     }
 
 
