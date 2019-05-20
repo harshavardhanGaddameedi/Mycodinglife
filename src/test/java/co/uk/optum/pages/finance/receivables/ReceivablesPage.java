@@ -180,13 +180,13 @@ public class ReceivablesPage {
     public void setRevenueOrderDetails(String customer, String product, String quantity) throws InterruptedException {
 
         System.out.println ( "Clicking New button" );
-        waitTime ( 3000 );
-        waitForElementToBeDisplayed ( revenueOrderTab );
+//        waitTime ( 3000 );
+//        waitForElementToBeDisplayed ( revenueOrderTab );
         waitTime ( 5000 );
         newToolbarIcon.click ();
         waitTime ( 5000 );
-        waitForElementToBeDisplayed ( revenueOrderTab );
-        waitTime ( 5000 );
+//        waitForElementToBeDisplayed ( revenueOrderTab );
+//        waitTime ( 5000 );
         practiceName.clear ();
         practiceName.sendKeys ( "ErpPractice" );
         practiceName.sendKeys ( Keys.TAB );
@@ -210,7 +210,7 @@ public class ReceivablesPage {
         parentRecAltUp.click ();
         System.out.println ( "Clicked ParentRecAltUp" );
         waitTime ( 3000 );
-        waitForElementToBeDisplayed ( revenueOrderTab );
+//        waitForElementToBeDisplayed ( revenueOrderTab );
 
 
     }
@@ -430,7 +430,15 @@ public class ReceivablesPage {
 
     public void clickRevenueOrderCore() {
 
+        waitForElementToBeDisplayed ( revenueOrderCore );
         revenueOrderCore.click();
+        waitForElementToBeDisplayed ( revenueOrderCoreTab);
+        if (okButton.isDisplayed ())
+        {
+            okButton.click ();
+            waitTime ( 2000 );
+        }
+
         waitForElementToBeDisplayed ( revenueOrderCoreTab);
 
 

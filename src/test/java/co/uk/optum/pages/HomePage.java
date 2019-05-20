@@ -166,6 +166,8 @@ public class  HomePage {
     //div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Recruitment Request')]
 
     public void clickWorkflowActivities(){
+
+        waitForElementToBeDisplayed (workflowActivitiesLabel  );
         workflowActivitiesLabel.click();
     }
 
@@ -177,6 +179,7 @@ public class  HomePage {
 
     public boolean isHomeTabDispalyed() {
         waitTime(6000);
+        waitForElementToBeDisplayed ( homeTab );
         return homeTab.isDisplayed();
     }
 
