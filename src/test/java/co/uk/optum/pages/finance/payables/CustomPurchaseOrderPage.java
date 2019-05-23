@@ -53,10 +53,10 @@ public class CustomPurchaseOrderPage {
     }
 
     public void submitCustomPO(){
-        clickDocumentAction();
-        clickDocumentActionDropDown();
-        selectSubmitOption();
-        clickOk();
+//        clickDocumentAction();
+//        clickDocumentActionDropDown();
+//        selectSubmitOption();
+//        clickOk();
         setPurchaseOrderNumber(retrievePurchaseOrderNumber());
         setBusinessPartner(retrieveBusinessPartner());
         waitTime(6000);

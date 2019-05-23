@@ -151,6 +151,12 @@ public class  HomePage {
     @FindBy(xpath = "//div/ul/li/a/span[contains(.,'ApplyPensionChange')]")
     WebElement applyPensionTab;
 
+    @FindBy(xpath = "//tr/td/div/a[text()='Apply Benefits Changes']")
+    WebElement benefitChangeProcess;
+
+    @FindBy(xpath = "//div/ul/li[2]/a/span[text()='Apply Benefits Changes']")
+    WebElement applyBenefitTab;
+
    // @FindBy(xpath="//tr/td/div/span[@class='global-search-box z-bandbox']/input")
     //WebElement searchBar;
 
@@ -160,6 +166,8 @@ public class  HomePage {
     //div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Recruitment Request')]
 
     public void clickWorkflowActivities(){
+
+        waitForElementToBeDisplayed (workflowActivitiesLabel  );
         workflowActivitiesLabel.click();
     }
 
@@ -171,6 +179,7 @@ public class  HomePage {
 
     public boolean isHomeTabDispalyed() {
         waitTime(6000);
+        waitForElementToBeDisplayed ( homeTab );
         return homeTab.isDisplayed();
     }
 
@@ -378,7 +387,12 @@ public class  HomePage {
         pensionChangeProcess.click();
         waitForElementToBeDisplayed(applyPensionTab);
 
-
+    }
+    public void searchBenefitChangeProcess(){
+        menuIcon.click();
+        waitForElementToBeDisplayed(benefitChangeProcess);
+        benefitChangeProcess.click();
+        waitForElementToBeDisplayed(applyBenefitTab);
     }
 
 
