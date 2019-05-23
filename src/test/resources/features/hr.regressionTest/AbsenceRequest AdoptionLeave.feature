@@ -26,7 +26,7 @@ Feature: Create a new adoption leave request as an employee and approve the same
     And click on Approve Absence Request Section
     And Select the absence request created by employee
       |user         | Type|
-      |Blog B|Adoption Requests|
+      |Cyrus Mathew|Adoption Requests|
     And I Click on the Access Request button
     And Approve the request using approve button
     Then the request will be approved

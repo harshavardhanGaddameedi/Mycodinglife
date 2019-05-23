@@ -26,7 +26,7 @@ Feature: Create a new paternity leave request as an employee and approve the sam
     And click on Approve Absence Request Section
     And Select the absence request created by employee
       |user         | Type|
-      |Ajinkya Rahane|Paternity Requests|
+      |Mittal JI|Paternity Requests|
     And I Click on the Access Request button
     And Approve the request using approve button
     Then the request will be approved
