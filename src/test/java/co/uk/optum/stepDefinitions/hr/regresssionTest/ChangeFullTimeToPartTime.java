@@ -1,28 +1,18 @@
 package co.uk.optum.stepDefinitions.hr.regresssionTest;
-import static co.uk.optum.utility.CommonUtility.stringToContainsTag;
-import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
-import static co.uk.optum.utility.CommonUtility.waitTime;
 import co.uk.optum.pages.HomePage;
 import co.uk.optum.pages.LandingPage;
-import co.uk.optum.pages.hr.LeaverRequestApproval;
 import co.uk.optum.pages.hr.TeamView;
 import co.uk.optum.utility.DriverProvider;
 import com.google.inject.Inject;
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 import java.util.Map;
-
-import cucumber.api.PendingException;
 
 public class ChangeFullTimeToPartTime {
 
@@ -46,5 +36,37 @@ public class ChangeFullTimeToPartTime {
         List<Map<String,String>> data = p.asMaps(String.class,String.class);
         teamView.changefulltimetoparttime(data.get (0).get("ReasonForChange"),Integer.parseInt(data.get (0).get("EffectiveDate")),data.get (0).get("Comments"),data.get (0).get("Multiplier Hours/Week"));
 
+    }
+
+    @And("^search for the fulltime to part time  request$")
+    public void searchForTheFulltimeToPartTimeRequest() throws Throwable {
+        landingPage.searchFullToPartTimeRequest();
+    }
+
+    @Then("^i verify the Full Time or Part time Value$")
+    public void iVerifyTheFullTimeOrPartTimeValue(DataTable c) throws Throwable {
+        List<Map<String,String>> data = c.asMaps(String.class,String.class);
+        landingPage.verifyTimeValue(data.get ( 0 ).get ( "Full/Part Time" ));
+    }
+
+    @Then("^i approve or reject the request for full time to part time$")
+    public void iApproveOrRejectTheRequestForFullTimeToPartTime() throws Throwable {
+        landingPage.approveTimeContractChange();
+    }
+
+    @And("^search for the Part time hours  change request$")
+    public void searchForThePartTimeHoursChangeRequest() throws Throwable {
+        landingPage.searchPartTimeChangeRequest();
+    }
+
+    @Then("^i approve the request$")
+    public void iApproveTheRequest() throws Throwable {
+        landingPage.approvePartTimeChangeRequest();
+    }
+
+    @Then("^i verify the contractual hours to check hour change is implemented$")
+    public void iVerifyTheContractualHoursToCheckHourChangeIsImplemented(DataTable m) throws Throwable {
+        List<Map<String,String>> data = m.asMaps(String.class,String.class);
+        landingPage.verifyPartTimeHours(data.get ( 0 ).get ( "Contractual Hours" ));
     }
 }

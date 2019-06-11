@@ -157,6 +157,14 @@ public class  HomePage {
     @FindBy(xpath = "//div/ul/li[2]/a/span[text()='Apply Benefits Changes']")
     WebElement applyBenefitTab;
 
+    @FindBy(xpath = "//tr[525]/td/div/a[text()='Check Request']")
+    WebElement checkRequestProcess;
+
+    @FindBy(xpath = "//div/ul/li/a/span[text()='Check Request']")
+    WebElement checkRequestTab;
+
+
+
    // @FindBy(xpath="//tr/td/div/span[@class='global-search-box z-bandbox']/input")
     //WebElement searchBar;
 
@@ -393,6 +401,13 @@ public class  HomePage {
         waitForElementToBeDisplayed(benefitChangeProcess);
         benefitChangeProcess.click();
         waitForElementToBeDisplayed(applyBenefitTab);
+    }
+
+    public void searchCheckRequestProcess(){
+        menuIcon.click();
+        waitForElementToBeDisplayed(checkRequestProcess);
+        checkRequestProcess.click();
+        waitForElementToBeDisplayed(checkRequestTab);
     }
 
 

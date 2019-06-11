@@ -1,23 +1,15 @@
 package co.uk.optum.stepDefinitions.hr.regresssionTest;
 
-import static co.uk.optum.utility.CommonUtility.stringToContainsTag;
-import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
-import static co.uk.optum.utility.CommonUtility.waitTime;
 import co.uk.optum.pages.HomePage;
 import co.uk.optum.pages.LandingPage;
-import co.uk.optum.pages.hr.LeaverRequestApproval;
 import co.uk.optum.pages.hr.TeamView;
 import co.uk.optum.utility.DriverProvider;
 import com.google.inject.Inject;
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
@@ -71,11 +63,11 @@ public class ChangeContractType {
      teamView.clickOk();
     }
 
-    @When("^i go to Landing Page$")
-    public void igotoLandingPage() throws Throwable {
-      homePage.openNewLandingPage();
-
-    }
+//    @When("^i go to Landing Page$")
+//    public void igotoLandingPage() throws Throwable {
+//      homePage.openNewLandingPage();
+//
+//    }
 
     @And("^i go to Approve Contractual Changes$")
     public void iGoToApproveContractualChanges() throws Throwable {
@@ -90,10 +82,30 @@ public class ChangeContractType {
 
     @Then("^i approve or reject the request$")
     public void i_approve_or_reject_the_request() throws Throwable {
-        System.out.println("Request Approved");
+       landingPage.approvecontractRequest();
 
     }
 
+    @When("^i search for Check Request Process$")
+    public void iSearchForCheckRequestProcess() throws Throwable {
+        homePage.searchCheckRequestProcess();
+      
+    }
 
+    @Then("^on check Request Page i enter effective date and click ok$")
+    public void onCheckRequestPageIEnterEffectiveDateAndClickOk(DataTable e) throws Throwable {
+        List<Map<String,String>> data = e.asMaps(String.class,String.class);
+        landingPage.checkRequestDetails(Integer.parseInt(data.get (0).get("Effective Date")));
+    }
 
+    @And("^Open the Job Information Tab$")
+    public void openTheJobInformationTab() throws Throwable {
+       landingPage.openEmployeeJobInformation();
+    }
+
+    @Then("^i verify the Payroll Contract Type$")
+    public void iVerifyThePayrollContractType(DataTable p) throws Throwable {
+        List<Map<String,String>> data = p.asMaps(String.class,String.class);
+        landingPage.verifyContractTypeApplied(data.get ( 0 ).get ( "Payroll Contract" ));
+    }
 }
