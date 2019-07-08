@@ -50,14 +50,35 @@ public class LandingPage {
     WebElement maternityLeaveRequest;
     @FindBy(xpath = "//td//div//span[contains(.,'Shared Parental Leave Request')]")
     WebElement sharedParentalLeaveRequest;
+    @FindBy(xpath = "//td//div//span[contains(.,'Log My Overtime')]")
+    WebElement logOverTimeRequest;
 
+    @FindBy(xpath = "//td//div//span[contains(.,'Approve Overtime')]")
+    WebElement approveOverTimeRequest;
+
+    @FindBy(xpath = "//td//div//span[contains(.,'Log My Overtime')]")
+    WebElement myTeam;
 
     @FindBy(xpath = "//div/span[text()='Start Date']/following::span[1]/input[@class=\"z-datebox-input\"]")
     WebElement leaveStartDate;
 
+    @FindBy(xpath = "//div/span[text()='Back to Work Date']/following::span[1]/input[@class=\"z-datebox-input\"]")
+    WebElement backToWorkDate;
 
     @FindBy(xpath = "//div/span[text()='End Date']/following::span[1]/input[@class=\"z-datebox-input\"]")
     WebElement leaveEndDate;
+
+    @FindBy(xpath = "//div/span[text()='Date Overtime Completed']//following::span[1]/input[@class=\"z-datebox-input\"]")
+    WebElement oTDate;
+
+    @FindBy(xpath = "//div/span[text()='Hours Completed']//following::td[1]/div/div/div/input")
+    WebElement oTHours;
+    @FindBy(xpath = "//div/span[text()='Hours Absent']//following::div/input[@class=\"editor-input z-decimalbox\"]")
+    WebElement sicknessHours;
+
+
+
+
 
     @FindBy(xpath = " //div/span[text()='Partial Date (Start)']/following::td[1]/div/select[@class=\"z-select\"]")
     WebElement annualLeavePartialDate;
@@ -65,6 +86,11 @@ public class LandingPage {
 
     @FindBy(xpath = " //div/button[contains(.,'Submit Request')]")
     WebElement submitRequest;
+
+    @FindBy(xpath = "//div/button[contains(.,'Submit')]")
+    WebElement submit;
+
+
 
     @FindBy(xpath = "//div/span[contains(.,'Absence Request has been created and submitted')]")
     WebElement successMsg;
@@ -112,6 +138,8 @@ public class LandingPage {
 
     @FindBy(xpath = "//table/tbody/tr/td/button[contains(.,'OK')]")
     WebElement okButton;
+    @FindBy(xpath = "//table/tbody/tr/td/button[@title='OK']")
+    WebElement acceptButton;
 
     @FindBy(xpath = "//tr/td/div/button[contains(.,'Upload Proof of Adoption')]")
     WebElement uploadProofButton;
@@ -206,6 +234,22 @@ public class LandingPage {
 
     @FindBy(xpath = "//div/button[@class='txt-btn btn-ok z-button']")
     WebElement benefitProcessOKButton;
+
+    @FindBy(xpath = "//button[contains(.,'Log Sickness Absence')]")
+    WebElement sicknessAbsenceButton;
+
+    @FindBy(xpath = "//div/button[contains(.,'Save')]")
+    WebElement saveSicknessButton;
+    @FindBy(xpath = "//div/span[text()='Notes']/following::div/textarea")
+    WebElement sicknessNotes;
+
+    @FindBy(xpath = "//div/button[contains(.,'Complete RTW')]")
+    WebElement cRTWButton;
+
+    @FindBy(xpath = "//div[@class='z-vlayout-inner']//table[@class='z-hbox']//tr//td[9]//span[@class='z-label']")
+    WebElement   fileAttached;
+
+
 
     @FindBy(xpath = "//tbody[@class='z-rows']/tr[6][@class='benefits z-row z-grid-odd']/td[2]/div/input[@class='z-textbox z-textbox-readonly']")
     WebElement employeehealthBenefitValue;
@@ -696,5 +740,178 @@ public class LandingPage {
        healthBenefitOKPopup.click();
    }
 
+    public void clickOTRequest() {
+       waitForElementToBeDisplayed(logOverTimeRequest);
+       logOverTimeRequest.click();
+    }
+
+
+    public void enterOverTimeDetails(int date, String hours) {
+
+        waitTime(2000);
+        System.out.println(getFutureDate(date));
+        oTDate.sendKeys(getFutureDate(date) + TAB);
+        System.out.println(hours);
+        oTHours.sendKeys(hours);
+    }
+
+    public void submitOTRequest() {
+       waitTime(1000);
+       submit.click();
+    }
+
+
+    public boolean isOTSubmitted() {
+        if ((driver.findElement(By.xpath("//div/span[contains(.,'Overtime Request has been created and sent for approval')]")).isDisplayed())) {
+            acceptButton.click();
+            return true;
+
+
+        } else return false;
+    }
+
+    public void approveOTRequest() {
+       waitForElementToBeDisplayed(approveOverTimeRequest);
+       approveOverTimeRequest.click();
+
+    }
+
+    public void findOTRequest(int date, String username) {
+
+
+        //div/table[contains(.,'Reject')]/tbody/tr//following::td[contains(.,'SR Hyderabad')][1]//following::td[contains(.,'2019-06-17')][1]//following::td[contains(.,'Approve')][1]/div/button[contains(.,'Approve')]
+
+     System.out.println(username);
+     WebElement otRequest =  driver.findElement(By.xpath("//div/table[contains(.,'Reject')]/tbody/tr/td[contains(.,'"+username+"')]//following::td[contains(.,'Approve')][1]/div/button[contains(.,'Reject')]"));
+     WebElement otComment = driver.findElement(By.xpath("//div/table[contains(.,'Reject')]/tbody/tr/td[contains(.,'"+username+"')]//following::td[contains(.,'Approve')][1]/div/button[contains(.,'Reject')]/preceding::td/input"));
+     otComment.sendKeys("Rejecting ot request");
+     //div/table[contains(.,'Reject')]/tbody/tr//following::td[contains(.,'"+username+"')][1]//following::td[contains(.,'Approve')][1]/div/button[contains(.,'Approve')]
+     System.out.println(otRequest);
+     otRequest.click();
+     waitTime(1000 );
+
+
+    }
+
+    public void createSicknessRequest() {
+       waitForElementToBeDisplayed(sicknessAbsenceButton);
+       sicknessAbsenceButton.click();
+       waitTime(2000);
+
+    }
+
+    public void saveSicknessRequest() {
+       saveSicknessButton.click();
+
+
+    }
+
+    public boolean isSicknessRequestCreaetd() {
+        if ((driver.findElement(By.xpath("//div/span[contains(.,'Sickness Absence has been logged')]")).isDisplayed())) {
+            okButton.click();
+            waitTime(2000);
+            return true;
+
+        } else if ((driver.findElement(By.xpath("//div/span[contains(.,'Sickness Absence details have been updated.')]")).isDisplayed())) {
+            okButton.click();
+            waitTime(2000);
+            return true;
+        } else return false;
+    }
+
+    public void enterSicknessDetails(int date, String hours) {
+       waitForElementToBeDisplayed(leaveStartDate);
+       leaveStartDate.clear();
+       leaveStartDate.sendKeys(getFutureDate(date)+TAB);
+//       if (sicknessHours.isDisplayed()){
+//           sicknessHours.sendKeys(hours);
+//        }
+//        else{
+//           System.out.print("");
+//       }
+        try {
+            sicknessHours.isDisplayed();
+            System.out.print("Entering sickness hours for part time employee ");
+            sicknessHours.sendKeys(hours);
+        }catch (Exception e)
+        {
+            System.out.println("Given User is full time and can't enter sickness hours");
+        }
+
+
+
+
+    }
+
+    public void submitSicknessDetails(int backtoWorkDate, String notes) {
+       waitForElementToBeDisplayed(leaveStartDate);
+       backToWorkDate.sendKeys(getFutureDate(backtoWorkDate)+TAB);
+       sicknessNotes.sendKeys(notes);
+
+
+
+    }
+
+    public boolean isRTWRequiredForSickness() {
+        if ((driver.findElement(By.xpath("//div/span[contains(.,'Error: : ')]")).isDisplayed())) {
+            okButton.click();
+            return true;
+
+
+        } else return false;
+
+    }
+
+    public void clickRTWButton() {
+       cRTWButton.click();
+       waitTime(2000);
+   }
+
+    public void attachRTWDocument() throws FindFailed {
+
+        String filepath = toAbsolutePath("src//test//resources//AttachingFilesImages//");
+        String inputFilePath = toAbsolutePath("src//test//resources//AttachingFilesImages//");
+
+        System.out.println ( filepath );
+        System.out.println (inputFilePath  );
+
+
+        Screen s = new Screen();
+        Pattern fileInputTextBox = new Pattern(filepath +"//"+"FilePath.PNG");
+        Pattern openButton = new Pattern(filepath + "//"+"OpenFile2.PNG");
+        s.wait(fileInputTextBox, 20);
+        s.type(fileInputTextBox, inputFilePath + "//"+"JobDescription.doc");
+        s.click(openButton);
+        System.out.println ( "Attachment Opened" );
+        waitTime ( 5000 );
+//        if (!fileAttached.getText ().isEmpty ())
+//
+//        {
+//
+//            System.out.println ( "Attachment Attached" );
+//        }
+
+    }
+
+
+    public boolean documentUploadSuccessMsg() {
+        if ((driver.findElement(By.xpath("//div/span[contains(.,'Document uploaded')]")).isDisplayed())) {
+            okButton.click();
+            return true;
+
+
+        } else return false;
+
+    }
+
+    public boolean sicknessRequestCompleted() {
+
+        if ((driver.findElement(By.xpath("//div/span[contains(.,'Sickness Absence details have been updated')]")).isDisplayed())) {
+            okButton.click();
+            return true;
+
+
+        } else return false;
+    }
 }
 

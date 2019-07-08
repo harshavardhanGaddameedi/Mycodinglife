@@ -9,7 +9,7 @@ Feature: Receivables / Cash Revenue Invoice Generation Scenarios
     And I click on Revenue Order
     And I enter all the Revenue Order Details
       |Customer    |  |Product               |  |Quantity    |
-      |Aviva Health|  |Tramadol Capsules 50mg|  |10          |
+      |Aviva Health|  |Standard_Standard     |  |10          |
 
     When I Submit Document Action Receivables
     Then I should see the Revenue Order created

@@ -55,7 +55,7 @@ public class ProductInfoPage {
     }
 
     public void searchAndSelectAProduct(){
-        enterProductNameToSearch("Allopurinol Tablets");
+        enterProductNameToSearch("Hepatitis");
         waitTime(2000);
         clickRefereshButton();
         clickProductCheckbox();

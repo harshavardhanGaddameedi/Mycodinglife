@@ -1,7 +1,10 @@
 package co.uk.optum.pages;
 
 import co.uk.optum.utility.DriverProvider;
+import net.bytebuddy.asm.Advice;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotSelectableException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,7 +31,7 @@ public class  HomePage {
     @FindBy(xpath = "//tbody/tr/td/table/tbody/tr/td[13]/a/span[contains(.,'Log Out')]")
     WebElement logoutLink;
 
-    @FindBy(xpath = "//span[contains(.,'Home')]")
+   @FindBy(xpath = "//span[contains(.,'Home')]")
     WebElement homeTab;
 
     @FindBy(xpath = "//tbody/tr/td[5]/button[@title='Menu']")
@@ -48,7 +51,7 @@ public class  HomePage {
     WebElement receivablesMenu;
 
 //    @FindBy(xpath = "//div/div[@class='z-popup-content']/div/div[@class='z-panel-body']/div[1]/div/div[3]/table/tbody/tr[3]/td/div/a")
-    @FindBy(xpath = "//div/a[contains(.,'Payables/Procurement')]")
+    @FindBy(xpath = "//td/div/a[contains(.,'Payables/Procurement')]")
     WebElement payablesProcurementMenu;
 
     @FindBy(xpath = "//div/div[@class='z-popup-content']/div/div[@class='z-panel-body']/div[1]/div/div[3]/table/tbody/tr[4]/td/div/a")
@@ -157,7 +160,16 @@ public class  HomePage {
     @FindBy(xpath = "//div/ul/li[2]/a/span[text()='Apply Benefits Changes']")
     WebElement applyBenefitTab;
 
-   // @FindBy(xpath="//tr/td/div/span[@class='global-search-box z-bandbox']/input")
+    @FindBy(xpath = "//a[contains(.,'Home')]")
+    WebElement homeMenu;
+    @FindBy(xpath = "//img[@src[contains(.,'expand-header')]]")
+    WebElement expandIcon;
+    @FindBy(xpath = "//img[@src[contains(.,'collapse-header')]]")
+    WebElement collapseIcon;
+
+
+
+    // @FindBy(xpath="//tr/td/div/span[@class='global-search-box z-bandbox']/input")
     //WebElement searchBar;
 
      //@FindBy(xpath="//div/a[2]/span/img[@src=\'/webui/theme/businessTeamBlue/images/expand-header.png\']")
@@ -166,14 +178,37 @@ public class  HomePage {
     //div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Recruitment Request')]
 
     public void clickWorkflowActivities(){
+        homeMenu.click();
+     if (workflowActivitiesLabel.isDisplayed()){
+         waitForElementToBeDisplayed (workflowActivitiesLabel  );
+         workflowActivitiesLabel.click();
+        }
+        else{
+         collapseIcon.click();
+         waitForElementToBeDisplayed (workflowActivitiesLabel  );
+         workflowActivitiesLabel.click();
+     }
 
-        waitForElementToBeDisplayed (workflowActivitiesLabel  );
-        workflowActivitiesLabel.click();
+
     }
 
     public void waitForHomePageLoad() {
-        waitTime ( 2000 );
-       // expandHeader.click();
+        waitTime(2000);
+        // expandHeader.click();
+      //  WebElement expandButton=driver.findElement(By.xpath("//img[@src[contains(.,'expand-header')]]"));
+        try {
+            expandIcon.isDisplayed();
+            System.out.print("clicking on expand button");
+            expandIcon.click();
+        }catch (Exception e)
+        {
+            System.out.println("Expand button not displayed");
+        }
+//        if (driver.findElement(By.xpath("//img[@src[contains(.,'expand-header')]]")).isDisplayed()){
+//            driver.findElement(By.xpath("//img[@src[contains(.,'expand-header')]]")).click();
+//
+//        }
+
         waitForElementToBeDisplayed(logoutLink);
     }
 
@@ -396,4 +431,13 @@ public class  HomePage {
     }
 
 
+//    public void selectHeader() {
+//        if (driver.findElement(By.xpath("//img[@src[contains(.,'expand-header')]]")).isDisplayed())
+//        {
+//            driver.findElement(By.xpath("//img[@src[contains(.,'expand-header')]]")).click();
+//        }
+//
+//    }
+//
 }
+

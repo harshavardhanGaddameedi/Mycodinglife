@@ -5,7 +5,7 @@ Feature: Create a new maternity leave request as an employee and approve the sam
     Given I am in login Page
     And I login to IDempiere with "<user>" "<password>" "<role>"
     Then the dashboard is displayed
-    When i go to Landing Page
+#    When i go to Landing Page
     And I Click on maternity Leave Request Section in landing page
     And I enter all the  leave details in maternity leave window
     |ewoc|

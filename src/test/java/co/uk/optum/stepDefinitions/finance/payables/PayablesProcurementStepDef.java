@@ -231,6 +231,7 @@ public class PayablesProcurementStepDef {
     @Then("^I should see the Invoice generated with status as Submitted$")
     public void iShouldSeeTheInvoiceGeneratedWithStatusAsSubmitted() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
+        invoiceSupplier.getDocumentNumber();
         Assert.assertTrue("Custom PO Status is not Correct!!!", invoiceSupplier.isInvoiceGeneratedSuccessfully());
     }
 

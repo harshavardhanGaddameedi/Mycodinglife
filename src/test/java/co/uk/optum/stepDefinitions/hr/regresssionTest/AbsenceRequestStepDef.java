@@ -9,10 +9,12 @@ import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 import java.util.Map;
 
@@ -222,4 +224,124 @@ public class AbsenceRequestStepDef {
         landingPage.proofOfMaternity();
 
     }
+
+    @When("^I click on log My Over time section$")
+    public void iClickOnLogMyOverTimeSection() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+       landingPage.clickOTRequest();
+    }
+
+    @And("^I enter all the Over time details$")
+    public void iEnterAllTheOverTimeDetails(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        landingPage.enterOverTimeDetails((Integer.parseInt(data.get (0).get("Date"))),data.get (0).get("Hours"));
+    }
+
+    @And("^I Click on Submit  Button$")
+    public void iClickOnSubmitButton() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        landingPage.submitOTRequest();
+    }
+
+    @Then("^Overtime Request will be created$")
+    public void overtimeRequestWillBeCreated() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Leave applied successfully !!!",landingPage.isOTSubmitted());
+    }
+
+    @And("^I click on Approve Overtime Section$")
+    public void iClickOnApproveOvertimeSection() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+         landingPage.approveOTRequest();
+    }
+
+
+    @And("^I Select the over time request created by employee and approve$")
+    public void iSelectTheOverTimeRequestCreatedByEmployeeAndApprove(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        landingPage.findOTRequest((Integer.parseInt(data.get (0).get("Date"))),data.get (0).get("UserName"));
+    }
+
+    @And("^I Select the over time request created by employee and reject$")
+    public void iSelectTheOverTimeRequestCreatedByEmployeeAndReject(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        landingPage.findOTRequest((Integer.parseInt(data.get (0).get("Date"))),data.get (0).get("UserName"));
+    }
+
+    @And("^select Log Sickness Absence button$")
+    public void selectLogSicknessAbsenceButton() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        landingPage.createSicknessRequest();
+
+    }
+
+    @And("^i Save the request$")
+    public void iSaveTheRequest() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        landingPage.saveSicknessRequest();
+    }
+
+    @Then("^sickness absence request will be created$")
+    public void sicknessAbsenceRequestWillBeCreated() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Leave applied successfully !!!",landingPage.isSicknessRequestCreaetd());
+    }
+
+    @And("^I enter the sickness absence details$")
+    public void iEnterTheSicknessAbsenceDetails(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        landingPage.enterSicknessDetails((Integer.parseInt(data.get (0).get("Date"))),data.get (0).get("Hours"));
+
+           }
+
+    @And("^I enter backtowork date$")
+    public void iEnterBacktoworkDate(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        landingPage.submitSicknessDetails((Integer.parseInt(data.get (0).get("BacktoWorkDate"))),data.get (0).get("Notes"));
+
+    }
+
+    @Then("^I should get message to attach RTW form$")
+    public void iShouldGetMessageToAttachRTWForm() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Leave applied successfully !!!",landingPage.isRTWRequiredForSickness());
+    }
+
+    @And("^I click on CompleteRTW button$")
+    public void iClickOnCompleteRTWButton() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        landingPage.clickRTWButton();
+    }
+
+    @And("^I Upload RTW document$")
+    public void iUploadRTWDocument() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        landingPage.attachRTWDocument();
+    }
+
+    @Then("^I should get upload successful msg$")
+    public void iShouldGetUploadSuccessfulMsg() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+
+        Assert.assertTrue("Leave applied successfully !!!",landingPage.documentUploadSuccessMsg());
+    }
+
+    @Then("^Sickness Absence will be updated$")
+    public void sicknessAbsenceWillBeUpdated() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Leave applied successfully !!!",landingPage.sicknessRequestCompleted());
+    }
+
+    @And("^i click on the employee for whom i want to do raise the sickness request$")
+    public void iClickOnTheEmployeeForWhomIWantToDoRaiseTheSicknessRequest(DataTable r) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = r.asMaps(String.class,String.class);
+        teamView.selectEmployeetoUpdate(data.get (0).get("name"));
+    }
+
 }

@@ -33,6 +33,8 @@ public class CustomRequisitionPage {
 
     @FindBy (xpath = "//span[@title='Document type or rules']/input[@value='Purchase Requisition']")
     WebElement documentTypeTextBox;
+    @FindBy (xpath = "//span[@title='Unique identifier of a Price List']/input[@value='Standard']")
+    WebElement priceListTextBox;
 
     @FindBy (xpath = "//span[@title='Date when required']/input")
     WebElement dateRequiredTextBox;
@@ -166,10 +168,17 @@ public class CustomRequisitionPage {
         clickNewToolBarIcon();
         waitTime(2000);
         enterDocumentType("Purchase Requisition");
+        priceListTextBox("Standard");
         setRequiredDate(5);
         clickDetailRecordDownArrowIcon();
         customRequisitionRequisitionLinePage.selectAProduct();
         waitForElementToBeDisplayed(documentActionButton);
+    }
+
+    private void priceListTextBox(String pricelist) {
+        priceListTextBox.clear();
+        priceListTextBox.sendKeys(pricelist);
+
     }
 
     public boolean isCustomRequisitionRejected() {

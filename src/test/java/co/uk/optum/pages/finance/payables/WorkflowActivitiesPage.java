@@ -2,10 +2,15 @@ package co.uk.optum.pages.finance.payables;
 
 import co.uk.optum.utility.DriverProvider;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Locatable;
+import org.openqa.selenium.interactions.internal.Coordinates;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import static co.uk.optum.utility.CommonUtility.*;
@@ -41,8 +46,24 @@ public class WorkflowActivitiesPage {
 
     public void selectRequisitionForApproval(String customRequisitionNumber){
 
-        waitTime ( 2000 );
-        driver.findElement(By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'"+ customRequisitionNumber +"')]")).click();
+        waitTime ( 5000 );
+//        EventFiringWebDriver eventFiringWebDriver=new EventFiringWebDriver(driver);
+//        eventFiringWebDriver.executeScript("document.querySelector('\n" +
+//                "//td/div/input[1]//preceding::div[@class='z-listbox-body'][1]').scrollDown=500");
+
+       // WebDriver driver = new ChromeDriver();
+//        JavascriptExecutor js = (JavascriptExecutor)driver;
+//        WebElement e = driver.findElement(By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'"+ customRequisitionNumber  +"')]"));
+//        //Coordinates cor=((Locatable)e).getCoordinates();
+//        Coordinates coordinates=((Locatable)e).getCoordinates();
+//        coordinates.inViewPort();
+        //js.executeScript("arguments[0].scrollIntoView();", Element);
+
+//        ((JavascriptExecutor) driver.createAndGetDeviceDriver())
+//        js.executeScript("arguments[0].scrollIntoView()", driver.findElement(By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'"+ customRequisitionNumber +"')]")));
+
+//
+  driver.findElement(By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'"+customRequisitionNumber+"')]")).click();
     }
 
     public void selectAnswer(String YesOrNo){

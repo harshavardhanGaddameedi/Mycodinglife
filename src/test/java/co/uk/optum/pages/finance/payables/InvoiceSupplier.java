@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
 import static co.uk.optum.utility.CommonUtility.waitTime;
+import static co.uk.optum.utility.FeatureContext.setDocumentNumber;
 
 
 public class InvoiceSupplier {
@@ -44,6 +45,8 @@ public class InvoiceSupplier {
     @FindBy(xpath = "//span[@title='The current status of the document']/input")
     WebElement invoiceStatus;
 
+    @FindBy(xpath = " //div//input[@ title='Document sequence number of the document']")
+    WebElement documentNumber;
 
 
 
@@ -71,6 +74,12 @@ public class InvoiceSupplier {
 
 
 
+    }
+
+    public void getDocumentNumber() {
+
+        System.out.println ( documentNumber.getText () );
+        setDocumentNumber ( documentNumber.getAttribute ( "value" ) );
     }
 }
 

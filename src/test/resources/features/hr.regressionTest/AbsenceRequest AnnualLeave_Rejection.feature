@@ -5,7 +5,7 @@ Feature: Create a new absence request as an employee and approve the same as LM
     Given I am in login Page
     And I login to IDempiere with "<user>" "<password>" "<role>"
     Then the dashboard is displayed
-    When i go to Landing Page
+#    When i go to Landing Page
     And I Click on Annual Leave Request Section in landing page
     And I enter all the annual leave details in Annual leave window
     |StartDate|EndDate|PartialStartDate|PartialEndDate|

@@ -117,11 +117,17 @@ public class LoginStepDef {
         selectRolePage.selectOrganisation("ErpPractice");
         selectRolePage.clickSelectRolePageOkBtn ();
         System.out.println ( "Login with Role Successful" );
+        //headerSelection();
         iShouldBeInTheHomePage();
 
 
 
    }
+
+//    private void headerSelection() {
+  //    homePage.selectHeader();
+//
+//    }
 
     public void clickLogin() {
         loginPage.clickLogin();
