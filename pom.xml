@@ -36,7 +36,7 @@
 				<version>2.20</version>
 				<configuration>
 					<systemPropertyVariables>
-						<RemotelyYorN>Y</RemotelyYorN>
+						<RemotelyYorN>N</RemotelyYorN>
 					</systemPropertyVariables>
 				</configuration>
 			</plugin>

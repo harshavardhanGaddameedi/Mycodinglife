@@ -14,10 +14,10 @@ import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Objects;
 
 import static co.uk.optum.utility.CommonUtility.*;
-import static co.uk.optum.utility.FeatureContext.getStoredRequisitionNumber;
 import static org.openqa.selenium.Keys.ENTER;
 import static org.openqa.selenium.Keys.TAB;
 
@@ -33,7 +33,7 @@ public class LandingPage {
 
     }
 
-    @FindBy(xpath = "//td//div//span[contains(.,'Approve Contractual Changes')]")
+    @FindBy(xpath = "//div[@class=\"landingpage-common-square z-div\"]/div/span[text()='Approve Contractual Changes']")
     WebElement approveContractualChanges;
 
     @FindBy(xpath = "//tr//td//div//button[contains(.,'Approve')]")
@@ -254,19 +254,66 @@ public class LandingPage {
     @FindBy(xpath = "//tbody[@class='z-rows']/tr[6][@class='benefits z-row z-grid-odd']/td[2]/div/input[@class='z-textbox z-textbox-readonly']")
     WebElement employeehealthBenefitValue;
 
+    @FindBy(xpath = "//tr/td/div/span[@instancename='he_eff_date']/input")
+    WebElement effectiveDateCheckRequest;
+
+    @FindBy(xpath = "//div/button[text()=' OK']")
+    WebElement okCheckRequest;
+
+    @FindBy(xpath = "//div/ul/li/a/span[text()='Job Information']")
+    WebElement employeeJobInformation;
+
+    @FindBy(xpath = "//tbody[@class='z-rows']/tr[8][@class='z-row z-grid-odd']/td[2]/div/input")
+    WebElement employeePayrollContract;
+
+
+    @FindBy(xpath ="//tbody[@class='z-rows']/tr[8][@class='z-row z-grid-odd']/td[4]/div/input")
+    WebElement employeeTimeValue;
+
+    @FindBy(xpath = "//tbody[@class='z-rows']/tr[4][@class='z-row z-grid-odd']/td[2]/div/div/input")
+    WebElement employeeContractHours;
+
     public void approveContractualChanges() {
+        waitForElementToBeDisplayed(landingPageTab);
         waitTime(2000);
         waitForElementToBeDisplayed(approveContractualChanges);
         approveContractualChanges.click();
     }
 
     public void searchContractRequest() {
-        waitTime(2000);
-        System.out.println(getStoredRequisitionNumber());
-        waitTime(2000);
-        System.out.println("got request number");
-        approveContract.click();
-        waitTime(2000);
+
+        WebElement baseTable = driver.findElement(By.xpath("//div[@class='z-grid-body'][@style='overflow: auto; width: 1496px;']/table"));
+
+        List<WebElement> rows = baseTable.findElements(By.tagName("tr"));
+
+        for(WebElement row: rows)
+
+        {
+
+            boolean x = row.findElement(By.xpath("//tr[@class='personal-changes-gridview z-row z-grid-odd']/td/span[text()='Sebastian Sims']")).isDisplayed();
+            System.out.println("Found the row");
+
+            if (x == true)
+
+            {
+                row.findElement(By.xpath("//td/span[text()='Change in contract type']"));
+                System.out.println("The contract request has been found");
+
+                break;
+            }
+        }
+    }
+
+    public void approvecontractRequest(){
+        WebElement contractRequest = driver.findElement(By.xpath("//tr[@class='personal-changes-gridview z-row z-grid-odd']/td/span[text()='Sebastian Sims']/parent::td/parent::tr/td[3]/div[2]/button[text()='Approve']"));
+        contractRequest.click();
+
+    }
+
+    public void approveTimeContractChange(){
+        WebElement contractRequest1 = driver.findElement(By.xpath("//tr[@class='personal-changes-gridview z-row z-grid-odd']/td/span[text()='Sebastian Sims']/parent::td/parent::tr/td[3]/div[2]/button[text()='Approve']"));
+        contractRequest1.click();
+
     }
 
     public void clickAnnualLeaveReqeust() {
@@ -718,13 +765,10 @@ public class LandingPage {
        {
            assertion = true;
            System.out.println(benefitvalue);
-
-
        }
        else if(!Objects.equals(employeehealthBenefitValue.getAttribute("value"), benefitvalue)){
            System.out.println("Doesnt Match");
        }
-       //else{ assertion=false;}
        return assertion;
    }
 
@@ -740,6 +784,7 @@ public class LandingPage {
        healthBenefitOKPopup.click();
    }
 
+<<<<<<< HEAD
     public void clickOTRequest() {
        waitForElementToBeDisplayed(logOverTimeRequest);
        logOverTimeRequest.click();
@@ -912,6 +957,122 @@ public class LandingPage {
 
 
         } else return false;
+=======
+    public void checkRequestDetails(int effe_date){
+
+        waitForElementToBeDisplayed(effectiveDateCheckRequest);
+        effectiveDateCheckRequest.sendKeys(getFutureDate(effe_date));
+        okCheckRequest.click();
+
+    }
+
+    public void openEmployeeJobInformation(){
+        waitForElementToBeDisplayed(employeeJobInformation);
+        employeeJobInformation.click();
+    }
+
+
+    public boolean verifyContractTypeApplied(String val) {
+
+        if (employeePayrollContract.getAttribute("value").equals(val))
+
+        {
+            assertion = true;
+            System.out.println(val);
+
+
+        }
+        else if(!Objects.equals(employeePayrollContract.getAttribute("value"), val)){
+            System.out.println("Benefit Doesn't Match");
+        }
+        return assertion;
+    }
+
+    public boolean verifyTimeValue(String vals){
+        if (employeeTimeValue.getAttribute("value").equals(vals))
+
+        {
+            assertion = true;
+            System.out.println(vals);
+
+
+        }
+        else if(!Objects.equals(employeeTimeValue.getAttribute("value"), vals)){
+            System.out.println("Benefit Doesn't Match");
+        }
+        return assertion;
+    }
+
+    public void searchFullToPartTimeRequest(){
+
+
+        WebElement bTable = driver.findElement(By.xpath("//div[@class='z-grid-body'][@style='overflow: auto; width: 1496px;']/table"));
+
+        List<WebElement> rows = bTable.findElements(By.tagName("tr"));
+
+        for(WebElement row: rows)
+
+        {
+
+            boolean x = row.findElement(By.xpath("//tr[@class='personal-changes-gridview z-row z-grid-odd']/td/span[text()='Sebastian Sims']")).isDisplayed();
+            System.out.println("Found the row");
+
+            if (x == true)
+
+            {
+                row.findElement(By.xpath("//td/span[text()='Full time to part time']"));
+                System.out.println("The contract request has been found");
+
+                break;
+            }
+        }
+    }
+
+   public void searchPartTimeChangeRequest(){
+       WebElement basTable = driver.findElement(By.xpath("//div[@class='z-grid-body'][@style='overflow: auto; width: 1496px;']/table"));
+
+       List<WebElement> rows = basTable.findElements(By.tagName("tr"));
+
+       for(WebElement row: rows)
+
+       {
+
+           boolean x = row.findElement(By.xpath("//tr[@class='personal-changes-gridview z-row z-grid-odd']/td/span[text()='Maggie Campos']")).isDisplayed();
+           System.out.println("Found the row");
+
+           if (x == true)
+
+           {
+               row.findElement(By.xpath("//td/span[text()='Change in Part Time hours']"));
+               System.out.println("The contract request has been found");
+
+               break;
+           }
+       }
+   }
+
+   public void approvePartTimeChangeRequest(){
+       WebElement contractRequest3 = driver.findElement(By.xpath("//tr[@class='personal-changes-gridview z-row z-grid-odd']/td/span[text()='Maggie Campos']/parent::td/parent::tr/td[3]/div[2]/button[text()='Approve']"));
+       contractRequest3.click();
+
+   }
+
+    public boolean verifyPartTimeHours(String hours){
+
+        if (employeeContractHours.getAttribute("value").equals(hours))
+
+        {
+            assertion = true;
+            System.out.println(hours);
+
+
+        }
+        else if(!Objects.equals(employeeContractHours.getAttribute("value"), hours)){
+            System.out.println("Benefit Doesn't Match");
+        }
+        return assertion;
+
+>>>>>>> 4e1c505bb3f32c4e366af13677a902b4579c3c93
     }
 }
 
