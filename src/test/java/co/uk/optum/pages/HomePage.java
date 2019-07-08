@@ -18,7 +18,7 @@ import static co.uk.optum.utility.CommonUtility.waitTime;
 
 public class  HomePage {
 
-       private WebDriver driver;
+    private WebDriver driver;
 
     @Inject
     public HomePage() {
@@ -31,7 +31,7 @@ public class  HomePage {
     @FindBy(xpath = "//tbody/tr/td/table/tbody/tr/td[13]/a/span[contains(.,'Log Out')]")
     WebElement logoutLink;
 
-   @FindBy(xpath = "//span[contains(.,'Home')]")
+    @FindBy(xpath = "//span[contains(.,'Home')]")
     WebElement homeTab;
 
     @FindBy(xpath = "//tbody/tr/td[5]/button[@title='Menu']")
@@ -45,13 +45,13 @@ public class  HomePage {
 
     @FindBy(xpath = "//tbody/tr/td/div/span[contains(.,'Finance')]")
 //    @FindBy(xpath = "//div/div[@class='z-popup-content']/div/div[@class='z-panel-body']/div[1]/div/div[3]/table/tbody/tr[1]/td/div/span[2]")
-    WebElement financeMenu;
+            WebElement financeMenu;
 
     @FindBy(xpath = "//div/div[@class='z-popup-content']/div/div[@class='z-panel-body']/div[1]/div/div[3]/table/tbody/tr[2]/td/div/a")
     WebElement receivablesMenu;
 
-//    @FindBy(xpath = "//div/div[@class='z-popup-content']/div/div[@class='z-panel-body']/div[1]/div/div[3]/table/tbody/tr[3]/td/div/a")
-    @FindBy(xpath = "//td/div/a[contains(.,'Payables/Procurement')]")
+    //    @FindBy(xpath = "//div/div[@class='z-popup-content']/div/div[@class='z-panel-body']/div[1]/div/div[3]/table/tbody/tr[3]/td/div/a")
+    @FindBy(xpath = "//div/a[contains(.,'Payables/Procurement')]")
     WebElement payablesProcurementMenu;
 
     @FindBy(xpath = "//div/div[@class='z-popup-content']/div/div[@class='z-panel-body']/div[1]/div/div[3]/table/tbody/tr[4]/td/div/a")
@@ -86,8 +86,8 @@ public class  HomePage {
     @FindBy(xpath = "//div//tr/td/div/span [contains(.,'Human Resource & Payroll')]")
     WebElement hrpMenu;
 
-        @FindBy(xpath= "//div//tr/td/div/span[3][contains(.,'Human Resource')]")
-        WebElement hrMenu;
+    @FindBy(xpath= "//div//tr/td/div/span[3][contains(.,'Human Resource')]")
+    WebElement hrMenu;
 
     @FindBy(xpath="//tr/td/div/a/img[@src='/webui/theme/businessTeamBlue/images/mForm.png']")
     WebElement newTeamView;
@@ -95,11 +95,11 @@ public class  HomePage {
     @FindBy(xpath="//div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Team View')]")
     WebElement newTeamViewTab;
 
-     @FindBy(xpath= "//div//tr/td/div/span[4][contains(.,'Requests')]")
-     WebElement requestMenu;
+    @FindBy(xpath= "//div//tr/td/div/span[4][contains(.,'Requests')]")
+    WebElement requestMenu;
 
-     @FindBy(xpath = "//div//tr/td/div/a[contains (.,'Recruitment Request')]")
-     WebElement recruitmentRequestMenu;
+    @FindBy(xpath = "//div//tr/td/div/a[contains (.,'Recruitment Request')]")
+    WebElement recruitmentRequestMenu;
 
 
     //div//div[@class [contains(.,'z-tree-body')]]/table//tr/td/div/a[contains(.,'New Position Request')]
@@ -160,7 +160,12 @@ public class  HomePage {
     @FindBy(xpath = "//div/ul/li[2]/a/span[text()='Apply Benefits Changes']")
     WebElement applyBenefitTab;
 
-<<<<<<< HEAD
+    @FindBy(xpath = "//tr[525]/td/div/a[text()='Check Request']")
+    WebElement checkRequestProcess;
+
+    @FindBy(xpath = "//div/ul/li/a/span[text()='Check Request']")
+    WebElement checkRequestTab;
+
     @FindBy(xpath = "//a[contains(.,'Home')]")
     WebElement homeMenu;
     @FindBy(xpath = "//img[@src[contains(.,'expand-header')]]")
@@ -169,45 +174,33 @@ public class  HomePage {
     WebElement collapseIcon;
 
 
-
     // @FindBy(xpath="//tr/td/div/span[@class='global-search-box z-bandbox']/input")
-=======
-    @FindBy(xpath = "//tr[525]/td/div/a[text()='Check Request']")
-    WebElement checkRequestProcess;
-
-    @FindBy(xpath = "//div/ul/li/a/span[text()='Check Request']")
-    WebElement checkRequestTab;
-
-
-
-   // @FindBy(xpath="//tr/td/div/span[@class='global-search-box z-bandbox']/input")
->>>>>>> 4e1c505bb3f32c4e366af13677a902b4579c3c93
     //WebElement searchBar;
 
-     //@FindBy(xpath="//div/a[2]/span/img[@src=\'/webui/theme/businessTeamBlue/images/expand-header.png\']")
+    //@FindBy(xpath="//div/a[2]/span/img[@src=\'/webui/theme/businessTeamBlue/images/expand-header.png\']")
     //WebElement expandHeader;
 
     //div/ul/li[@class[contains(.,'z-tab-selected')]]/a/span[contains(.,'Recruitment Request')]
 
     public void clickWorkflowActivities(){
         homeMenu.click();
-     if (workflowActivitiesLabel.isDisplayed()){
-         waitForElementToBeDisplayed (workflowActivitiesLabel  );
-         workflowActivitiesLabel.click();
+        if (workflowActivitiesLabel.isDisplayed()){
+            waitForElementToBeDisplayed (workflowActivitiesLabel  );
+            waitForElementToBeDisplayed (workflowActivitiesLabel  );
+            workflowActivitiesLabel.click();
+            workflowActivitiesLabel.click();
         }
         else{
-         collapseIcon.click();
-         waitForElementToBeDisplayed (workflowActivitiesLabel  );
-         workflowActivitiesLabel.click();
-     }
-
-
+            collapseIcon.click();
+            waitForElementToBeDisplayed (workflowActivitiesLabel  );
+            workflowActivitiesLabel.click();
+        }
     }
 
     public void waitForHomePageLoad() {
-        waitTime(2000);
+        waitTime ( 2000 );
         // expandHeader.click();
-      //  WebElement expandButton=driver.findElement(By.xpath("//img[@src[contains(.,'expand-header')]]"));
+        //  WebElement expandButton=driver.findElement(By.xpath("//img[@src[contains(.,'expand-header')]]"));
         try {
             expandIcon.isDisplayed();
             System.out.print("clicking on expand button");
@@ -220,7 +213,6 @@ public class  HomePage {
 //            driver.findElement(By.xpath("//img[@src[contains(.,'expand-header')]]")).click();
 //
 //        }
-
         waitForElementToBeDisplayed(logoutLink);
     }
 
@@ -265,7 +257,7 @@ public class  HomePage {
 
     }
 
-     public void clickReceivablesCashDesk () {
+    public void clickReceivablesCashDesk () {
         receivablesCashDesk.click ();
         waitForElementToBeDisplayed ( receivablesCashDeskTab );
         System.out.println ( "Receivables Cash Desk Clicked" );
@@ -418,15 +410,15 @@ public class  HomePage {
 
     }
 
-   public void openNewLandingPage()
-   {
-       waitTime ( 2000 );
-       menuIcon.click ();
-       waitForElementToBeDisplayed(landingPage);
-       landingPage.click();
-       waitForElementToBeDisplayed(landingPageTab);
+    public void openNewLandingPage()
+    {
+        waitTime ( 2000 );
+        menuIcon.click ();
+        waitForElementToBeDisplayed(landingPage);
+        landingPage.click();
+        waitForElementToBeDisplayed(landingPageTab);
 
-   }
+    }
 
     public void searchPensionProcess(){
         menuIcon.click();
@@ -449,7 +441,6 @@ public class  HomePage {
         waitForElementToBeDisplayed(checkRequestTab);
     }
 
-
 //    public void selectHeader() {
 //        if (driver.findElement(By.xpath("//img[@src[contains(.,'expand-header')]]")).isDisplayed())
 //        {
@@ -459,4 +450,5 @@ public class  HomePage {
 //    }
 //
 }
+
 
