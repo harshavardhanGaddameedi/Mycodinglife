@@ -186,9 +186,8 @@ public class  HomePage {
         homeMenu.click();
         if (workflowActivitiesLabel.isDisplayed()){
             waitForElementToBeDisplayed (workflowActivitiesLabel  );
-            waitForElementToBeDisplayed (workflowActivitiesLabel  );
             workflowActivitiesLabel.click();
-            workflowActivitiesLabel.click();
+
         }
         else{
             collapseIcon.click();

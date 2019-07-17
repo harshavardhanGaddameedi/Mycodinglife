@@ -17,3 +17,14 @@ Scenario Outline: Raise a Change in Location contract change
   Examples:
     |user|password|role|
     |AlanPeters |AlanPeters |Lead GP|
+
+  Scenario Outline: Approve the contract change for change in location
+    Given I am in login Page
+    And I login to IDempiere with "<user>" "<password>" "<role>"
+    And i go to Approve Contractual Changes
+    Then i approve or reject the request for loction change
+    |name|
+    |Quentin West|
+    Examples:
+      |user|password|role|
+      |JohnAllen |JohnAllen |COO|

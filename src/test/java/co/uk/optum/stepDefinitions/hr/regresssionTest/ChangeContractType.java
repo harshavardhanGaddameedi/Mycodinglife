@@ -6,6 +6,7 @@ import co.uk.optum.pages.hr.TeamView;
 import co.uk.optum.utility.DriverProvider;
 import com.google.inject.Inject;
 import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -107,5 +108,19 @@ public class ChangeContractType {
     public void iVerifyThePayrollContractType(DataTable p) throws Throwable {
         List<Map<String,String>> data = p.asMaps(String.class,String.class);
         landingPage.verifyContractTypeApplied(data.get ( 0 ).get ( "Payroll Contract" ));
+    }
+
+    @And("^on the Make a change to contract page i update location details as$")
+    public void onTheMakeAChangeToContractPageIUpdateLocationDetailsAs(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        teamView.changeContractLocation(data.get (0).get("ReasonForChange"),Integer.parseInt(data.get (0).get("EffectiveDate")),data.get (0).get("Comments"),data.get (0).get("Practice"));;
+    }
+
+    @Then("^i approve or reject the request for loction change$")
+    public void iApproveOrRejectTheRequestForLoctionChange(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        landingPage.approveLocationChange(data.get(0).get("name"));
     }
 }

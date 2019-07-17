@@ -111,6 +111,10 @@ public class TeamView {
     @FindBy(xpath = "//tr[6]//td[2]//div//select[@class='z-select']")
     WebElement multiplierDropdown;
 
+    @FindBy(xpath = "//tr[9]//td[2]//div//select[@class='z-select']")
+    WebElement practiceDropdown;
+
+
    // @FindBy(xpath = "//div[@title='Close']//i")
     //WebElement popupClose;
 
@@ -363,5 +367,21 @@ public class TeamView {
         Select dropdown3 = new Select(multiplierDropdown);
         dropdown3.selectByVisibleText(multiplier);
         waitTime(2000);
+    }
+
+    public void changeContractLocation(String reasonForChange, int effectiveDate, String comments, String practice) {
+
+        waitForElementToBeDisplayed(newReasonForChange);
+        Select dropdown1 = new Select(newReasonForChange);
+        dropdown1.selectByVisibleText(reasonForChange);
+        waitTime(2000);
+        waitForElementToBeDisplayed(newEffectiveDate);
+        newEffectiveDate.sendKeys(getFutureDate(effectiveDate)+Keys.TAB);
+        waitTime(2000);
+        waitForElementToBeDisplayed(contractTypeComments);
+        contractTypeComments.sendKeys(comments);
+        Select dropdown4= new Select(practiceDropdown);
+        dropdown4.selectByVisibleText(practice);
+
     }
 }

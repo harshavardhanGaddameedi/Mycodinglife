@@ -259,6 +259,9 @@ public class LandingPage {
     @FindBy(xpath = "//tbody[@class='z-rows']/tr[4][@class='z-row z-grid-odd']/td[2]/div/div/input")
     WebElement employeeContractHours;
 
+
+
+
     public void approveContractualChanges() {
         waitForElementToBeDisplayed(landingPageTab);
         waitTime(2000);
@@ -1059,5 +1062,17 @@ public class LandingPage {
         } else return false;
     }
 
+    public void approveLocationChange(String name) {
+        System.out.println(name);
+        WebElement locationchangeRequest=driver.findElement(By.xpath("//tr[@class='personal-changes-gridview z-row z-grid-odd']/td/span[contains(.,'"+name+"')]//following::td[contains(.,'Location')]//following::td[1]/div[contains(.,'Approve')]"));
+        try {
+            locationchangeRequest.isDisplayed();
+            System.out.print("Approving Location Change Request ");
+            locationchangeRequest.click();
+        }catch (Exception e)
+        {
+            System.out.println("Can't find location change request");
+        }
+    }
 }
 

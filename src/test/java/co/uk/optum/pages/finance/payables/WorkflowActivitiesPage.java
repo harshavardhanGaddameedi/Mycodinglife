@@ -45,8 +45,18 @@ public class WorkflowActivitiesPage {
     WebElement paymentList;
 
     public void selectRequisitionForApproval(String customRequisitionNumber){
-
+        System.out.println(customRequisitionNumber);
         waitTime ( 5000 );
+//WebElement requisitionOrder=
+        WebElement re=driver.findElement(By.xpath("//tr/td[3]/div[contains(.,'"+ customRequisitionNumber +"')]"));
+        if (re.isDisplayed()) {
+            System.out.println("found the requisition");
+            re.click();
+        }else{
+            System.out.println("unable to find the requistion ");
+           // driver.findElement(By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'900500')]")).click();
+        }
+       // driver.findElement(By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'"+ customRequisitionNumber +"')]")).click();
 //        EventFiringWebDriver eventFiringWebDriver=new EventFiringWebDriver(driver);
 //        eventFiringWebDriver.executeScript("document.querySelector('\n" +
 //                "//td/div/input[1]//preceding::div[@class='z-listbox-body'][1]').scrollDown=500");
@@ -62,8 +72,8 @@ public class WorkflowActivitiesPage {
 //        ((JavascriptExecutor) driver.createAndGetDeviceDriver())
 //        js.executeScript("arguments[0].scrollIntoView()", driver.findElement(By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'"+ customRequisitionNumber +"')]")));
 
-//
-  driver.findElement(By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'"+customRequisitionNumber+"')]")).click();
+
+  //driver.findElement(By.xpath("//div/table[contains(@id, 'cave')]/tbody/tr/td[3]/div[contains(.,'"+customRequisitionNumber+"')]")).click();
     }
 
     public void selectAnswer(String YesOrNo){

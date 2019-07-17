@@ -22,7 +22,7 @@ Feature: Create a new paternity leave request as an employee and approve the sam
     Given I am in login Page
     And I login to IDempiere with "<user>" "<password>" "<role>"
     Then the dashboard is displayed
-    When i go to Landing Page
+    #When i go to Landing Page
     And click on Approve Absence Request Section
     And Select the absence request created by employee
       |user         | Type|
