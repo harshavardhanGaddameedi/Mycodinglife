@@ -226,8 +226,8 @@ public class  HomePage {
     }
 
     public void clickMenuIcon() {
-        waitTime(5000);
-        waitForElementToBeDisplayed ( menuIcon );
+        waitTime(7000);
+//        waitForElementToBeDisplayed ( menuIcon );
         menuIcon.click();
         waitForElementToBeDisplayed(financeMenu);
     }
