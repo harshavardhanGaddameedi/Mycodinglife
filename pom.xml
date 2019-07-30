@@ -27,7 +27,7 @@
 				<version>3.0.0-M3</version>
 
 				<configuration>
-					
+
 					<threadCount>4</threadCount>
 				</configuration>
 			</plugin>

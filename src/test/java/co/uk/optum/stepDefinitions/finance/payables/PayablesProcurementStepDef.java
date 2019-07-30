@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 
+import static co.uk.optum.utility.CommonUtility.waitTime;
 import static co.uk.optum.utility.FeatureContext.*;
 
 /**
@@ -54,6 +55,7 @@ public class PayablesProcurementStepDef {
 
     @And("^I click PayablesProcurement menu$")
     public void iClickPayablesProcurementMenu() throws Throwable {
+        waitTime(2000);
         homePage.clickMenuIcon();
         homePage.clickFinanceMenu();
         homePage.clickPayablesProcurementMenu();
