@@ -13,6 +13,7 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 import java.util.Map;
 
@@ -122,5 +123,19 @@ public class ChangeContractType {
         // Write code here that turns the phrase above into concrete actions
         List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
         landingPage.approveLocationChange(data.get(0).get("name"));
+    }
+
+    @And("^on the Make a change to contract page i update job grade details as$")
+    public void onTheMakeAChangeToContractPageIUpdateJobGradeDetailsAs(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        teamView.changeContractJobGrade(data.get (0).get("ReasonForChange"),Integer.parseInt(data.get (0).get("EffectiveDate")),data.get (0).get("Comments"),data.get (0).get("Grade"));;
+    }
+
+    @Then("^i approve or reject the request for grade change$")
+    public void iApproveOrRejectTheRequestForGradeChange(DataTable arg1) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        List<Map<String,String>> data = arg1.asMaps(String.class,String.class);
+        landingPage.approveGradeChange(data.get(0).get("name"));
     }
 }

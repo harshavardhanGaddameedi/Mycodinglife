@@ -264,7 +264,7 @@ public class LandingPage {
 
     public void approveContractualChanges() {
         waitForElementToBeDisplayed(landingPageTab);
-        waitTime(2000);
+        waitTime(1000);
         waitForElementToBeDisplayed(approveContractualChanges);
         approveContractualChanges.click();
     }
@@ -1073,6 +1073,27 @@ public class LandingPage {
         {
             System.out.println("Can't find location change request");
         }
+    }
+
+    public void approveGradeChange(String name) {
+
+        System.out.println(name);
+        waitTime(1000);
+        WebElement gradechangeRequest=driver.findElement(By.xpath("//tr[@class[contains(.,'personal-changes-gridview z-row')]]/td/span[contains(.,'"+name+"')][1]//following::td[contains(.,'Change of Job Grade')][1]//following::td[1]/div[contains(.,'Approve')]//button"));
+
+        try {
+            gradechangeRequest.isDisplayed();
+            System.out.print("Approving grade Change Request ");
+            waitForElementToBeDisplayed(gradechangeRequest);
+            System.out.println(gradechangeRequest);
+            gradechangeRequest.click();
+            waitTime(1000);
+            System.out.println("Grade Change Approved");
+        }catch (Exception e)
+        {
+            System.out.println("Can't find grade change request");
+        }
+
     }
 }
 

@@ -113,6 +113,10 @@ public class TeamView {
 
     @FindBy(xpath = "//tr[9]//td[2]//div//select[@class='z-select']")
     WebElement practiceDropdown;
+    @FindBy(xpath = "//tr[3]/td/div/select[@class='z-select']")
+    WebElement gradeDropdown;
+
+
 
 
    // @FindBy(xpath = "//div[@title='Close']//i")
@@ -329,6 +333,7 @@ public class TeamView {
         waitForElementToBeDisplayed(requestOk);
         waitTime(2000);
         requestOk.click();
+
     }
 
 
@@ -382,6 +387,22 @@ public class TeamView {
         contractTypeComments.sendKeys(comments);
         Select dropdown4= new Select(practiceDropdown);
         dropdown4.selectByVisibleText(practice);
+
+    }
+
+    public void changeContractJobGrade(String reasonForChange, int effectiveDate, String comments, String grade) {
+        waitForElementToBeDisplayed(newReasonForChange);
+        Select dropdown1 = new Select(newReasonForChange);
+        dropdown1.selectByVisibleText(reasonForChange);
+        waitTime(2000);
+        waitForElementToBeDisplayed(newEffectiveDate);
+        newEffectiveDate.sendKeys(getFutureDate(effectiveDate)+Keys.TAB);
+        waitTime(2000);
+        waitForElementToBeDisplayed(contractTypeComments);
+        contractTypeComments.sendKeys(comments);
+        Select dropdown4= new Select(gradeDropdown);
+        gradeDropdown.sendKeys(grade);
+
 
     }
 }
