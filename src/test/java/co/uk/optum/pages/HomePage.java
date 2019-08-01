@@ -174,6 +174,7 @@ public class  HomePage {
     WebElement collapseIcon;
 
 
+
     // @FindBy(xpath="//tr/td/div/span[@class='global-search-box z-bandbox']/input")
     //WebElement searchBar;
 
@@ -227,8 +228,25 @@ public class  HomePage {
 
     public void clickMenuIcon() {
         waitTime(7000);
+
+        try {
+            expandIcon.isDisplayed();
+            System.out.print("clicking on expand button");
+            expandIcon.click();
+            waitForElementToBeDisplayed ( menuIcon );
+            menuIcon.click ();
+        }catch (Exception e)
+        {
+            System.out.println("Expand button not displayed");
+        }
+        finally {
+
+            menuIcon.click();
+        }
+
+
 //        waitForElementToBeDisplayed ( menuIcon );
-        menuIcon.click();
+
         waitForElementToBeDisplayed(financeMenu);
     }
 
