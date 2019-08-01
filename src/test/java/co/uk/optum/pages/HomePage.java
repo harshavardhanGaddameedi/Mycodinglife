@@ -209,11 +209,12 @@ public class  HomePage {
         {
             System.out.println("Expand button not displayed");
         }
+
 //        if (driver.findElement(By.xpath("//img[@src[contains(.,'expand-header')]]")).isDisplayed()){
 //            driver.findElement(By.xpath("//img[@src[contains(.,'expand-header')]]")).click();
 //
 //        }
-        waitForElementToBeDisplayed(logoutLink);
+//        waitForElementToBeDisplayed(logoutLink);
     }
 
     public boolean isHomeTabDispalyed() {
@@ -227,7 +228,7 @@ public class  HomePage {
     }
 
     public void clickMenuIcon() {
-        waitTime(7000);
+//        waitTime(7000);
 
         try {
             expandIcon.isDisplayed();
