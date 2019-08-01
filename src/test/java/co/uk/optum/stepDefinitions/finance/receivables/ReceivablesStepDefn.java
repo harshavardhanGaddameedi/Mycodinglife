@@ -17,6 +17,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 
+import static co.uk.optum.utility.CommonUtility.waitTime;
 import static co.uk.optum.utility.FeatureContext.getStoredDocumentNumber;
 import static co.uk.optum.utility.FeatureContext.getStoredRequisitionNumber;
 import static co.uk.optum.utility.FeatureContext.getStoredRevenueOrderNumber;
@@ -43,6 +44,7 @@ public class ReceivablesStepDefn {
     @And("^I click on Receivables menu$")
     public void iClickOnReceivablesMenu() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
+        waitTime(2000);
         homePage.clickMenuIcon();
         homePage.clickFinanceMenu();
         homePage.clickReceivablesPrivateRevenueMenu ();
@@ -229,6 +231,7 @@ public class ReceivablesStepDefn {
     public void iClickOnReceivablesCashDesk() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
 
+        waitTime(2000);
         homePage.clickMenuIcon();
         homePage.clickFinanceMenu();
         homePage.clickReceivablesCashDesk ();
@@ -257,6 +260,7 @@ public class ReceivablesStepDefn {
     public void iClickOnReceivablesCoreRevenue() throws Throwable {
 
 
+        waitTime(2000);
         homePage.clickMenuIcon ();
         homePage.clickFinanceMenu ();
         homePage.clickReceivablesCoreRevenue();

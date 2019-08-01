@@ -1,4 +1,4 @@
-@receivablesSmoke
+@jenkins
 Feature: Receivables / Cash Revenue Invoice Generation Scenarios
   Scenario Outline: Cash Revenue Invoice Creation
 

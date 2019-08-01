@@ -174,6 +174,7 @@ public class  HomePage {
     WebElement collapseIcon;
 
 
+
     // @FindBy(xpath="//tr/td/div/span[@class='global-search-box z-bandbox']/input")
     //WebElement searchBar;
 
@@ -208,11 +209,12 @@ public class  HomePage {
         {
             System.out.println("Expand button not displayed");
         }
+
 //        if (driver.findElement(By.xpath("//img[@src[contains(.,'expand-header')]]")).isDisplayed()){
 //            driver.findElement(By.xpath("//img[@src[contains(.,'expand-header')]]")).click();
 //
 //        }
-        waitForElementToBeDisplayed(logoutLink);
+//        waitForElementToBeDisplayed(logoutLink);
     }
 
     public boolean isHomeTabDispalyed() {
@@ -226,9 +228,26 @@ public class  HomePage {
     }
 
     public void clickMenuIcon() {
-        waitTime(7000);
+//        waitTime(7000);
+
+        try {
+            expandIcon.isDisplayed();
+            System.out.print("clicking on expand button");
+            expandIcon.click();
+            waitForElementToBeDisplayed ( menuIcon );
+            menuIcon.click ();
+        }catch (Exception e)
+        {
+            System.out.println("Expand button not displayed");
+        }
+        finally {
+
+            menuIcon.click();
+        }
+
+
 //        waitForElementToBeDisplayed ( menuIcon );
-        menuIcon.click();
+
         waitForElementToBeDisplayed(financeMenu);
     }
 
