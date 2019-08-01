@@ -57,6 +57,8 @@ public class LandingPage {
 
     @FindBy(xpath = "//td//div//span[contains(.,'Approve Overtime')]")
     WebElement approveOverTimeRequest;
+    @FindBy(xpath = "//td//div//span[contains(.,'View & Edit Jobs')]")
+    WebElement viewEditJobs;
 
     @FindBy(xpath = "//td//div//span[contains(.,'Log My Overtime')]")
     WebElement myTeam;
@@ -1093,6 +1095,17 @@ public class LandingPage {
         {
             System.out.println("Can't find grade change request");
         }
+
+    }
+
+    public void clickViewandEditJobs() {
+    waitForElementToBeDisplayed(viewEditJobs);
+    viewEditJobs.click();
+
+    }
+
+
+    public void selectPositionToUpdate(String payrollJob) {
 
     }
 }
