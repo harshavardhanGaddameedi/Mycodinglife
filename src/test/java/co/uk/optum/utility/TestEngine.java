@@ -26,7 +26,7 @@ import java.util.Date;
 //        tags = {"@smokeHR, @smoke"},
 //        tags = {"@receivablesSmoke"},
         tags = {"@jenkins"},
-//        format = {"pretty","json:report/report.json","html:report/cucumber-reports","html:report/"},
+        format = {"pretty","json:report/report.json","html:report/cucumber-reports","html:report/"},
         plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}
 //        format = {"pretty","html:report/results.html"},
 //        plugin = {"com.cucumber.listener.ExtentCucumberFormatter"}
