@@ -57,6 +57,7 @@ public class DriverProvider {
         else
             {
                 driver = createWebDriverSauce ();
+
             }
         driver.manage ().window ().maximize ();
         driver.manage ().timeouts ().implicitlyWait (10000, TimeUnit.MILLISECONDS );

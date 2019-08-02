@@ -245,7 +245,6 @@ public class  HomePage {
             menuIcon.click();
         }
 
-
 //        waitForElementToBeDisplayed ( menuIcon );
 
         waitForElementToBeDisplayed(financeMenu);

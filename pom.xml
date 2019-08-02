@@ -22,6 +22,29 @@
 			</plugin>
 
 			<plugin>
+				<groupId>com.github.temyers</groupId>
+				<artifactId>cucumber-jvm-parallel-plugin</artifactId>
+				<version>5.0.0</version>
+				<executions>
+					<execution>
+						<id>generateRunners</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>generateRunners</goal>
+						</goals>
+						<configuration>
+							<glue>co.uk.optum</glue>
+							<featuresDirectory>src/test/resources/features</featuresDirectory>
+							<cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
+							<format>json,html</format>
+							<tags>"~@ignored"</tags>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M3</version>
@@ -42,8 +65,6 @@
 					</systemPropertyVariables>
 				</configuration>
 			</plugin>
-
-
 
 
 		</plugins>
@@ -74,6 +95,10 @@
 			<artifactId>commons-lang</artifactId>
 			<version>2.6</version>
 		</dependency>
+
+
+
+
 
 		<dependency>
 			<groupId>junit</groupId>
