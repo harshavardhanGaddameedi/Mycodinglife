@@ -247,6 +247,7 @@ public class  HomePage {
 
 //        waitForElementToBeDisplayed ( menuIcon );
 
+        waitTime(3000);
         waitForElementToBeDisplayed(financeMenu);
     }
 
