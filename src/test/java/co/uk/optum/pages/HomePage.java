@@ -245,10 +245,6 @@ public class  HomePage {
             menuIcon.click();
         }
 
-//        waitForElementToBeDisplayed ( menuIcon );
-
-//        waitTime(6000);
-//        waitForElementToBeDisplayed(financeMenu);
     }
 
     public void clickPayablesProcurementMenu() {
@@ -260,6 +256,7 @@ public class  HomePage {
     }
 
     public void clickFinanceMenu(){
+        waitTime(1000);
           waitForElementToBeDisplayed ( financeMenu );
           financeMenu.click();
           waitTime ( 1000 );
