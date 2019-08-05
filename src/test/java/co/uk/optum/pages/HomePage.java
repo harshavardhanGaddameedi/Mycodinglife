@@ -248,7 +248,7 @@ public class  HomePage {
 //        waitForElementToBeDisplayed ( menuIcon );
 
         waitTime(6000);
-        waitForElementToBeDisplayed(financeMenu);
+//        waitForElementToBeDisplayed(financeMenu);
     }
 
     public void clickPayablesProcurementMenu() {
