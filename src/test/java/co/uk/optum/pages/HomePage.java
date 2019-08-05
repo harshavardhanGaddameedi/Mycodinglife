@@ -247,7 +247,7 @@ public class  HomePage {
 
 //        waitForElementToBeDisplayed ( menuIcon );
 
-        waitTime(6000);
+//        waitTime(6000);
 //        waitForElementToBeDisplayed(financeMenu);
     }
 
@@ -260,8 +260,9 @@ public class  HomePage {
     }
 
     public void clickFinanceMenu(){
-        financeMenu.click();
-        waitTime ( 5000 );
+          waitForElementToBeDisplayed ( financeMenu );
+          financeMenu.click();
+          waitTime ( 1000 );
 //        waitForElementToBeDisplayed(payablesProcurementMenu);
 //        waitForElementToBeDisplayed(receivablesPrivateRevenueMenu);
 //        waitForElementToBeDisplayed(receivablesCashDesk);
@@ -284,6 +285,7 @@ public class  HomePage {
     }
 
     public void clickReceivablesCoreRevenue() {
+        waitForElementToBeDisplayed ( receivablesCoreRevenueMenu );
         receivablesCoreRevenueMenu.click ();
         waitForElementToBeDisplayed ( receivablesCoreRevenueTab );
 
