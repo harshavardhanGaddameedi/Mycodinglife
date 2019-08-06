@@ -17,7 +17,7 @@ import static co.uk.optum.utility.DriverProvider.driver;
 public class CommonUtility {
 
     public static void waitForElementToBeDisplayed(WebElement webElement) {
-        WebElement element = (new WebDriverWait(driver, 60))
+        WebElement element = (new WebDriverWait(driver, 120))
                 .until(ExpectedConditions.visibilityOf(webElement));
     }
 
