@@ -12,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import javax.inject.Inject;
 
+import static co.uk.optum.utility.CommonUtility.elementVisitble;
 import static co.uk.optum.utility.CommonUtility.waitForElementToBeDisplayed;
 import static co.uk.optum.utility.CommonUtility.waitTime;
 
@@ -210,6 +211,7 @@ public class  HomePage {
             System.out.println("Expand button not displayed");
         }
 
+
 //        if (driver.findElement(By.xpath("//img[@src[contains(.,'expand-header')]]")).isDisplayed()){
 //            driver.findElement(By.xpath("//img[@src[contains(.,'expand-header')]]")).click();
 //
@@ -255,9 +257,13 @@ public class  HomePage {
         receivablesPrivateRevenueMenu.click();
     }
 
-    public void clickFinanceMenu(){
+    public void clickFinanceMenu() throws InterruptedException {
         waitTime(1000);
-          waitForElementToBeDisplayed ( financeMenu );
+
+        elementVisitble(financeMenu);
+//        waitForElementToBeDisplayed ( financeMenu );
+
+
           financeMenu.click();
           waitTime ( 1000 );
 //        waitForElementToBeDisplayed(payablesProcurementMenu);

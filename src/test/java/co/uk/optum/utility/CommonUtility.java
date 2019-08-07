@@ -1,6 +1,8 @@
 package co.uk.optum.utility;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -170,6 +172,29 @@ public class CommonUtility {
             effectivePath = base.resolve(path).toAbsolutePath();
         }
         return effectivePath.normalize().toString();
+    }
+
+
+
+    public static WebElement elementVisitble(WebElement ele1) throws InterruptedException {
+
+
+        while (!isDisplayed(ele1))
+        {
+            Thread.sleep(3000);
+            System.out.println("Element is not visible yet");
+        }
+        return ele1;
+
+    }
+    public static boolean isDisplayed(WebElement element) {
+        try {
+            if(element.isDisplayed())
+                return element.isDisplayed();
+        }catch (NoSuchElementException ex) {
+            return false;
+        }
+        return false;
     }
 
 }
