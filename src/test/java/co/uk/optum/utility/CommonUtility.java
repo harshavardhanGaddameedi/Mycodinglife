@@ -181,7 +181,7 @@ public class CommonUtility {
 
         while (!isDisplayed(ele1))
         {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
             System.out.println("Element is not visible yet");
         }
         return ele1;

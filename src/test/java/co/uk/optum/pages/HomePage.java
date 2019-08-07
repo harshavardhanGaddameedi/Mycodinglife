@@ -260,6 +260,10 @@ public class  HomePage {
     public void clickFinanceMenu() throws InterruptedException {
         waitTime(1000);
 
+        if (!financeMenu.isDisplayed ())
+        {
+            menuIcon.click ();
+        }
         elementVisitble(financeMenu);
 //        waitForElementToBeDisplayed ( financeMenu );
 
