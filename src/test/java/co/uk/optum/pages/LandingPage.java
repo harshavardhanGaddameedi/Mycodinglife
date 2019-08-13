@@ -145,10 +145,10 @@ public class LandingPage {
     @FindBy(xpath = "//tr/td/div/button[contains(.,'Save Request')]")
     WebElement saveRequestButton;
 
-    @FindBy(xpath="//div[@class=\"landingpage-common-square z-div\"]/div/span[contains(.,'My Benefits')]")
+    @FindBy(xpath = "//div[@class=\"landingpage-common-square z-div\"]/div/span[contains(.,'My Benefits')]")
     WebElement myBenefits;
 
-    @FindBy(xpath="//div/ul/li/a[contains(.,'My Benefits:')]")
+    @FindBy(xpath = "//div/ul/li/a[contains(.,'My Benefits:')]")
     WebElement myBenefitsTab;
 
     @FindBy(xpath = "//tr/td/span[@instancename='my_benefits0benefit_options']/input")
@@ -160,16 +160,16 @@ public class LandingPage {
     @FindBy(xpath = "//div/ul/li[4][@class='z-tab z-tab-selected']/a/span[text()='Pension']")
     WebElement pensionPageTab;
 
-    @FindBy(xpath="//tr/td/span[@instancename='HE_Pension0he_pension_benefit']/input[@class='z-combobox-input']")
+    @FindBy(xpath = "//tr/td/span[@instancename='HE_Pension0he_pension_benefit']/input[@class='z-combobox-input']")
     WebElement pensionBenefitsDropdown;
 
-    @FindBy(xpath="//tr/td/span[@instancename='HE_Pension0HE_Pension_Scheme_ID']/input[@class='z-combobox-input']")
+    @FindBy(xpath = "//tr/td/span[@instancename='HE_Pension0HE_Pension_Scheme_ID']/input[@class='z-combobox-input']")
     WebElement pensionSchemeDropdown;
 
-    @FindBy(xpath="//tr/td/span[@instancename='HE_Pension0he_pension_scheme_level_ID']/input[@class='z-combobox-input']")
+    @FindBy(xpath = "//tr/td/span[@instancename='HE_Pension0he_pension_scheme_level_ID']/input[@class='z-combobox-input']")
     WebElement pensionSchemeLevel;
 
-    @FindBy(xpath="//tr/td/span[@instancename='HE_Pension0he_eff_date']/input[@class='z-datebox-input']")
+    @FindBy(xpath = "//tr/td/span[@instancename='HE_Pension0he_eff_date']/input[@class='z-datebox-input']")
     WebElement pensionEffectiveDate;
 
     @FindBy(xpath = "//tr/td/button[contains(.,'Apply Change')]")
@@ -178,16 +178,16 @@ public class LandingPage {
     @FindBy(xpath = "//div/button[@class='txt-btn btn-ok z-button'][contains(.,'OK')]")
     WebElement pensionProcessOkButton;
 
-    @FindBy(xpath="//div/span[contains(.,'Employee Search')]")
+    @FindBy(xpath = "//div/span[contains(.,'Employee Search')]")
     WebElement employeeSearch;
 
-    @FindBy(xpath="//tr[@class='search-crit-grid z-row']/td[3]/div/input[@class='z-textbox']")
+    @FindBy(xpath = "//tr[@class='search-crit-grid z-row']/td[3]/div/input[@class='z-textbox']")
     WebElement empFirstName;
 
-    @FindBy(xpath="//tr[@class='search-crit-grid z-row']/td[5]/div/input[@class='z-textbox']")
+    @FindBy(xpath = "//tr[@class='search-crit-grid z-row']/td[5]/div/input[@class='z-textbox']")
     WebElement empLastName;
 
-    @FindBy(xpath="//td/div/button[contains(.,'Employee Details')]")
+    @FindBy(xpath = "//td/div/button[contains(.,'Employee Details')]")
     WebElement empDetailsButton;
 
     @FindBy(xpath = "//div/ul[@class='z-tabs-content']/li[8]/a/span[contains(.,'Benefits')]")
@@ -208,7 +208,7 @@ public class LandingPage {
     @FindBy(xpath = "//tr/td/span[@instancename='HR_Benifits_Management0IsBenifit']/input")
     WebElement selectBenefit;
 
-    @FindBy(xpath="//tr/td/span[@instancename='HR_Benifits_Management0HR_Membership_Option_ID']/input")
+    @FindBy(xpath = "//tr/td/span[@instancename='HR_Benifits_Management0HR_Membership_Option_ID']/input")
     WebElement membershipOption;
 
     @FindBy(xpath = "//tr/td/span[@instancename='HR_Benifits_Management0he_eff_date']/input")
@@ -223,7 +223,7 @@ public class LandingPage {
     @FindBy(xpath = "//div/button[@class='txt-btn btn-ok z-button']")
     WebElement healthBenefitOkButton;
 
-    @FindBy(xpath="//tr/td/button[@class='z-messagebox-button z-button']")
+    @FindBy(xpath = "//tr/td/button[@class='z-messagebox-button z-button']")
     WebElement healthBenefitOKPopup;
 
     @FindBy(xpath = "//div/button[@class='txt-btn btn-ok z-button']")
@@ -237,7 +237,7 @@ public class LandingPage {
     @FindBy(xpath = "//div/button[contains(.,'Complete RTW')]")
     WebElement cRTWButton;
     @FindBy(xpath = "//div[@class='z-vlayout-inner']//table[@class='z-hbox']//tr//td[9]//span[@class='z-label']")
-    WebElement   fileAttached;
+    WebElement fileAttached;
 
     @FindBy(xpath = "//tbody[@class='z-rows']/tr[6][@class='benefits z-row z-grid-odd']/td[2]/div/input[@class='z-textbox z-textbox-readonly']")
     WebElement employeehealthBenefitValue;
@@ -255,12 +255,40 @@ public class LandingPage {
     WebElement employeePayrollContract;
 
 
-    @FindBy(xpath ="//tbody[@class='z-rows']/tr[8][@class='z-row z-grid-odd']/td[4]/div/input")
+    @FindBy(xpath = "//tbody[@class='z-rows']/tr[8][@class='z-row z-grid-odd']/td[4]/div/input")
     WebElement employeeTimeValue;
 
     @FindBy(xpath = "//tbody[@class='z-rows']/tr[4][@class='z-row z-grid-odd']/td[2]/div/div/input")
     WebElement employeeContractHours;
 
+
+    @FindBy(xpath = "//td/div[contains(.,'Business Case')]//following::td[1]/textarea[1]")
+    WebElement amendPositionBusinessCase;
+
+    @FindBy(xpath = "//td/div[contains(.,'Grade')]//following::td[1]/div/select")
+    WebElement amendPositionGradeSelect;
+    @FindBy(xpath = "//td/div[contains(.,'Effective Date')]//following::td[1]/div/span/input")
+    WebElement amendPositionEffectiveDate;
+
+    @FindBy(xpath = "//div/button[contains(.,'Create Request')]")
+    WebElement amendPositionCreateRequest;
+    @FindBy(xpath = "//td//div//span[contains(.,'Approve Amend Payroll Job')]")
+    WebElement landingPageApproveAmendPayrollJob;
+
+    @FindBy(xpath = "//table/tbody/tr/td/button[@title='OK']")
+    WebElement amendPositionSuccessButton;
+
+    @FindBy(xpath = "//tbody/tr/td[5]/button[@title='Menu']")
+    WebElement menuIcon;
+    @FindBy(xpath = "//tr/td/div/a[contains(.,'Check Right')]//preceding::tr[1]/td/div[@class='z-treecell-content']/a[text()='Amend Position']")
+    WebElement searchAmendProcess;
+    @FindBy(xpath = "//div/ul/li/a/span[contains(.,'Amend Position')]")
+    WebElement amendPositionProcessTab;
+    @FindBy(xpath = "//div/button[contains(.,'OK')]")
+    WebElement amendPositionProcessRunButton;
+
+    @FindBy(xpath = "//td//div//span[contains(.,'View Job')]")
+    WebElement landingPageViewJob;
 
 
 
@@ -277,7 +305,7 @@ public class LandingPage {
 
         List<WebElement> rows = baseTable.findElements(By.tagName("tr"));
 
-        for(WebElement row: rows)
+        for (WebElement row : rows)
 
         {
 
@@ -295,13 +323,13 @@ public class LandingPage {
         }
     }
 
-    public void approvecontractRequest(){
+    public void approvecontractRequest() {
         WebElement contractRequest = driver.findElement(By.xpath("//tr[@class='personal-changes-gridview z-row z-grid-odd']/td/span[text()='Sebastian Sims']/parent::td/parent::tr/td[3]/div[2]/button[text()='Approve']"));
         contractRequest.click();
 
     }
 
-    public void approveTimeContractChange(){
+    public void approveTimeContractChange() {
         WebElement contractRequest1 = driver.findElement(By.xpath("//tr[@class='personal-changes-gridview z-row z-grid-odd']/td/span[text()='Sebastian Sims']/parent::td/parent::tr/td[3]/div[2]/button[text()='Approve']"));
         contractRequest1.click();
 
@@ -505,7 +533,7 @@ public class LandingPage {
 
     }
 
-    public void proofOfPaternity()throws FindFailed {
+    public void proofOfPaternity() throws FindFailed {
 
         waitForElementToBeDisplayed(paternityProofButton);
         paternityProofButton.click();
@@ -555,7 +583,7 @@ public class LandingPage {
 
     public void enterMaternityLeaveDetails(int ewoc) {
         expectedWeekOfConfinement.clear();
-        expectedWeekOfConfinement.sendKeys(getFutureDate(ewoc)+ TAB);
+        expectedWeekOfConfinement.sendKeys(getFutureDate(ewoc) + TAB);
     }
 
 
@@ -594,27 +622,25 @@ public class LandingPage {
 
     }
 
-    public void openMyBenefits()
-    {
+    public void openMyBenefits() {
         waitForElementToBeDisplayed(landingPageTab);
         waitTime(2000);
         waitForElementToBeDisplayed(myBenefits);
         myBenefits.click();
     }
 
-    public void selectPensionBenefit(String Benefit_Option)
-    {
+    public void selectPensionBenefit(String Benefit_Option) {
 
         waitForElementToBeDisplayed(myBenefitsTab);
         waitForElementToBeDisplayed(benefitOption);
         benefitOption.sendKeys(Benefit_Option + ENTER);
     }
 
-    public void pensionPage(){
+    public void pensionPage() {
         waitForElementToBeDisplayed(pensionPageTab);
     }
 
-    public void selectPensionSchemeDetails(String PensionBenefit,String PensionScheme, String PensionSchemeLevel, int PensionEffectiveDate){
+    public void selectPensionSchemeDetails(String PensionBenefit, String PensionScheme, String PensionSchemeLevel, int PensionEffectiveDate) {
 
         waitForElementToBeDisplayed(pensionBenefitsDropdown);
         pensionBenefitsDropdown.clear();
@@ -630,22 +656,21 @@ public class LandingPage {
         pensionEffectiveDate.sendKeys(getFutureDate(PensionEffectiveDate));
     }
 
-    public void pensionApply(){
+    public void pensionApply() {
         pensionApplyChange.click();
     }
 
 
-
-    public void applyPensionProcess(){
+    public void applyPensionProcess() {
         waitForElementToBeDisplayed(pensionProcessOkButton);
         pensionProcessOkButton.click();
-        String Verifytext= driver.findElement(By.tagName("font")).getText().trim();
+        String Verifytext = driver.findElement(By.tagName("font")).getText().trim();
         Assert.assertEquals(Verifytext, "** null");
 
 
     }
 
-    public void searchEmployee(String FirstName, String LastName){
+    public void searchEmployee(String FirstName, String LastName) {
         waitForElementToBeDisplayed(employeeSearch);
         employeeSearch.click();
         empFirstName.sendKeys(FirstName + TAB);
@@ -655,7 +680,7 @@ public class LandingPage {
 
     }
 
-    public void openEmployeeBenefitTab(){
+    public void openEmployeeBenefitTab() {
         waitForElementToBeDisplayed(empViewBenefitsTab);
         empViewBenefitsTab.click();
     }
@@ -669,29 +694,29 @@ public class LandingPage {
             System.out.println(scheme);
 
 
-        }
-        else if(!Objects.equals(employeePensionValue.getAttribute("value"), scheme)){
+        } else if (!Objects.equals(employeePensionValue.getAttribute("value"), scheme)) {
             System.out.println("Benefit Doesn't Match");
         }
         //else{ assertion=false;}
         return assertion;
     }
 
-    public void selectPensionOptOutDetails(String PensionBenefit, int PensionEffectiveDate){
+    public void selectPensionOptOutDetails(String PensionBenefit, int PensionEffectiveDate) {
         //pensionBenefitsDropdown.clear();
         pensionBenefitsDropdown.sendKeys(PensionBenefit + ENTER);
         //pensionEffectiveDate.clear();
         pensionEffectiveDate.sendKeys(getFutureDate(PensionEffectiveDate));
 
     }
-    public void pensionOptOut(){
+
+    public void pensionOptOut() {
         waitForElementToBeDisplayed(pensionOptOutButton);
         waitTime(4000);
         pensionOptOutButton.click();
 
     }
 
-    public void verifyHealthBenefitTab(){
+    public void verifyHealthBenefitTab() {
         waitForElementToBeDisplayed(healthBenefitTab);
     }
 
@@ -717,14 +742,14 @@ public class LandingPage {
     }*/
 
 
-    public void selectHealthBenefitDetails(String health_Insurance, String select_benefit, String membership_option, int health_effective_date){
+    public void selectHealthBenefitDetails(String health_Insurance, String select_benefit, String membership_option, int health_effective_date) {
         waitTime(2000);
         waitForElementToBeDisplayed(healthInsurance);
         healthInsurance.clear();
         healthInsurance.sendKeys(health_Insurance + Keys.TAB);
         waitForElementToBeDisplayed(selectBenefit);
         selectBenefit.clear();
-        selectBenefit.sendKeys(select_benefit +Keys.TAB);
+        selectBenefit.sendKeys(select_benefit + Keys.TAB);
         waitForElementToBeDisplayed(membershipOption);
         membershipOption.clear();
         membershipOption.sendKeys(membership_option + Keys.TAB);
@@ -734,7 +759,7 @@ public class LandingPage {
 
     }
 
-    public void applyBenefitChange(){
+    public void applyBenefitChange() {
         waitForElementToBeDisplayed(benefitApplyChange);
         benefitApplyChange.click();
         waitForElementToBeDisplayed(healthBenefitOkButton);
@@ -743,39 +768,38 @@ public class LandingPage {
         healthBenefitOKPopup.click();
     }
 
-    public void  applyBenefitManualProcess(){
+    public void applyBenefitManualProcess() {
         waitForElementToBeDisplayed(benefitProcessOKButton);
         benefitProcessOKButton.click();
-        String Verifytext= driver.findElement(By.tagName("font")).getText().trim();
+        String Verifytext = driver.findElement(By.tagName("font")).getText().trim();
         Assert.assertEquals(Verifytext, "** null");
     }
 
-    public boolean verifyBenefitApplied(String benefitvalue){
+    public boolean verifyBenefitApplied(String benefitvalue) {
         if (employeehealthBenefitValue.getAttribute("value").equals(benefitvalue))
 
         {
             assertion = true;
             System.out.println(benefitvalue);
-        }
-        else if(!Objects.equals(employeehealthBenefitValue.getAttribute("value"), benefitvalue)){
+        } else if (!Objects.equals(employeehealthBenefitValue.getAttribute("value"), benefitvalue)) {
             System.out.println("Doesnt Match");
         }
         return assertion;
     }
 
-    public void selectHealthBenefitOptOut(int effect_date){
+    public void selectHealthBenefitOptOut(int effect_date) {
         waitForElementToBeDisplayed(healthBenefitEffectiveDate);
         healthBenefitEffectiveDate.sendKeys(getFutureDate(effect_date));
     }
 
-    public void healthBenefitOptOut(){
+    public void healthBenefitOptOut() {
         waitForElementToBeDisplayed(benefitOptOut);
         benefitOptOut.click();
         healthBenefitOkButton.click();
         healthBenefitOKPopup.click();
     }
 
-    public void checkRequestDetails(int effe_date){
+    public void checkRequestDetails(int effe_date) {
 
         waitForElementToBeDisplayed(effectiveDateCheckRequest);
         effectiveDateCheckRequest.sendKeys(getFutureDate(effe_date));
@@ -783,7 +807,7 @@ public class LandingPage {
 
     }
 
-    public void openEmployeeJobInformation(){
+    public void openEmployeeJobInformation() {
         waitForElementToBeDisplayed(employeeJobInformation);
         employeeJobInformation.click();
     }
@@ -798,14 +822,13 @@ public class LandingPage {
             System.out.println(val);
 
 
-        }
-        else if(!Objects.equals(employeePayrollContract.getAttribute("value"), val)){
+        } else if (!Objects.equals(employeePayrollContract.getAttribute("value"), val)) {
             System.out.println("Benefit Doesn't Match");
         }
         return assertion;
     }
 
-    public boolean verifyTimeValue(String vals){
+    public boolean verifyTimeValue(String vals) {
         if (employeeTimeValue.getAttribute("value").equals(vals))
 
         {
@@ -813,21 +836,20 @@ public class LandingPage {
             System.out.println(vals);
 
 
-        }
-        else if(!Objects.equals(employeeTimeValue.getAttribute("value"), vals)){
+        } else if (!Objects.equals(employeeTimeValue.getAttribute("value"), vals)) {
             System.out.println("Benefit Doesn't Match");
         }
         return assertion;
     }
 
-    public void searchFullToPartTimeRequest(){
+    public void searchFullToPartTimeRequest() {
 
 
         WebElement bTable = driver.findElement(By.xpath("//div[@class='z-grid-body'][@style='overflow: auto; width: 1496px;']/table"));
 
         List<WebElement> rows = bTable.findElements(By.tagName("tr"));
 
-        for(WebElement row: rows)
+        for (WebElement row : rows)
 
         {
 
@@ -845,12 +867,12 @@ public class LandingPage {
         }
     }
 
-    public void searchPartTimeChangeRequest(){
+    public void searchPartTimeChangeRequest() {
         WebElement basTable = driver.findElement(By.xpath("//div[@class='z-grid-body'][@style='overflow: auto; width: 1496px;']/table"));
 
         List<WebElement> rows = basTable.findElements(By.tagName("tr"));
 
-        for(WebElement row: rows)
+        for (WebElement row : rows)
 
         {
 
@@ -868,13 +890,13 @@ public class LandingPage {
         }
     }
 
-    public void approvePartTimeChangeRequest(){
+    public void approvePartTimeChangeRequest() {
         WebElement contractRequest3 = driver.findElement(By.xpath("//tr[@class='personal-changes-gridview z-row z-grid-odd']/td/span[text()='Maggie Campos']/parent::td/parent::tr/td[3]/div[2]/button[text()='Approve']"));
         contractRequest3.click();
 
     }
 
-    public boolean verifyPartTimeHours(String hours){
+    public boolean verifyPartTimeHours(String hours) {
 
         if (employeeContractHours.getAttribute("value").equals(hours))
 
@@ -883,13 +905,13 @@ public class LandingPage {
             System.out.println(hours);
 
 
-        }
-        else if(!Objects.equals(employeeContractHours.getAttribute("value"), hours)){
+        } else if (!Objects.equals(employeeContractHours.getAttribute("value"), hours)) {
             System.out.println("Benefit Doesn't Match");
         }
         return assertion;
 
     }
+
     public void clickOTRequest() {
         waitForElementToBeDisplayed(logOverTimeRequest);
         logOverTimeRequest.click();
@@ -932,13 +954,13 @@ public class LandingPage {
         //div/table[contains(.,'Reject')]/tbody/tr//following::td[contains(.,'SR Hyderabad')][1]//following::td[contains(.,'2019-06-17')][1]//following::td[contains(.,'Approve')][1]/div/button[contains(.,'Approve')]
 
         System.out.println(username);
-        WebElement otRequest =  driver.findElement(By.xpath("//div/table[contains(.,'Reject')]/tbody/tr/td[contains(.,'"+username+"')]//following::td[contains(.,'Approve')][1]/div/button[contains(.,'Reject')]"));
-        WebElement otComment = driver.findElement(By.xpath("//div/table[contains(.,'Reject')]/tbody/tr/td[contains(.,'"+username+"')]//following::td[contains(.,'Approve')][1]/div/button[contains(.,'Reject')]/preceding::td/input"));
+        WebElement otRequest = driver.findElement(By.xpath("//div/table[contains(.,'Reject')]/tbody/tr/td[contains(.,'" + username + "')]//following::td[contains(.,'Approve')][1]/div/button[contains(.,'Reject')]"));
+        WebElement otComment = driver.findElement(By.xpath("//div/table[contains(.,'Reject')]/tbody/tr/td[contains(.,'" + username + "')]//following::td[contains(.,'Approve')][1]/div/button[contains(.,'Reject')]/preceding::td/input"));
         otComment.sendKeys("Rejecting ot request");
         //div/table[contains(.,'Reject')]/tbody/tr//following::td[contains(.,'"+username+"')][1]//following::td[contains(.,'Approve')][1]/div/button[contains(.,'Approve')]
         System.out.println(otRequest);
         otRequest.click();
-        waitTime(1000 );
+        waitTime(1000);
 
 
     }
@@ -972,7 +994,7 @@ public class LandingPage {
     public void enterSicknessDetails(int date, String hours) {
         waitForElementToBeDisplayed(leaveStartDate);
         leaveStartDate.clear();
-        leaveStartDate.sendKeys(getFutureDate(date)+TAB);
+        leaveStartDate.sendKeys(getFutureDate(date) + TAB);
 //       if (sicknessHours.isDisplayed()){
 //           sicknessHours.sendKeys(hours);
 //        }
@@ -983,21 +1005,17 @@ public class LandingPage {
             sicknessHours.isDisplayed();
             System.out.print("Entering sickness hours for part time employee ");
             sicknessHours.sendKeys(hours);
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Given User is full time and can't enter sickness hours");
         }
-
-
 
 
     }
 
     public void submitSicknessDetails(int backtoWorkDate, String notes) {
         waitForElementToBeDisplayed(leaveStartDate);
-        backToWorkDate.sendKeys(getFutureDate(backtoWorkDate)+TAB);
+        backToWorkDate.sendKeys(getFutureDate(backtoWorkDate) + TAB);
         sicknessNotes.sendKeys(notes);
-
 
 
     }
@@ -1022,18 +1040,18 @@ public class LandingPage {
         String filepath = toAbsolutePath("src//test//resources//AttachingFilesImages//");
         String inputFilePath = toAbsolutePath("src//test//resources//AttachingFilesImages//");
 
-        System.out.println ( filepath );
-        System.out.println (inputFilePath  );
+        System.out.println(filepath);
+        System.out.println(inputFilePath);
 
 
         Screen s = new Screen();
-        Pattern fileInputTextBox = new Pattern(filepath +"//"+"FilePath.PNG");
-        Pattern openButton = new Pattern(filepath + "//"+"OpenFile2.PNG");
+        Pattern fileInputTextBox = new Pattern(filepath + "//" + "FilePath.PNG");
+        Pattern openButton = new Pattern(filepath + "//" + "OpenFile2.PNG");
         s.wait(fileInputTextBox, 20);
-        s.type(fileInputTextBox, inputFilePath + "//"+"JobDescription.doc");
+        s.type(fileInputTextBox, inputFilePath + "//" + "JobDescription.doc");
         s.click(openButton);
-        System.out.println ( "Attachment Opened" );
-        waitTime ( 5000 );
+        System.out.println("Attachment Opened");
+        waitTime(5000);
 //        if (!fileAttached.getText ().isEmpty ())
 //
 //        {
@@ -1066,13 +1084,12 @@ public class LandingPage {
 
     public void approveLocationChange(String name) {
         System.out.println(name);
-        WebElement locationchangeRequest=driver.findElement(By.xpath("//tr[@class='personal-changes-gridview z-row z-grid-odd']/td/span[contains(.,'"+name+"')]//following::td[contains(.,'Location')]//following::td[1]/div[contains(.,'Approve')]"));
+        WebElement locationchangeRequest = driver.findElement(By.xpath("//tr[@class='personal-changes-gridview z-row z-grid-odd']/td/span[contains(.,'" + name + "')]//following::td[contains(.,'Location')]//following::td[1]/div[contains(.,'Approve')]"));
         try {
             locationchangeRequest.isDisplayed();
             System.out.print("Approving Location Change Request ");
             locationchangeRequest.click();
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Can't find location change request");
         }
     }
@@ -1081,7 +1098,7 @@ public class LandingPage {
 
         System.out.println(name);
         waitTime(1000);
-        WebElement gradechangeRequest=driver.findElement(By.xpath("//tr[@class[contains(.,'personal-changes-gridview z-row')]]/td/span[contains(.,'"+name+"')][1]//following::td[contains(.,'Change of Job Grade')][1]//following::td[1]/div[contains(.,'Approve')]//button"));
+        WebElement gradechangeRequest = driver.findElement(By.xpath("//tr[@class[contains(.,'personal-changes-gridview z-row')]]/td/span[contains(.,'" + name + "')][1]//following::td[contains(.,'Change of Job Grade')][1]//following::td[1]/div[contains(.,'Approve')]//button"));
 
         try {
             gradechangeRequest.isDisplayed();
@@ -1091,22 +1108,157 @@ public class LandingPage {
             gradechangeRequest.click();
             waitTime(1000);
             System.out.println("Grade Change Approved");
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Can't find grade change request");
         }
 
     }
 
     public void clickViewandEditJobs() {
-    waitForElementToBeDisplayed(viewEditJobs);
-    viewEditJobs.click();
+        waitForElementToBeDisplayed(viewEditJobs);
+        viewEditJobs.click();
 
     }
 
 
     public void selectPositionToUpdate(String payrollJob) {
+        System.out.println(payrollJob);
+        waitTime(1000);
+        WebElement editPayrollJob = driver.findElement(By.xpath("//div/table/tbody/tr[@class[contains(.,'leaver-request-gridview z-row')]]/td/span[contains(.,'" + payrollJob + "')][1]//following::td[1]/div[contains(.,'Edit Job')][1]//button"));
+
+        try {
+            editPayrollJob.isDisplayed();
+            System.out.print("Found the payrolljob to be edited ");
+            waitForElementToBeDisplayed(editPayrollJob);
+            System.out.println(editPayrollJob);
+            editPayrollJob.click();
+            waitTime(1000);
+            System.out.println("Payroll Job Edited");
+        } catch (Exception e) {
+            System.out.println("Can't find the payroll job to be edited");
+        }
+
 
     }
+
+    public void updatePosition(String grade, String business_case, int effectiveDate) {
+        amendPositionBusinessCase.sendKeys(business_case);
+        Select selectGrade = new Select(amendPositionGradeSelect);
+        selectGrade.selectByVisibleText(grade);
+        waitTime(1000);
+        amendPositionEffectiveDate.sendKeys(getFutureDate(effectiveDate) + TAB);
+        waitTime(1000);
+
+    }
+
+    public void submitAmendPositionRequest() {
+        amendPositionCreateRequest.click();
+        waitTime(1000);
+
+    }
+
+    public boolean isAmendPositionRequestCreated() {
+        if ((driver.findElement(By.xpath("//div/span[contains(.,'Request submitted successfully and sent for approval.')]")).isDisplayed())) {
+            amendPositionSuccessButton.click();
+            return true;
+
+
+        } else return false;
+
+    }
+
+    public void viewAmendedPayrollJob() {
+        landingPageApproveAmendPayrollJob.click();
+
+    }
+
+    public void approveAmendPosition(String payrollJob) {
+
+        System.out.println(payrollJob);
+        waitTime(1000);
+        WebElement approveAmendPosition = driver.findElement(By.xpath("//div/table/tbody/tr[@class[contains(.,'leaver-request-gridview z-row')]]/td/span[contains(.,'" + payrollJob + "')]//following::td[2]/div[contains(.,'Approve')][1]//button"));
+        System.out.println(approveAmendPosition);
+        try {
+            approveAmendPosition.isDisplayed();
+            System.out.print("Found the payrolljob to be approved ");
+            waitForElementToBeDisplayed(approveAmendPosition);
+            System.out.println(approveAmendPosition);
+            approveAmendPosition.click();
+            waitTime(1000);
+            System.out.println("Amend Payroll Job approved");
+        } catch (Exception e) {
+            System.out.println("Can't find the payroll job to be approved");
+        }
+
+
+    }
+
+    public void searchAmendPositionProcess() {
+        menuIcon.click();
+        waitForElementToBeDisplayed(searchAmendProcess);
+        searchAmendProcess.click();
+        waitForElementToBeDisplayed(amendPositionProcessTab);
+
+    }
+
+    public void runAmendPositionProcess() {
+        amendPositionProcessRunButton.click();
+        waitTime(1000);
+    }
+
+    public boolean checkProcessStatus() {
+        if ((driver.findElement(By.xpath(" //div/span[contains(.,'Do you want to start the Process')]/p[contains(.,'Done')]")).isDisplayed())) {
+            return true;
+
+
+        } else return false;
+
+
+    }
+
+public void verifyAmendedPositionDetails() {
+        waitTime(1000);
+        landingPageTab.click();
+        waitForElementToBeDisplayed(landingPageViewJob);
+        landingPageViewJob.click();
+
+
+
+    }
+
+    public void viewPositionToBeVerified(String payrollJob) {
+
+        System.out.println(payrollJob);
+        waitTime(1000);
+        WebElement updatedPosition = driver.findElement(By.xpath("//div/table/tbody/tr[@class[contains(.,'leaver-request-gridview z-row')]]/td/span[contains(.,'"+payrollJob+"')]//following::td[1]/div[contains(.,'View Job')][1]//button"));
+        System.out.println(updatedPosition);
+        try {
+            updatedPosition.isDisplayed();
+            System.out.print("Found the payrolljob to be verified ");
+            waitForElementToBeDisplayed(updatedPosition);
+            System.out.println(updatedPosition);
+            updatedPosition.click();
+            waitTime(1000);
+            System.out.println("updated position edited to verify ");
+        } catch (Exception e) {
+            System.out.println("Can't find the payroll job to be verified");
+        }
+    }
+
+
+    public void verifyUpdatedPositionDetails(String grade) {
+        waitForElementToBeDisplayed(amendPositionGradeSelect);
+        String updatedPositionValue=amendPositionGradeSelect.getText();
+        System.out.println(amendPositionGradeSelect.getText());
+        if(updatedPositionValue.equals(grade))
+        {
+            System.out.println("Matched");
+        }
+        else
+            {
+                System.out.println("Not matched");
+            }
+
+          }
 }
 
