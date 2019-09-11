@@ -10,7 +10,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@RunWith(Cucumber.class)
+//@RunWith(Cucumber.class)
 //@CucumberOptions(
 //
 //        glue = {"co.uk.optum"},
@@ -19,7 +19,7 @@ import java.util.Date;
 //        format = {"pretty","json:report/report.json"},
 //        plugin = {"com.cucumber.listener.ExtentCucumberFormatter"})
 //C:\GP_Empower_Automation1\src\test\resources\features\finance.smokeTest
-
+/*
 @CucumberOptions(
         glue = {"co.uk.optum"},
         features = {"src//test//resources//features"},
@@ -31,6 +31,8 @@ import java.util.Date;
 //        format = {"pretty","html:report/results.html"},
 //        plugin = {"com.cucumber.listener.ExtentCucumberFormatter"}
         )
+*/
+
 public class TestEngine {
     public static FeatureContext context;
 
@@ -48,9 +50,4 @@ public class TestEngine {
 
 
     }
-
-
-
-
-
 

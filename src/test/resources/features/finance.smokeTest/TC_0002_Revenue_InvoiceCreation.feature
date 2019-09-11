@@ -1,4 +1,4 @@
-@jenkins
+@jenkinsTest
 Feature: Receivables / Private Revenue Order Creation, Approval and Invoice Generation Scenarios.
   Scenario Outline: Revenue order Creation
     Given I am in login Page
