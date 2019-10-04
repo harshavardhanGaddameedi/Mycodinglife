@@ -36,7 +36,7 @@
 					<threadCount>10</threadCount> <parallel>classes</parallel>
 					<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
 					<useSystemClassLoader>false</useSystemClassLoader>
-					<testFailureIgnore>true</testFailureIgnore>
+					<testFailureIgnore>false</testFailureIgnore>
 					<includes>
 						<include>**/Parallel*IT.class</include>
 					</includes>
