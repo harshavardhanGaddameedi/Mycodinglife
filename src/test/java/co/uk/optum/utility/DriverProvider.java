@@ -56,22 +56,23 @@ public class DriverProvider {
         }
         else
             {
-                driver = createWebDriverSauce ();
+               // driver = createWebDriverSauce ("Chrome","76","Windows 10");
+             driver =createWebDriverSauce(System.getProperty("Browser"),System.getProperty("Version"),System.getProperty("OS"));
 
             }
         driver.manage ().window ().maximize ();
         driver.manage ().timeouts ().implicitlyWait (10000, TimeUnit.MILLISECONDS );
     }
-private RemoteWebDriver createWebDriverSauce()
+private RemoteWebDriver createWebDriverSauce(String browser,String Version, String os)
 {
     DesiredCapabilities capabilities = null;
     String USERNAME = "ppurnan";
     String ACCESS_KEY = "d2b60d6d-4c0e-4268-ada2-9d02b0bd8c3a";
     String URL1 = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
     capabilities = DesiredCapabilities.chrome();
-    capabilities.setCapability( CapabilityType.BROWSER_NAME, "chrome");
-    capabilities.setCapability(CapabilityType.VERSION, "72");
-    capabilities.setCapability( CapabilityType.PLATFORM, "Windows 10");
+    capabilities.setCapability( CapabilityType.BROWSER_NAME, browser);
+    capabilities.setCapability(CapabilityType.VERSION,Version );
+    capabilities.setCapability( CapabilityType.PLATFORM, os);
 //    capabilities.setCapability( CapabilityType.ACCEPT_INSECURE_CERTS,true);
     capabilities.setCapability( CapabilityType.ACCEPT_SSL_CERTS,true);
     capabilities.setCapability("screenResolution", "1920x1080");

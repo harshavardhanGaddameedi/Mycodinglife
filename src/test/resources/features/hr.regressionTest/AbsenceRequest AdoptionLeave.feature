@@ -1,5 +1,5 @@
 #Author: Harsha
-
+@TestRun
 Feature: Create a new adoption leave request as an employee and approve the same as LM
   Scenario Outline:Create adoption leave request as a Full/Part Time employee
     Given I am in login Page

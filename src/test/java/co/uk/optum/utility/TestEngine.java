@@ -14,24 +14,28 @@ import java.util.Date;
 //@CucumberOptions(
 //
 //        glue = {"co.uk.optum"},
-//        features = {"src/test/resources/features/"},
-//        tags = {"@wip"},
-//        format = {"pretty","json:report/report.json"},
-//        plugin = {"com.cucumber.listener.ExtentCucumberFormatter"})
+//       features = {"src/test/resources/features/"},
+//        tags = {"@TestRun"},
+//        format = {"pretty","json:report/report.json"}
+//
+//
+//      //plugin = {"com.cucumber.listener.ExtentCucumberFormatter"}
+//        )
+
 //C:\GP_Empower_Automation1\src\test\resources\features\finance.smokeTest
-/*
-@CucumberOptions(
-        glue = {"co.uk.optum"},
-        features = {"src//test//resources//features"},
-//        tags = {"@smokeHR, @smoke"},
-//        tags = {"@receivablesSmoke"},
-        tags = {"@jenkins"},
-        format = {"pretty","json:report/report.json","html:report/cucumber-reports","html:report/"},
-        plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}
+
+//@CucumberOptions(
+//        glue = {"co.uk.optum"},
+//        features = {"src//test//resources//features"},
+//       tags = {"@smokeHR, @smoke"},
+//       tags = {"@receivablesSmoke"},
+//        tags = {"@jenkins"},
+//        format = {"pretty","json:report/report.json","html:report/cucumber-reports","html:report/"},
+//        plugin = { "com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"}
 //        format = {"pretty","html:report/results.html"},
-//        plugin = {"com.cucumber.listener.ExtentCucumberFormatter"}
-        )
-*/
+//       plugin = {"com.cucumber.listener.ExtentCucumberFormatter"}
+//        )
+//
 
 public class TestEngine {
     public static FeatureContext context;

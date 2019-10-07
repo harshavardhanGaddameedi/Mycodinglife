@@ -27,7 +27,10 @@
 
 				<configuration>
 					<systemPropertyVariables>
-						<RemotelyYorN>N</RemotelyYorN>
+						<RemotelyYorN>Y</RemotelyYorN>
+						<Browser>FireFox</Browser>
+						<Version>69</Version>
+						<OS>Windows 10</OS>
 					</systemPropertyVariables>
 
 					<forkCount>2</forkCount>
@@ -75,7 +78,7 @@
 							<monochrome>true</monochrome>
 
 							<tags>
-								<tag>@jenkinsTest</tag>
+								<tag>@RunTest</tag>
 							</tags>
 
 
